@@ -21,8 +21,7 @@ jobs:
         run: |
           set -e
           echo "${{ secrets.SF_AUTH_URL }}" > auth_url.txt
-          cat auth_url.txt  # Optional: for debugging, remove if sensitive
-          sfdx auth:sfdxurl:store -f auth_url.txt -a DEVORGFORPRIVATEPROJECT
+          sfdx force:auth:sfdxurl:store -f auth_url.txt -a DEVORGFORPRIVATEPROJECT
 
       - name: Confirm Auth Alias
         run: sfdx force:org:list
