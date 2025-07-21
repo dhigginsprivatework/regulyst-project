@@ -19,8 +19,13 @@ jobs:
 
       - name: Authenticate to Salesforce
         run: |
+          set -e
           echo "${{ secrets.SF_AUTH_URL }}" > auth_url.txt
+          cat auth_url.txt  # Optional: for debugging, remove if sensitive
           sfdx auth:sfdxurl:store -f auth_url.txt -a DEVORGFORPRIVATEPROJECT
+
+      - name: Confirm Auth Alias
+        run: sfdx force:org:list
 
       - name: Convert source to metadata format
         run: sfdx force:source:convert -d mdapi_output_dir -r force-app
