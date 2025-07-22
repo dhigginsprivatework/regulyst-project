@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source__c</fullName>
+    <label>Source</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DORA</fullName>
+                <default>false</default>
+                <label>DORA</label>
+            </value>
+            <value>
+                <fullName>ISO 27001</fullName>
+                <default>false</default>
+                <label>ISO 27001</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

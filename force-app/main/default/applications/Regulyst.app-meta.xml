@@ -18,11 +18,15 @@
     <tabs>Framework__c</tabs>
     <tabs>Article__c</tabs>
     <tabs>Control__c</tabs>
+    <tabs>Control_Requirement__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Regulyst_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
             <tab>Article__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Control_Requirement__c</tab>
         </mappings>
         <mappings>
             <tab>Control__c</tab>
