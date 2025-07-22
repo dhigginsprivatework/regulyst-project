@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>GDPR</label>
             </value>
+            <value>
+                <fullName>EU DORA</fullName>
+                <default>false</default>
+                <label>EU DORA</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
     <visibleLines>4</visibleLines>
