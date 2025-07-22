@@ -1,0 +1,18 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "005gL000004PrYHQA0",
+      "createdByName": "Diarmuid Higgins",
+      "createdDate": "2025-07-22T06:48:19.000Z",
+      "fileName": "tabs/Framework_Category__c.tab",
+      "fullName": "Framework_Category__c",
+      "id": "01rgL00000BE4yRQAT",
+      "lastModifiedById": "005gL000004PrYHQA0",
+      "lastModifiedByName": "Diarmuid Higgins",
+      "lastModifiedDate": "2025-07-22T06:48:19.000Z",
+      "manageableState": "unmanaged",
+      "type": "CustomTab"
+    }
+  ]
+}
