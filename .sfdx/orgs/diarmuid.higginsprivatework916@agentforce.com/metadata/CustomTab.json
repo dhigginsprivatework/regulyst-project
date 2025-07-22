@@ -4,6 +4,19 @@
     {
       "createdById": "005gL000004PrYHQA0",
       "createdByName": "Diarmuid Higgins",
+      "createdDate": "2025-07-22T07:14:55.000Z",
+      "fileName": "tabs/Framework__c.tab",
+      "fullName": "Framework__c",
+      "id": "01rgL00000BES4YQAX",
+      "lastModifiedById": "005gL000004PrYHQA0",
+      "lastModifiedByName": "Diarmuid Higgins",
+      "lastModifiedDate": "2025-07-22T07:14:55.000Z",
+      "manageableState": "unmanaged",
+      "type": "CustomTab"
+    },
+    {
+      "createdById": "005gL000004PrYHQA0",
+      "createdByName": "Diarmuid Higgins",
       "createdDate": "2025-07-22T06:48:19.000Z",
       "fileName": "tabs/Framework_Category__c.tab",
       "fullName": "Framework_Category__c",
