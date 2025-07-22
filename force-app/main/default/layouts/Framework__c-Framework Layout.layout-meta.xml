@@ -72,7 +72,6 @@
         <fields>NAME</fields>
         <fields>Identifier__c</fields>
         <fields>Description__c</fields>
-        <relatedList>Control_Domain__c.Framework__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
