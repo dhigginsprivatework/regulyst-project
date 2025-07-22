@@ -17,9 +17,13 @@
     <navType>Console</navType>
     <tabs>Framework_Category__c</tabs>
     <tabs>Framework__c</tabs>
+    <tabs>Control_Domain__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Regulyst_UtilityBar</utilityBar>
     <workspaceConfig>
+        <mappings>
+            <tab>Control_Domain__c</tab>
+        </mappings>
         <mappings>
             <tab>Framework_Category__c</tab>
         </mappings>
