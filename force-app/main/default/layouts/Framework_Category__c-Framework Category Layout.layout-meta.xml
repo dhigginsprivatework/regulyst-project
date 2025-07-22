@@ -62,7 +62,6 @@
         <fields>Version__c</fields>
         <fields>Publisher__c</fields>
         <fields>URL__c</fields>
-        <relatedList>Framework__c.Framework_Category__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

@@ -18,10 +18,6 @@
                 <behavior>Edit</behavior>
                 <field>URL__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Framework_Category__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
