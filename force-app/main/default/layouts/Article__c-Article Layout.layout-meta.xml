@@ -70,13 +70,6 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>Control_Requirement_Unique_Id__c</fields>
-        <fields>Source__c</fields>
-        <fields>Tags__c</fields>
-        <relatedList>Control_Requirement__c.Article__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
