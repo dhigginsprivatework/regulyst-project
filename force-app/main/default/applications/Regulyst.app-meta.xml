@@ -16,11 +16,15 @@
     <label>Regulyst</label>
     <navType>Console</navType>
     <tabs>Framework__c</tabs>
+    <tabs>Clause__c</tabs>
     <tabs>Control__c</tabs>
     <tabs>Control_Requirement__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Regulyst_UtilityBar</utilityBar>
     <workspaceConfig>
+        <mappings>
+            <tab>Clause__c</tab>
+        </mappings>
         <mappings>
             <tab>Control_Requirement__c</tab>
         </mappings>
