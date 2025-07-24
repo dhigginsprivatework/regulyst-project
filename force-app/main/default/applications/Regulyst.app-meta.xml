@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Framework_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Framework__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Framework_Record_Page1</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Framework__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Control_Requirement_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Control_Requirement__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Control_Requirement_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Control_Requirement__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Control_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Control__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Control_Record_Page1</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Control__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Clause_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Clause__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Clause_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Clause__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Regulyst_Project_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Regulyst_Project_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <logo>Basic_Logo</logo>
@@ -20,6 +110,7 @@
     <tabs>Control__c</tabs>
     <tabs>Control_Requirement__c</tabs>
     <tabs>ControlMapping__c</tabs>
+    <tabs>Project__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Regulyst_UtilityBar</utilityBar>
     <workspaceConfig>
@@ -37,6 +128,9 @@
         </mappings>
         <mappings>
             <tab>Framework__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Project__c</tab>
         </mappings>
     </workspaceConfig>
 </CustomApplication>
