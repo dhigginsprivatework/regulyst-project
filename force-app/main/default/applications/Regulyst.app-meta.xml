@@ -90,6 +90,24 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Project__c</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Framework_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Framework__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Framework_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Framework__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <logo>Basic_Logo</logo>
@@ -111,6 +129,7 @@
     <tabs>Control_Requirement__c</tabs>
     <tabs>ControlMapping__c</tabs>
     <tabs>Project__c</tabs>
+    <tabs>Project_Framework__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Regulyst_UtilityBar</utilityBar>
     <workspaceConfig>
@@ -128,6 +147,9 @@
         </mappings>
         <mappings>
             <tab>Framework__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Project_Framework__c</tab>
         </mappings>
         <mappings>
             <tab>Project__c</tab>
