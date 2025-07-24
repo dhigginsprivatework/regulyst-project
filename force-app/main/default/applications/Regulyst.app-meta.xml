@@ -130,6 +130,7 @@
     <tabs>ControlMapping__c</tabs>
     <tabs>Project__c</tabs>
     <tabs>Project_Framework__c</tabs>
+    <tabs>Project_Clause_Control_Domain__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Regulyst_UtilityBar</utilityBar>
     <workspaceConfig>
@@ -147,6 +148,9 @@
         </mappings>
         <mappings>
             <tab>Framework__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Project_Clause_Control_Domain__c</tab>
         </mappings>
         <mappings>
             <tab>Project_Framework__c</tab>
