@@ -153,7 +153,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Clause</label>
+    <label>Clause/Control Domain</label>
     <nameField>
         <label>Clause Name</label>
         <trackHistory>false</trackHistory>

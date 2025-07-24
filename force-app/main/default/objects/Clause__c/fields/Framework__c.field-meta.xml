@@ -4,7 +4,6 @@
     <deleteConstraint>Restrict</deleteConstraint>
     <label>Framework</label>
     <referenceTo>Framework__c</referenceTo>
-    <relationshipLabel>Clauses</relationshipLabel>
     <relationshipName>Clauses</relationshipName>
     <required>true</required>
     <trackHistory>false</trackHistory>
