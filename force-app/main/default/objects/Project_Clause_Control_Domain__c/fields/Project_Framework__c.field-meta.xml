@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Project_Framework__c</fullName>
     <description>Parent Project Framework above the clause</description>
-    <label>Project Framework</label>
+    <label>Framework</label>
     <referenceTo>Project_Framework__c</referenceTo>
     <relationshipLabel>Clause/Control Domain</relationshipLabel>
     <relationshipName>Clause_Control_Domain</relationshipName>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Project_Control__c</fullName>
     <description>Relationship to Parent Project Control</description>
-    <label>Project Control</label>
+    <label>Control</label>
     <referenceTo>Project_Control__c</referenceTo>
     <relationshipLabel>Project Control Requirements</relationshipLabel>
     <relationshipName>Project_Control_Requirements</relationshipName>
