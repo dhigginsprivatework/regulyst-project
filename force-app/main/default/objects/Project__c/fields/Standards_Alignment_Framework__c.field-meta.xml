@@ -13,14 +13,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>ISO 27001:2022 Controls Mapping to Information Security Control Domains</fullName>
+                <fullName>ISO 27001</fullName>
                 <default>false</default>
-                <label>ISO 27001:2022 Controls Mapping to Information Security Control Domains</label>
+                <label>ISO 27001</label>
             </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>ISO</controllingFieldValue>
-            <valueName>ISO 27001:2022 Controls Mapping to Information Security Control Domains</valueName>
+            <valueName>ISO 27001</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
