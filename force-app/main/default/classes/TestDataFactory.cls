@@ -41,7 +41,7 @@ public class TestDataFactory {
 
         List<Control_Requirement__c> requirements = new List<Control_Requirement__c>();
         for (Control__c ctrl : controls) {
-            for (Integer j = 1; j <= 2; j++){
+            for (Integer j = 1; j <= controls.size(); j++){
                 requirements.add(new Control_Requirement__c(
                     Name = 'Requirement',
                     Description__c = 'Requirement Desc',
