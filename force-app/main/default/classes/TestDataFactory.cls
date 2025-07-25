@@ -41,14 +41,16 @@ public class TestDataFactory {
 
         List<Control_Requirement__c> requirements = new List<Control_Requirement__c>();
         for (Control__c ctrl : controls) {
-            requirements.add(new Control_Requirement__c(
-                Name = 'Requirement',
-                Description__c = 'Requirement Desc',
-                Source__c = 'ISO 27001',
-                Control__c = ctrl.Id,
-                Framework__c = fw.Id,
-                Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c
-            ));
+            for (Integer j = 1; j <= 2; j++){
+                requirements.add(new Control_Requirement__c(
+                    Name = 'Requirement',
+                    Description__c = 'Requirement Desc',
+                    Source__c = 'ISO 27001',
+                    Control__c = ctrl.Id,
+                    Framework__c = fw.Id,
+                    Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c + j 
+             ));
+         }
         }
         insert requirements;
 
