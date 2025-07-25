@@ -7,7 +7,7 @@ private class CreateProjectJobTest {
         Test.startTest();
         CreateProjectJob job = new CreateProjectJob(
             'ISO', // Valid picklist value
-            'ISO 27001	',
+            'ISO 27001',
             'Compliance',
             'Description A',
             fw.Id
