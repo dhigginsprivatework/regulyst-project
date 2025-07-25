@@ -1,19 +1,20 @@
 @isTest
 public class TestDataFactory {
 
-    public static string returnUniqueSuffixForExternalId(){
-        return String.valueOf(System.currentTimeMillis());
+    // Generates a unique suffix using a cryptographically random integer and a time-based component
+    public static String returnUniqueSuffixForExternalId() {
+        return String.valueOf(Crypto.getRandomInteger()) + String.valueOf(Math.mod(DateTime.now().getTime(), 1000));
     }
 
     public static Framework__c createFrameworkWithChildren() {
-        String uniqueSuffix = String.valueOf(System.currentTimeMillis());
+        String uniqueSuffix = returnUniqueSuffixForExternalId();
 
         Framework__c fw = new Framework__c(
             Name = 'Test Framework ' + uniqueSuffix,
             Description__c = 'Desc',
             URL__c = 'http://example.com',
             Version__c = '1.0',
-            External_Id__c = 'FW-' + returnUniqueSuffixForExternalId()
+            External_Id__c = 'FW-' + uniqueSuffix
         );
         insert fw;
 
@@ -51,10 +52,10 @@ public class TestDataFactory {
             requirements.add(new Control_Requirement__c(
                 Name = 'Requirement',
                 Description__c = 'Requirement Desc',
-                Source__c = 'ISO 27001	',
+                Source__c = 'ISO 27001',
                 Control__c = ctrl.Id,
                 Framework__c = fw.Id,
-                Control_Requirement_Unique_Id__c	 = 'REQ-' + ctrl.Control_Number__c + '-' + returnUniqueSuffixForExternalId()
+                Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c + '-' + returnUniqueSuffixForExternalId()
             ));
         }
         insert requirements;
