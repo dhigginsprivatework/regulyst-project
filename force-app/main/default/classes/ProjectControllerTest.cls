@@ -13,7 +13,7 @@ private class ProjectControllerTest {
 
     @isTest
     static void testSearchFrameworks() {
-        String suffix = String.valueOf(Crypto.getRandomInteger());
+        String suffix = TestDataFactory.returnUniqueSuffixForExternalId();
         Framework__c fw = new Framework__c(
             Name = 'Searchable Framework ' + suffix,
             External_Id__c = 'FW-SEARCH-' + suffix
@@ -34,8 +34,8 @@ private class ProjectControllerTest {
 
         Test.startTest();
         ProjectController.createProjectWithFramework(
-            'ISO', // Valid picklist value
-            'ISO 27001',
+            'ISO',         // Standards_Alignment_Body__c
+            'ISO 27001',   // Standards_Alignment_Framework__c ✅ fixed
             'Compliance',
             'Description A',
             fw.Id
