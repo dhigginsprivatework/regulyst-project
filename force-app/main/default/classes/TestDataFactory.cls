@@ -1,12 +1,14 @@
 @isTest
 public class TestDataFactory {
     public static Framework__c createFrameworkWithChildren() {
+        String unique = String.valueOf(Crypto.getRandomLong());
+
         Framework__c fw = new Framework__c(
-            Name = 'Test Framework',
+            Name = 'Test Framework ' + unique,
             Description__c = 'Desc',
             URL__c = 'http://example.com',
             Version__c = '1.0',
-            External_Id__c = 'FW-001'
+            External_Id__c = 'FW-' + unique
         );
         insert fw;
 
@@ -18,7 +20,7 @@ public class TestDataFactory {
                 Description__c = 'Clause Desc ' + i,
                 Sequence__c = i,
                 Framework__c = fw.Id,
-                Clause_Unique_Id__c = 'CL-' + i
+                Clause_Unique_Id__c = 'CL-' + i + '-' + unique
             ));
         }
         insert clauses;
@@ -33,7 +35,7 @@ public class TestDataFactory {
                     Title__c = 'Title ' + j,
                     Clause__c = clause.Id,
                     Framework__c = fw.Id,
-                    Control_Unique_Id__c = 'CTRL-' + clause.Clause_Number__c + '-' + j
+                    Control_Unique_Id__c = 'CTRL-' + clause.Clause_Number__c + '-' + j + '-' + unique
                 ));
             }
         }
@@ -41,16 +43,14 @@ public class TestDataFactory {
 
         List<Control_Requirement__c> requirements = new List<Control_Requirement__c>();
         for (Control__c ctrl : controls) {
-            for (Integer j = 1; j <= controls.size(); j++){
-                requirements.add(new Control_Requirement__c(
-                    Name = 'Requirement',
-                    Description__c = 'Requirement Desc',
-                    Source__c = 'ISO 27001',
-                    Control__c = ctrl.Id,
-                    Framework__c = fw.Id,
-                    Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c + j 
-             ));
-         }
+            requirements.add(new Control_Requirement__c(
+                Name = 'Requirement ' + unique,
+                Description__c = 'Requirement Desc',
+                Source__c = 'ISO 27001', // Ensure this value exists in your picklist
+                Control__c = ctrl.Id,
+                Framework__c = fw.Id,
+                Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c + '-' + unique
+            ));
         }
         insert requirements;
 
