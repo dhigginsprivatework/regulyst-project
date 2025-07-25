@@ -1,0 +1,18 @@
+<template>
+    <lightning-input
+        type="search"
+        label={label}
+        value={searchKey}
+        onchange={handleSearch}>
+    </lightning-input>
+
+    <template if:true={results}>
+        <ul class="slds-list_dotted">
+            <template for:each={results} for:item="record">
+                <li key={record.Id} onclick={handleSelect} data-id={record.Id} data-name={record.Name}>
+                    {record.Name}
+                </li>
+            </template>
+        </ul>
+    </template>
+</template>
