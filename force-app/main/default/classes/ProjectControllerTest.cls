@@ -13,10 +13,10 @@ private class ProjectControllerTest {
 
     @isTest
     static void testSearchFrameworks() {
-        String unique = String.valueOf(Crypto.getRandomLong());
+        String suffix = String.valueOf(System.currentTimeMillis());
         Framework__c fw = new Framework__c(
-            Name = 'Searchable Framework ' + unique,
-            External_Id__c = 'FW-SEARCH-' + unique
+            Name = 'Searchable Framework ' + suffix,
+            External_Id__c = 'FW-SEARCH-' + suffix
         );
         insert fw;
 

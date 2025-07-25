@@ -1,14 +1,14 @@
 @isTest
 public class TestDataFactory {
     public static Framework__c createFrameworkWithChildren() {
-        String unique = String.valueOf(Crypto.getRandomLong());
+        String uniqueSuffix = String.valueOf(System.currentTimeMillis());
 
         Framework__c fw = new Framework__c(
-            Name = 'Test Framework ' + unique,
+            Name = 'Test Framework ' + uniqueSuffix,
             Description__c = 'Desc',
             URL__c = 'http://example.com',
             Version__c = '1.0',
-            External_Id__c = 'FW-' + unique
+            External_Id__c = 'FW-' + uniqueSuffix
         );
         insert fw;
 
@@ -20,7 +20,7 @@ public class TestDataFactory {
                 Description__c = 'Clause Desc ' + i,
                 Sequence__c = i,
                 Framework__c = fw.Id,
-                Clause_Unique_Id__c = 'CL-' + i + '-' + unique
+                Clause_Unique_Id__c = 'CL-' + i + '-' + uniqueSuffix
             ));
         }
         insert clauses;
@@ -35,7 +35,7 @@ public class TestDataFactory {
                     Title__c = 'Title ' + j,
                     Clause__c = clause.Id,
                     Framework__c = fw.Id,
-                    Control_Unique_Id__c = 'CTRL-' + clause.Clause_Number__c + '-' + j + '-' + unique
+                    Control_Unique_Id__c = 'CTRL-' + clause.Clause_Number__c + '-' + j + '-' + uniqueSuffix
                 ));
             }
         }
@@ -44,12 +44,12 @@ public class TestDataFactory {
         List<Control_Requirement__c> requirements = new List<Control_Requirement__c>();
         for (Control__c ctrl : controls) {
             requirements.add(new Control_Requirement__c(
-                Name = 'Requirement ' + unique,
+                Name = 'Requirement',
                 Description__c = 'Requirement Desc',
-                Source__c = 'ISO 27001',
+                Source__c = 'Public',
                 Control__c = ctrl.Id,
                 Framework__c = fw.Id,
-                Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c + '-' + unique
+                Control_Requirement_Unique_Id__c	 = 'REQ-' + ctrl.Control_Number__c + '-' + uniqueSuffix
             ));
         }
         insert requirements;
