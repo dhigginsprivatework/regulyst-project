@@ -13,7 +13,10 @@ private class ProjectControllerTest {
 
     @isTest
     static void testSearchFrameworks() {
-        Framework__c fw = new Framework__c(Name = 'Searchable Framework');
+        Framework__c fw = new Framework__c(
+            Name = 'Searchable Framework',
+            External_Id__c = 'FW-SEARCH'
+        );
         insert fw;
 
         Test.startTest();
@@ -32,7 +35,6 @@ private class ProjectControllerTest {
         ProjectController.createProjectWithFramework('Body A', 'Framework A', 'Focus A', 'Description A', fw.Id);
         Test.stopTest();
 
-        // Assert job was enqueued (indirectly)
         System.assertEquals(1, [SELECT COUNT() FROM AsyncApexJob WHERE JobType = 'Queueable']);
     }
 }

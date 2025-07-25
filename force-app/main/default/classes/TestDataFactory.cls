@@ -1,7 +1,13 @@
 @isTest
 public class TestDataFactory {
     public static Framework__c createFrameworkWithChildren() {
-        Framework__c fw = new Framework__c(Name = 'Test Framework', Description__c = 'Desc', URL__c = 'http://example.com', Version__c = '1.0');
+        Framework__c fw = new Framework__c(
+            Name = 'Test Framework',
+            Description__c = 'Desc',
+            URL__c = 'http://example.com',
+            Version__c = '1.0',
+            External_Id__c = 'FW-001'
+        );
         insert fw;
 
         List<Clause__c> clauses = new List<Clause__c>();
@@ -11,7 +17,8 @@ public class TestDataFactory {
                 Clause_Number__c = 'C' + i,
                 Description__c = 'Clause Desc ' + i,
                 Sequence__c = i,
-                Framework__c = fw.Id
+                Framework__c = fw.Id,
+                Clause_Unique_Id__c = 'CL-' + i
             ));
         }
         insert clauses;
@@ -25,7 +32,8 @@ public class TestDataFactory {
                     Description__c = 'Control Desc ' + j,
                     Title__c = 'Title ' + j,
                     Clause__c = clause.Id,
-                    Framework__c = fw.Id
+                    Framework__c = fw.Id,
+                    Control_Unique_Id__c = 'CTRL-' + clause.Clause_Number__c + '-' + j
                 ));
             }
         }
@@ -38,7 +46,8 @@ public class TestDataFactory {
                 Description__c = 'Requirement Desc',
                 Source__c = 'Public',
                 Control__c = ctrl.Id,
-                Framework__c = fw.Id
+                Framework__c = fw.Id,
+                Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c
             ));
         }
         insert requirements;
