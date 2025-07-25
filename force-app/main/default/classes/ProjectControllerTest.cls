@@ -13,7 +13,7 @@ private class ProjectControllerTest {
 
     @isTest
     static void testSearchFrameworks() {
-        String suffix = String.valueOf(System.currentTimeMillis());
+        String suffix = String.valueOf(Crypto.getRandomInteger());
         Framework__c fw = new Framework__c(
             Name = 'Searchable Framework ' + suffix,
             External_Id__c = 'FW-SEARCH-' + suffix
@@ -33,7 +33,13 @@ private class ProjectControllerTest {
         Framework__c fw = TestDataFactory.createFrameworkWithChildren();
 
         Test.startTest();
-        ProjectController.createProjectWithFramework('Body A', 'Framework A', 'Focus A', 'Description A', fw.Id);
+        ProjectController.createProjectWithFramework(
+            'ISO', // Valid picklist value
+            'Framework A',
+            'Focus A',
+            'Description A',
+            fw.Id
+        );
         Test.stopTest();
 
         System.assertEquals(1, [SELECT COUNT() FROM AsyncApexJob WHERE JobType = 'Queueable']);

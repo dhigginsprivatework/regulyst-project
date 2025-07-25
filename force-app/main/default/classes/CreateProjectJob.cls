@@ -16,7 +16,7 @@ public class CreateProjectJob implements Queueable {
     public void execute(QueueableContext context) {
         Framework__c fw = [SELECT Id, Name, Description__c, URL__c, Version__c,
                            (SELECT Id, Name, Clause_Number__c, Description__c, Sequence__c FROM Clauses__r),
-                           (SELECT Id, Name, Control_Number__c, Description__c, Title__c,
+                           (SELECT Id, Name, Clause__c, Control_Number__c, Description__c, Title__c,
                                    (SELECT Id, Name, Description__c, Source__c FROM Control_Requirements__r)
                             FROM Controls__r)
                            FROM Framework__c WHERE Id = :frameworkId LIMIT 1];
