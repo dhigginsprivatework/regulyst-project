@@ -7,7 +7,7 @@ private class CreateProjectJobTest {
         Test.startTest();
         CreateProjectJob job = new CreateProjectJob(
             'ISO', // Valid picklist value
-            'ISO 27001:2022 Controls Mapping to Information Security Control Domains',
+            'ISO 27001	',
             'Compliance',
             'Description A',
             fw.Id
