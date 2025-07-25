@@ -26,7 +26,8 @@ public class CreateProjectJob implements Queueable {
             Standards_Alignment_Body__c = body,
             Standards_Alignment_Framework__c = framework,
             Project_Focus__c = focus,
-            Description__c = description
+            Description__c = description,
+            Framework__c = fw.Id
         );
         insert project;
 
