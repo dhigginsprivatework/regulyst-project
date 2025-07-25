@@ -5,7 +5,7 @@ private class CreateProjectJobTest {
         Framework__c fw = TestDataFactory.createFrameworkWithChildren();
 
         Test.startTest();
-        CreateProjectJob job = new CreateProjectJob('Body A', 'Framework A', 'Focus A', 'Description A', fw.Id);
+        CreateProjectJob job = new CreateProjectJob('ISO', 'ISO 27001:2022 Controls Mapping to Information Security Control Domains', 'Focus A', 'Description A', fw.Id);
         System.enqueueJob(job);
         Test.stopTest();
 
