@@ -35,8 +35,8 @@ private class ProjectControllerTest {
         Test.startTest();
         ProjectController.createProjectWithFramework(
             'ISO', // Valid picklist value
-            'Framework A',
-            'Focus A',
+            'ISO 27001',
+            'Compliance',
             'Description A',
             fw.Id
         );
