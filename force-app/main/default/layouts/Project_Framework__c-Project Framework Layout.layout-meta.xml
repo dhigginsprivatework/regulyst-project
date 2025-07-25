@@ -56,6 +56,18 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Description__c</fields>
+        <relatedList>Project_Clause_Control_Domain__c.Project_Framework__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Control_Number__c</fields>
+        <fields>Title__c</fields>
+        <fields>Description__c</fields>
+        <relatedList>Project_Control__c.Project_Framework__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
