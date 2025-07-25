@@ -14,13 +14,10 @@ public class CreateProjectJob implements Queueable {
     }
 
     public void execute(QueueableContext context) {
-        Framework__c fw = [SELECT Id, Name, Description__c, URL__c, Version__c,
-                           (SELECT Id, Name, Clause_Number__c, Description__c, Sequence__c FROM Clauses__r),
-                           (SELECT Id, Name, Clause__c, Control_Number__c, Description__c, Title__c,
-                                   (SELECT Id, Name, Description__c, Source__c FROM Control_Requirements__r)
-                            FROM Controls__r)
-                           FROM Framework__c WHERE Id = :frameworkId LIMIT 1];
+        // Step 1: Get the Framework
+        Framework__c fw = [SELECT Id, Name, Description__c, URL__c, Version__c FROM Framework__c WHERE Id = :frameworkId LIMIT 1];
 
+        // Step 2: Create the Project
         Project__c project = new Project__c(
             Name = fw.Name,
             Standards_Alignment_Body__c = body,
@@ -31,6 +28,7 @@ public class CreateProjectJob implements Queueable {
         );
         insert project;
 
+        // Step 3: Create the Project_Framework
         Project_Framework__c pf = new Project_Framework__c(
             Name = fw.Name,
             Description__c = fw.Description__c,
@@ -41,10 +39,12 @@ public class CreateProjectJob implements Queueable {
         );
         insert pf;
 
+        // Step 4: Query Clauses separately
+        List<Clause__c> clauseList = [SELECT Id, Name, Clause_Number__c, Description__c, Sequence__c FROM Clause__c WHERE Framework__c = :fw.Id];
         List<Project_Clause_Control_Domain__c> clauses = new List<Project_Clause_Control_Domain__c>();
         Map<Id, Id> clauseMap = new Map<Id, Id>();
 
-        for (Clause__c c : fw.Clauses__r) {
+        for (Clause__c c : clauseList) {
             Project_Clause_Control_Domain__c pc = new Project_Clause_Control_Domain__c(
                 Name = c.Name,
                 Clause_Number__c = c.Clause_Number__c,
@@ -56,14 +56,16 @@ public class CreateProjectJob implements Queueable {
         }
         insert clauses;
 
-        for (Integer i = 0; i < fw.Clauses__r.size(); i++) {
-            clauseMap.put(fw.Clauses__r[i].Id, clauses[i].Id);
+        for (Integer i = 0; i < clauseList.size(); i++) {
+            clauseMap.put(clauseList[i].Id, clauses[i].Id);
         }
 
+        // Step 5: Query Controls separately
+        List<Control__c> controlList = [SELECT Id, Name, Clause__c, Control_Number__c, Description__c, Title__c FROM Control__c WHERE Framework__c = :fw.Id];
         List<Project_Control__c> controls = new List<Project_Control__c>();
         Map<Id, Id> controlMap = new Map<Id, Id>();
 
-        for (Control__c ctrl : fw.Controls__r) {
+        for (Control__c ctrl : controlList) {
             Project_Control__c pc = new Project_Control__c(
                 Name = ctrl.Name,
                 Control_Number__c = ctrl.Control_Number__c,
@@ -76,20 +78,21 @@ public class CreateProjectJob implements Queueable {
         }
         insert controls;
 
-        for (Integer i = 0; i < fw.Controls__r.size(); i++) {
-            controlMap.put(fw.Controls__r[i].Id, controls[i].Id);
+        for (Integer i = 0; i < controlList.size(); i++) {
+            controlMap.put(controlList[i].Id, controls[i].Id);
         }
 
+        // Step 6: Query Control Requirements separately
+        List<Control_Requirement__c> requirementList = [SELECT Id, Name, Description__c, Source__c, Control__c FROM Control_Requirement__c WHERE Control__c IN :controlMap.keySet()];
         List<Project_Control_Requirement__c> requirements = new List<Project_Control_Requirement__c>();
-        for (Control__c ctrl : fw.Controls__r) {
-            for (Control_Requirement__c req : ctrl.Control_Requirements__r) {
-                requirements.add(new Project_Control_Requirement__c(
-                    Name = req.Name,
-                    Description__c = req.Description__c,
-                    Source__c = req.Source__c,
-                    Project_Control__c = controlMap.get(ctrl.Id)
-                ));
-            }
+
+        for (Control_Requirement__c req : requirementList) {
+            requirements.add(new Project_Control_Requirement__c(
+                Name = req.Name,
+                Description__c = req.Description__c,
+                Source__c = req.Source__c,
+                Project_Control__c = controlMap.get(req.Control__c)
+            ));
         }
         insert requirements;
     }

@@ -16,10 +16,24 @@ export default class CustomLookup extends LightningElement {
     }
 
     handleSelect(event) {
-        const selectedId = event.currentTarget.dataset.id;
-        const selectedName = event.currentTarget.dataset.name;
-        this.dispatchEvent(new CustomEvent('frameworkselected', {
-            detail: { id: selectedId, name: selectedName }
-        }));
+    // Traverse up the DOM to find the element with data attributes
+    let target = event.target;
+    while (target && !target.dataset.id) {
+        target = target.parentElement;
     }
+
+    if (target) {
+        const selectedId = target.dataset.id;
+        const selectedName = target.dataset.name;
+
+        this.dispatchEvent(new CustomEvent('frameworkselected', {
+            detail: { frameworkId: selectedId, name: selectedName }
+        }));
+
+        // Optionally clear results after selection
+        this.results = [];
+        this.searchKey = selectedName;
+    }
+}
+
 }

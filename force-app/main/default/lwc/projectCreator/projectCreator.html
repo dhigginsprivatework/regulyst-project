@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Create Project">
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+                name="standardsBody"
+                label="Standards Alignment Body"
+                value={selectedBody}
+                options={bodyOptions}
+                onchange={handleBodyChange}>
+            </lightning-combobox>
+
+            <lightning-combobox
+                name="standardsFramework"
+                label="Standards Alignment Framework"
+                value={selectedFramework}
+                options={filteredFrameworkOptions}
+                onchange={handleFrameworkChange}>
+            </lightning-combobox>
+
+            <lightning-input
+                label="Project Focus"
+                value={projectFocus}
+                onchange={handleFocusChange}>
+            </lightning-input>
+
+            <lightning-textarea
+                label="Description"
+                value={description}
+                onchange={handleDescriptionChange}>
+            </lightning-textarea>
+
+            <c-custom-lookup onframeworkselected={handleFrameworkSelected}></c-custom-lookup>
+
+            <lightning-button
+                label="Create Project"
+                onclick={createProject}
+                class="slds-m-top_medium">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
