@@ -8,7 +8,7 @@ private class CreateProjectJobTest {
         CreateProjectJob job = new CreateProjectJob(
             'ISO', // Valid picklist value
             'ISO 27001:2022 Controls Mapping to Information Security Control Domains',
-            'Focus A',
+            'Compliance',
             'Description A',
             fw.Id
         );
@@ -20,5 +20,6 @@ private class CreateProjectJobTest {
         System.assertEquals(2, [SELECT COUNT() FROM Project_Clause_Control_Domain__c]);
         System.assertEquals(4, [SELECT COUNT() FROM Project_Control__c]);
         System.assertEquals(4, [SELECT COUNT() FROM Project_Control_Requirement__c]);
+        //String body, String framework, String focus, String description, Id frameworkId
     }
 }
