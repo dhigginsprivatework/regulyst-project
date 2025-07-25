@@ -5,7 +5,7 @@ private class CreateProjectJobTest {
         Framework__c fw = TestDataFactory.createFrameworkWithChildren();
 
         Test.startTest();
-        CreateProjectJob job = new CreateProjectJob('ISO', 'ISO 27001:2022 Controls Mapping to Information Security Control Domains', 'Focus A', 'Description A', fw.Id);
+        CreateProjectJob job = new CreateProjectJob('ISO', 'ISO 27001:2022 Controls Mapping to Information Security Control Domains', 'Compliance', 'Description A', fw.Id);
         System.enqueueJob(job);
         Test.stopTest();
 
@@ -15,4 +15,5 @@ private class CreateProjectJobTest {
         System.assertEquals(4, [SELECT COUNT() FROM Project_Control__c]);
         System.assertEquals(4, [SELECT COUNT() FROM Project_Control_Requirement__c]);
     }
+    //String body, String framework, String focus, String description, Id frameworkId
 }
