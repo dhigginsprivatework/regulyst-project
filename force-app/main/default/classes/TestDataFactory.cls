@@ -46,7 +46,7 @@ public class TestDataFactory {
             requirements.add(new Control_Requirement__c(
                 Name = 'Requirement ' + unique,
                 Description__c = 'Requirement Desc',
-                Source__c = 'ISO 27001', // Ensure this value exists in your picklist
+                Source__c = 'ISO 27001',
                 Control__c = ctrl.Id,
                 Framework__c = fw.Id,
                 Control_Requirement_Unique_Id__c = 'REQ-' + ctrl.Control_Number__c + '-' + unique
