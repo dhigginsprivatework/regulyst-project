@@ -1,5 +1,10 @@
 @isTest
 public class TestDataFactory {
+
+    public static string returnUniqueSuffixForExternalId(){
+        return String.valueOf(System.currentTimeMillis());
+    }
+
     public static Framework__c createFrameworkWithChildren() {
         String uniqueSuffix = String.valueOf(System.currentTimeMillis());
 
@@ -8,7 +13,7 @@ public class TestDataFactory {
             Description__c = 'Desc',
             URL__c = 'http://example.com',
             Version__c = '1.0',
-            External_Id__c = 'FW-' + uniqueSuffix
+            External_Id__c = 'FW-' + returnUniqueSuffixForExternalId()
         );
         insert fw;
 
@@ -20,7 +25,7 @@ public class TestDataFactory {
                 Description__c = 'Clause Desc ' + i,
                 Sequence__c = i,
                 Framework__c = fw.Id,
-                Clause_Unique_Id__c = 'CL-' + i + '-' + uniqueSuffix
+                Clause_Unique_Id__c = 'CL-' + i + '-' + returnUniqueSuffixForExternalId()
             ));
         }
         insert clauses;
@@ -35,7 +40,7 @@ public class TestDataFactory {
                     Title__c = 'Title ' + j,
                     Clause__c = clause.Id,
                     Framework__c = fw.Id,
-                    Control_Unique_Id__c = 'CTRL-' + clause.Clause_Number__c + '-' + j + '-' + uniqueSuffix
+                    Control_Unique_Id__c = 'CTRL-' + clause.Clause_Number__c + '-' + j + '-' + returnUniqueSuffixForExternalId()
                 ));
             }
         }
@@ -49,7 +54,7 @@ public class TestDataFactory {
                 Source__c = 'Public',
                 Control__c = ctrl.Id,
                 Framework__c = fw.Id,
-                Control_Requirement_Unique_Id__c	 = 'REQ-' + ctrl.Control_Number__c + '-' + uniqueSuffix
+                Control_Requirement_Unique_Id__c	 = 'REQ-' + ctrl.Control_Number__c + '-' + returnUniqueSuffixForExternalId()
             ));
         }
         insert requirements;
