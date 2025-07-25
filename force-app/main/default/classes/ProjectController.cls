@@ -12,12 +12,8 @@ public with sharing class ProjectController {
             bodies.add(entry.getLabel());
             dependencies.put(entry.getLabel(), new List<String>());
         }
-
-        // ⚠️ Dependent picklist decoding should be done in LWC using lightning/uiObjectInfoApi
-        // This placeholder avoids using getValidFor() which is invalid in Apex
-
         result.put('bodies', bodies);
-        result.put('frameworks', dependencies); // Empty for now
+        result.put('frameworks', dependencies); 
         return result;
     }
 

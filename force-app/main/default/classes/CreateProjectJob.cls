@@ -14,10 +14,7 @@ public class CreateProjectJob implements Queueable {
     }
 
     public void execute(QueueableContext context) {
-        // Step 1: Get the Framework
         Framework__c fw = [SELECT Id, Name, Description__c, URL__c, Version__c FROM Framework__c WHERE Id = :frameworkId LIMIT 1];
-
-        // Step 2: Create the Project
         Project__c project = new Project__c(
             Name = fw.Name,
             Standards_Alignment_Body__c = body,
@@ -28,7 +25,6 @@ public class CreateProjectJob implements Queueable {
         );
         insert project;
 
-        // Step 3: Create the Project_Framework
         Project_Framework__c pf = new Project_Framework__c(
             Name = fw.Name,
             Description__c = fw.Description__c,
@@ -39,7 +35,6 @@ public class CreateProjectJob implements Queueable {
         );
         insert pf;
 
-        // Step 4: Query Clauses separately
         List<Clause__c> clauseList = [SELECT Id, Name, Clause_Number__c, Description__c, Sequence__c FROM Clause__c WHERE Framework__c = :fw.Id];
         List<Project_Clause_Control_Domain__c> clauses = new List<Project_Clause_Control_Domain__c>();
         Map<Id, Id> clauseMap = new Map<Id, Id>();
@@ -60,7 +55,6 @@ public class CreateProjectJob implements Queueable {
             clauseMap.put(clauseList[i].Id, clauses[i].Id);
         }
 
-        // Step 5: Query Controls separately
         List<Control__c> controlList = [SELECT Id, Name, Clause__c, Control_Number__c, Description__c, Title__c FROM Control__c WHERE Framework__c = :fw.Id];
         List<Project_Control__c> controls = new List<Project_Control__c>();
         Map<Id, Id> controlMap = new Map<Id, Id>();
@@ -82,7 +76,6 @@ public class CreateProjectJob implements Queueable {
             controlMap.put(controlList[i].Id, controls[i].Id);
         }
 
-        // Step 6: Query Control Requirements separately
         List<Control_Requirement__c> requirementList = [SELECT Id, Name, Description__c, Source__c, Control__c FROM Control_Requirement__c WHERE Control__c IN :controlMap.keySet()];
         List<Project_Control_Requirement__c> requirements = new List<Project_Control_Requirement__c>();
 
