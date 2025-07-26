@@ -1,0 +1,9 @@
+<template>
+  <lightning-card title={title} icon-name="standard:record">
+    <div class="slds-p-horizontal_small">
+      <template for:each={fields} for:item="field">
+        <p key={field.label}><strong>{field.label}:</strong> {field.value}</p>
+      </template>
+    </div>
+  </lightning-card>
+</template>
