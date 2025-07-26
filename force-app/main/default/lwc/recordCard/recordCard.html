@@ -7,8 +7,8 @@
           <template if:true={field.isLookup}>
             <a href={field.link} target="_blank">{field.value}</a>
           </template>
-          <template if:false={field.isLookup}>
-            <span>{field.value}</span>
+          <template if:true={field.isLookup}>
+              <a href={field.link} target="_blank">{field.displayValue}</a>
           </template>
         </div>
       </template>

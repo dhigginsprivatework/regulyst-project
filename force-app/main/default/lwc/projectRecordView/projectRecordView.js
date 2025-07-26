@@ -20,15 +20,18 @@ export default class ProjectRecordView extends LightningElement {
   get projectFields() {
   return fieldConfig.Project__c.map(cfg => {
     const value = this.project?.[cfg.fieldName];
-    const isLookup = cfg.fieldName.endsWith('__c') && typeof value === 'string' && value.startsWith('a'); // heuristic
+    const displayValue = cfg.isLookup ? this.project?.[cfg.relatedNameField] : value;
+    const link = cfg.isLookup ? `/lightning/r/${cfg.objectApiName}/${value}/view` : null;
     return {
       label: cfg.label,
-      value: value,
-      isLookup: isLookup,
-      link: isLookup ? '/' + value : null
+      value,
+      displayValue,
+      isLookup: cfg.isLookup,
+      link
     };
   });
 }
+
 
 
   prepareFrameworkCards(frameworks) {
