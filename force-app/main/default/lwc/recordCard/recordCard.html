@@ -1,20 +1,15 @@
 <template>
   <lightning-card title={title} icon-name="standard:record">
-    <div class="slds-p-horizontal_small slds-grid slds-wrap">
+    <div class="slds-p-around_medium slds-text-align_center">
       <template for:each={fields} for:item="field">
-        <div key={field.label} class="slds-size_1-of-2 slds-p-around_x-small">
-          <p>
-            <strong>{field.label}:</strong>
-            <template if:true={field.isLink}>
-              <a href={field.value} target="_blank">{field.displayValue}</a>
-            </template>
-            <template if:true={field.isLookup}>
-              <a href={field.link} target="_blank">{field.displayValue}</a>
-            </template>
-            <template if:false={field.isLink} if:false={field.isLookup}>
-              {field.value}
-            </template>
-          </p>
+        <div key={field.label} class="slds-m-vertical_x-small">
+          <strong>{field.label}:</strong>
+          <template if:true={field.isLookup}>
+            <a href={field.link} target="_blank">{field.value}</a>
+          </template>
+          <template if:false={field.isLookup}>
+            <span>{field.value}</span>
+          </template>
         </div>
       </template>
     </div>
