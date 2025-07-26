@@ -8,14 +8,16 @@ export default class ProjectRecordView extends LightningElement {
   @track frameworkCards = [];
 
   @wire(getProjectWithFrameworks, { projectId: '$recordId' })
-  wiredProject({ data, error }) {
-    if (data) {
-      this.project = data;
-      this.prepareFrameworkCards(data.Project_Frameworks__r || []);
-    } else if (error) {
-      console.error(error);
+    wiredProject({ data, error }) {
+        if (data) {
+            console.log('Project data:', JSON.stringify(data, null, 2)); // 👈 Add this line
+            this.project = data;
+            this.prepareFrameworkCards(data.Project_Frameworks__r || []);
+        } else if (error) {
+        console.error('Error loading project:', error);
+        }
     }
-  }
+
 
   get projectFields() {
   return fieldConfig.Project__c.map(cfg => {
