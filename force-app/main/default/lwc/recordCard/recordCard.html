@@ -5,7 +5,7 @@
         <div key={field.label} class="slds-m-vertical_x-small">
           <strong>{field.label}:</strong>
           <template if:true={field.isLookup}>
-            <a href={field.link} target="_blank">{field.value}</a>
+              <a href={field.link} target="_blank">{field.displayValue}</a>
           </template>
           <template if:true={field.isLookup}>
               <a href={field.link} target="_blank">{field.displayValue}</a>
