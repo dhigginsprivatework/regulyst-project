@@ -20,20 +20,30 @@ export default class ProjectRecordView extends LightningElement {
 
 
   get projectFields() {
-  return fieldConfig.Project__c.map(cfg => {
-    const value = this.project?.[cfg.fieldName];
-    const displayValue = cfg.isLookup ? this.project?.[cfg.relatedNameField] : value;
-    const link = cfg.isLookup ? `/lightning/r/${cfg.objectApiName}/${value}/view` : null;
-    return {
-      label: cfg.label,
-      value,
-      displayValue,
-      isLookup: cfg.isLookup,
-      link
-    };
-  });
-}
+    return fieldConfig.Project__c.map(cfg => {
+        // Resolve nested field value (e.g., Framework__r.Name)
+        const value = cfg.fieldName.includes('.')
+            ? cfg.fieldName.split('.').reduce((acc, part) => acc?.[part], this.project)
+            : this.project?.[cfg.fieldName];
 
+        // Get the lookup record ID (e.g., Framework__c)
+        const lookupId = cfg.isLookup
+            ? this.project?.[cfg.fieldName.split('.')[0].replace('__r', '__c')]
+            : null;
+
+        // Build link to record page
+        const link = cfg.isLookup && lookupId
+            ? `/lightning/r/${cfg.objectApiName}/${lookupId}/view`
+            : null;
+
+        return {
+            label: cfg.label,
+            value,
+            isLookup: cfg.isLookup,
+            link
+        };
+    });
+}
 
 
   prepareFrameworkCards(frameworks) {
