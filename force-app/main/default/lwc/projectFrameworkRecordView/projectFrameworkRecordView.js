@@ -15,7 +15,9 @@ export default class ProjectFrameworkRecordView extends LightningElement {
   get frameworkFields() {
     return fieldConfig.Project_Framework__c.map(cfg => ({
       label: cfg.label,
-      value: this.projectFramework?.[cfg.fieldName]
+      value: this.projectFramework?.[cfg.fieldName],
+      displayValue: this.projectFramework?.[cfg.fieldName],
+      isLink: cfg.isLink
     }));
   }
 }

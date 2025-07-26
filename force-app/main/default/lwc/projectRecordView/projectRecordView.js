@@ -18,10 +18,19 @@ export default class ProjectRecordView extends LightningElement {
   }
 
   get projectFields() {
-    return fieldConfig.Project__c.map(cfg => ({
-      label: cfg.label,
-      value: this.project?.[cfg.fieldName]
-    }));
+    return fieldConfig.Project__c.map(cfg => {
+      const value = this.project?.[cfg.fieldName];
+      const displayValue = cfg.isLookup ? this.project?.[cfg.relatedNameField] : value;
+      const link = cfg.isLookup ? `/lightning/r/${cfg.objectApiName}/${value}/view` : null;
+
+      return {
+        label: cfg.label,
+        value,
+        displayValue,
+        isLookup: cfg.isLookup,
+        link
+      };
+    });
   }
 
   prepareFrameworkCards(frameworks) {
@@ -30,7 +39,9 @@ export default class ProjectRecordView extends LightningElement {
       title: 'Project Framework',
       fields: fieldConfig.Project_Framework__c.map(cfg => ({
         label: cfg.label,
-        value: framework[cfg.fieldName]
+        value: framework[cfg.fieldName],
+        displayValue: framework[cfg.fieldName],
+        isLink: cfg.isLink
       }))
     }));
   }
