@@ -39,7 +39,6 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
     }
 }
 
-
     findNodeById(nodes, id) {
         for (let node of nodes) {
             if (node.name === id) return node;
