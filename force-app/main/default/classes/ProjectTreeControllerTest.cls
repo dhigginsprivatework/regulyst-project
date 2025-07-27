@@ -43,7 +43,7 @@ private class ProjectTreeControllerTest {
         insert requirement;
 
         Test.startTest();
-        List<TreeNode> tree = ProjectTreeController.getFrameworkTree();
+        List<TreeNode> tree = ProjectTreeController.getFrameworkTree(project.Id);
         Test.stopTest();
 
         System.assertEquals(1, tree.size());
