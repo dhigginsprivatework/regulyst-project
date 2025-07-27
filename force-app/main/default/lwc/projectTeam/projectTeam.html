@@ -1,0 +1,32 @@
+<template>
+   <lightning-card title="Project Team">
+      <lightning-layout multiple-rows>
+         <lightning-layout-item size="12" padding="around-small">
+            <lightning-record-edit-form object-api-name="Project_Team__c">
+               <lightning-input-field field-name="User__c"
+                  label="User"
+                  onchange={handleUserChange}></lightning-input-field>
+               <lightning-combobox
+                  name="role"
+                  label="Role"
+                  placeholder="Select a role"
+                  options={roleOptions}
+                  onchange={handleRoleChange}></lightning-combobox>
+               <lightning-button variant="brand" label="Add Member" onclick={handleAddMember} class="slds-m-top_small"></lightning-button>
+            </lightning-record-edit-form>
+         </lightning-layout-item>
+         <lightning-layout-item size="12" padding="around-small">
+            <template if:true={teamMembers}>
+               <template for:each={teamMembers} for:item="member">
+                  <div key={member.Id} class="slds-box slds-m-bottom_small">
+                     <p><strong>{member.User__r.Name}</strong> – {member.Role__c}</p>
+                  </div>
+               </template>
+            </template>
+            <template if:false={teamMembers.length}>
+               <p>No team members yet.</p>
+            </template>
+         </lightning-layout-item>
+      </lightning-layout>
+   </lightning-card>
+</template>

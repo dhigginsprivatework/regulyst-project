@@ -55,7 +55,6 @@ export default class ProjectCreator extends LightningElement {
     }
 
     handleFrameworkSelected(event) {
-        console.log('Framework Selected Method Called'); 
         this.frameworkId = event.detail.frameworkId;
     }
 

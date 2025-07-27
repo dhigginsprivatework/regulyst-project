@@ -12,7 +12,6 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
    }) {
       if (data) {
          this.treeData = this.formatTree(data);
-         console.log('this.treeData', JSON.stringify(this.treeData));
       } else if (error) {
          console.error('Error loading tree:', error);
       }
@@ -67,8 +66,6 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
       const nodeId = event.detail.name;
       const node = this.findNodeById(this.treeData, nodeId);
       if (node) {
-         console.log('Navigating to:', node.name, node.sObjectType);
-
          try {
             thisNavigationMixin.Navigate;
          } catch (e) {
