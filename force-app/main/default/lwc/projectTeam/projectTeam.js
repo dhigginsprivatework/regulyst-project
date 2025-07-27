@@ -1,14 +1,7 @@
-import {
-   LightningElement,
-   api,
-   wire,
-   track
-} from 'lwc';
+import { LightningElement, api, wire, track } from 'lwc';
 import getTeamMembers from '@salesforce/apex/ProjectTeamController.getTeamMembers';
 import addTeamMember from '@salesforce/apex/ProjectTeamController.addTeamMember';
-import {
-   ShowToastEvent
-} from 'lightning/platformShowToastEvent';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ProjectTeam extends LightningElement {
    @api recordId;
@@ -17,13 +10,8 @@ export default class ProjectTeam extends LightningElement {
    @track role = '';
    @track isLoading = false;
 
-   @wire(getTeamMembers, {
-      projectId: '$recordId'
-   })
-   wiredMembers({
-      data,
-      error
-   }) {
+   @wire(getTeamMembers, { projectId: '$recordId' })
+   wiredMembers({ data, error }) {
       if (data) {
          this.teamMembers = data;
       } else if (error) {
@@ -31,19 +19,19 @@ export default class ProjectTeam extends LightningElement {
       }
    }
 
-   handleUserChange(event) {
-      this.userId = event.detail.value;
-   }
-
    handleRoleChange(event) {
       this.role = event.target.value;
    }
 
    async handleAddMember() {
+      const userField = this.template.querySelector('.userLookup');
+      this.userId = userField?.value;
+
       if (!this.userId || !this.role) {
          this.showToast('Missing Info', 'Please select a user and role', 'warning');
          return;
       }
+
       this.isLoading = true;
       try {
          await addTeamMember({
@@ -51,50 +39,31 @@ export default class ProjectTeam extends LightningElement {
             userId: this.userId,
             role: this.role
          });
+
          this.showToast('Success', 'Team member added', 'success');
          this.userId = '';
          this.role = '';
-         return getTeamMembers({
-            projectId: this.recordId
-         }).then(result => {
-            this.teamMembers = result;
-            this.isLoading = false;
-         });
+
+         const result = await getTeamMembers({ projectId: this.recordId });
+         this.teamMembers = result;
       } catch (err) {
          this.showToast('Error', err.body.message, 'error');
+      } finally {
          this.isLoading = false;
       }
    }
 
    showToast(title, message, variant) {
-      this.dispatchEvent(new ShowToastEvent({
-         title,
-         message,
-         variant
-      }));
+      this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
    }
 
    get roleOptions() {
-      return [{
-            label: 'Compliance Lead',
-            value: 'Compliance Lead'
-         },
-         {
-            label: 'Document Owner',
-            value: 'Document Owner'
-         },
-         {
-            label: 'Technical Lead',
-            value: 'Technical Lead'
-         },
-         {
-            label: 'Auditor',
-            value: 'Auditor'
-         },
-         {
-            label: 'Contributor',
-            value: 'Contributor'
-         }
+      return [
+         { label: 'Compliance Lead', value: 'Compliance Lead' },
+         { label: 'Document Owner', value: 'Document Owner' },
+         { label: 'Technical Lead', value: 'Technical Lead' },
+         { label: 'Auditor', value: 'Auditor' },
+         { label: 'Contributor', value: 'Contributor' }
       ];
    }
 }
