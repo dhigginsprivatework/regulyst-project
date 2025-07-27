@@ -70,7 +70,8 @@ export default class ProjectTeam extends LightningElement {
          { label: 'Document Owner', value: 'Document Owner' },
          { label: 'Technical Lead', value: 'Technical Lead' },
          { label: 'Auditor', value: 'Auditor' },
-         { label: 'Contributor', value: 'Contributor' }
+         { label: 'Contributor', value: 'Contributor' },
+         { label: 'None Selected', value: 'None Selected' }
       ];
    }
 }
