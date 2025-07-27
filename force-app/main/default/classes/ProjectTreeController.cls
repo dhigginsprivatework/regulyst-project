@@ -1,8 +1,8 @@
 public with sharing class ProjectTreeController {
     @AuraEnabled(cacheable=true)
-    public static List<TreeNode> getFrameworkTree() {
+    public static List<TreeNode> getFrameworkTree(Id projectId) {
         List<Project_Framework__c> frameworks = [
-            SELECT Id, Name FROM Project_Framework__c
+            SELECT Id, Name FROM Project_Framework__c WHERE Project__c = :projectId
         ];
 
         List<Project_Clause_Control_Domain__c> domains = [

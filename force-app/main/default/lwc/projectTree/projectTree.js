@@ -1,31 +1,29 @@
-import {LightningElement,wire} from 'lwc';
+import {LightningElement,wire, api} from 'lwc';
 import getProjectTree from '@salesforce/apex/ProjectTreeController.getFrameworkTree';
 import {NavigationMixin} from 'lightning/navigation';
 
 export default class ProjectTree extends NavigationMixin(LightningElement) {
+   @api recordId; 
    treeData = [];
 
-   @wire(getProjectTree)
-   wiredTree({
-      error,
-      data
-   }) {
-      if (data) {
-         this.treeData = this.formatTree(data);
-      } else if (error) {
-         console.error('Error loading tree:', error);
-      }
-   }
-
+@wire(getProjectTree, { projectId: '$recordId' })
+    wiredTree({ error, data }) {
+        if (data) {
+         console.log('data returned for Project Tree is',JSON.stringify(data)); 
+            this.treeData = this.formatTree(data);
+        } else if (error) {
+            console.error('Error loading tree:', error);
+        }
+        else {
+           console.warn('No data and no error returned from wire'); 
+        }
+    }
 
    formatTree(nodes) {
       return nodes.map(node => {
          const children = node.children || [];
-
-         // Recursively format children first
          let formattedChildren = this.formatTree(children);
 
-         // Determine heading label based on current node type
          let headingLabel;
          switch (node.sObjectType) {
             case 'Project_Framework__c':
@@ -41,7 +39,6 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
                headingLabel = null;
          }
 
-         // Inject heading node if applicable
          if (headingLabel && formattedChildren.length > 0) {
             formattedChildren = [{
                label: headingLabel,
