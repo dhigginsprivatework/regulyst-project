@@ -1,9 +1,19 @@
 <template>
-    <lightning-card title="Project Requirements Overview">
-        <lightning-tree
-            items={treeData}
-            onselect={handleSelect}
-            header=""
-        ></lightning-tree>
+    <lightning-card title="📊 Project Requirements Overview" icon-name="custom:custom63">
+        <div class="slds-p-horizontal_medium slds-p-vertical_small">
+            <template if:true={treeData}>
+                <lightning-tree
+                    items={treeData}
+                    onselect={handleSelect}
+                    header=""
+                    class="custom-tree"
+                ></lightning-tree>
+            </template>
+            <template if:false={treeData}>
+                <div class="slds-text-body_regular slds-text-color_weak">
+                    No project data available.
+                </div>
+            </template>
+        </div>
     </lightning-card>
 </template>

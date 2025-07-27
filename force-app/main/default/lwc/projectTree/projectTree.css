@@ -1,0 +1,8 @@
+.custom-tree .slds-tree__item {
+    padding: 0.25rem 0;
+}
+
+.custom-tree .slds-tree__item:hover {
+    background-color: #f3f2f2;
+    cursor: pointer;
+}
