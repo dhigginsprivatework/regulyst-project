@@ -14,4 +14,18 @@ public with sharing class ProjectTeamController {@AuraEnabled(cacheable = true)
     insert teamMember;
     return teamMember;
   }
+
+  @AuraEnabled
+  public static void deleteTeamMember(Id teamMemberId) {
+      delete [SELECT Id FROM Project_Team__c WHERE Id = :teamMemberId];
+  }
+
+  @AuraEnabled
+  public static void updateTeamMember(Id teamMemberId, Id userId, String role) {
+      Project_Team__c pt = [SELECT Id FROM Project_Team__c WHERE Id = :teamMemberId];
+      pt.User__c = userId;
+      pt.Role__c = role;
+      update pt;
+  }
+
 }

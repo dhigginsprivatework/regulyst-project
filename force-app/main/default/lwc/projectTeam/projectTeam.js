@@ -1,6 +1,8 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getTeamMembers from '@salesforce/apex/ProjectTeamController.getTeamMembers';
 import addTeamMember from '@salesforce/apex/ProjectTeamController.addTeamMember';
+import deleteTeamMember from '@salesforce/apex/ProjectTeamController.deleteTeamMember';
+import updateTeamMember from '@salesforce/apex/ProjectTeamController.updateTeamMember';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 
@@ -47,11 +49,9 @@ export default class ProjectTeam extends LightningElement {
 
          this.showToast('Success', 'Team member added', 'success');
 
-         // Clear fields
          userField.value = null;
          this.role = 'None Selected';
 
-         // Refresh the wired data
          await refreshApex(this.wiredTeamMembersResult);
       } catch (err) {
          this.showToast('Error', err.body.message, 'error');
@@ -59,6 +59,49 @@ export default class ProjectTeam extends LightningElement {
          this.isLoading = false;
       }
    }
+
+   async handleDelete(event, memberId) {
+      this.isLoading = true;
+      try {
+         await deleteTeamMember({ teamMemberId: memberId });
+         this.showToast('Deleted', 'Team member removed', 'success');
+         await refreshApex(this.wiredTeamMembersResult);
+      } catch (err) {
+         this.showToast('Error', err.body.message, 'error');
+      } finally {
+         this.isLoading = false;
+      }
+   }
+
+   async handleEdit(event) {
+   const memberId = event.currentTarget.dataset.id;
+   const currentUserId = event.currentTarget.dataset.userId;
+   const currentRole = event.currentTarget.dataset.role;
+
+   const newUserId = prompt('Enter new User Id:', currentUserId);
+   const newRole = prompt('Enter new Role:', currentRole);
+
+   if (!newUserId || !newRole) {
+      this.showToast('Missing Info', 'User ID and Role are required', 'warning');
+      return;
+   }
+
+   this.isLoading = true;
+   try {
+      await updateTeamMember({
+         teamMemberId: memberId,
+         userId: newUserId,
+         role: newRole
+      });
+      this.showToast('Updated', 'Team member updated', 'success');
+      await refreshApex(this.wiredTeamMembersResult);
+   } catch (err) {
+      this.showToast('Error', err.body.message, 'error');
+   } finally {
+      this.isLoading = false;
+   }
+}
+
 
    showToast(title, message, variant) {
       this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
@@ -71,8 +114,7 @@ export default class ProjectTeam extends LightningElement {
          { label: 'Document Owner', value: 'Document Owner' },
          { label: 'Technical Lead', value: 'Technical Lead' },
          { label: 'Auditor', value: 'Auditor' },
-         { label: 'Contributor', value: 'Contributor' },
-         { label: 'None Selected', value: 'None Selected' }
+         { label: 'Contributor', value: 'Contributor' }
       ];
    }
 }
