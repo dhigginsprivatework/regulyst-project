@@ -1,7 +1,15 @@
 @isTest
 private class ProjectTreeControllerTest {
     @isTest static void testGetFrameworkTree() {
-        Project_Framework__c framework = new Project_Framework__c(Name='Framework A');
+
+        Project__c project = new Project__c(Name='Test Project Record',
+                                            Standards_Alignment_Body__c='ISO ',
+                                            Standards_Alignment_Framework__c = 'ISO 27001',
+                                            Project_Focus__c = 'Compliance',
+                                            Description__c = 'Test Project Description'); 
+        insert project; 
+
+        Project_Framework__c framework = new Project_Framework__c(Name='Framework A', Project__c = project.Id);
         insert framework;
 
         Project_Clause_Control_Domain__c domain = new Project_Clause_Control_Domain__c(
