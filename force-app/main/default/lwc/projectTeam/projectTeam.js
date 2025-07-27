@@ -8,7 +8,7 @@ export default class ProjectTeam extends LightningElement {
    @api recordId;
    @track teamMembers = [];
    @track userId = '';
-   @track role = '';
+   @track role = 'None Selected';
    @track isLoading = false;
 
    wiredTeamMembersResult;
@@ -32,7 +32,7 @@ export default class ProjectTeam extends LightningElement {
       const userField = this.template.querySelector('.userLookup');
       this.userId = userField?.value;
 
-      if (!this.userId || !this.role) {
+      if (!this.userId || !this.role || this.role === 'None Selected') {
          this.showToast('Missing Info', 'Please select a user and role', 'warning');
          return;
       }
@@ -49,7 +49,7 @@ export default class ProjectTeam extends LightningElement {
 
          // Clear fields
          userField.value = null;
-         this.role = '';
+         this.role = 'None Selected';
 
          // Refresh the wired data
          await refreshApex(this.wiredTeamMembersResult);
@@ -66,6 +66,7 @@ export default class ProjectTeam extends LightningElement {
 
    get roleOptions() {
       return [
+         { label: 'None Selected', value: 'None Selected' },
          { label: 'Compliance Lead', value: 'Compliance Lead' },
          { label: 'Document Owner', value: 'Document Owner' },
          { label: 'Technical Lead', value: 'Technical Lead' },

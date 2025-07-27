@@ -10,6 +10,7 @@
                   label="Role"
                   placeholder="Select a role"
                   options={roleOptions}
+                  value={role}
                   onchange={handleRoleChange}>
                </lightning-combobox>
 
@@ -17,9 +18,8 @@
                   variant="brand-outline"
                   label="Add Member"
                   onclick={handleAddMember}
-                 class="add-member-button slds-m-top_medium slds-align_absolute-center">
+                  class="add-member-button slds-m-top_medium slds-align_absolute-center">
                </lightning-button>
-
             </lightning-record-edit-form>
          </lightning-layout-item>
 
