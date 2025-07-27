@@ -5,6 +5,8 @@ import { NavigationMixin } from 'lightning/navigation';
 export default class ProjectTree extends NavigationMixin(LightningElement) {
     @api recordId;
     @track treeData = [];
+    @track filteredTreeData = [];
+    @track searchTerm = '';
     isLoading = true;
 
     @wire(getProjectTree, { projectId: '$recordId' })
@@ -13,11 +15,40 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
         if (data) {
             console.log('data returned for Project Tree is', JSON.stringify(data));
             this.treeData = this.formatTree(data);
+            this.filteredTreeData = this.treeData;
         } else if (error) {
             console.error('Error loading tree:', error);
         } else {
             console.warn('No data and no error returned from wire');
         }
+    }
+
+    handleSearch(event) {
+        this.searchTerm = event.target.value.toLowerCase();
+        if (!this.searchTerm) {
+            this.filteredTreeData = this.treeData;
+        } else {
+            this.filteredTreeData = this.filterTree(this.treeData, this.searchTerm);
+        }
+    }
+
+    filterTree(nodes, term) {
+        const filtered = [];
+
+        for (const node of nodes) {
+            const labelMatch = node.label.toLowerCase().includes(term);
+            const childMatches = node.items ? this.filterTree(node.items, term) : [];
+
+            if (labelMatch || childMatches.length > 0) {
+                filtered.push({
+                    ...node,
+                    expanded: true,
+                    items: childMatches
+                });
+            }
+        }
+
+        return filtered;
     }
 
     formatTree(nodes) {
@@ -100,11 +131,11 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
     }
 
     expandAll() {
-        this.treeData = this.toggleExpandCollapse(this.treeData, true);
+        this.filteredTreeData = this.toggleExpandCollapse(this.filteredTreeData, true);
     }
 
     collapseAll() {
-        this.treeData = this.toggleExpandCollapse(this.treeData, false);
+        this.filteredTreeData = this.toggleExpandCollapse(this.filteredTreeData, false);
     }
 
     toggleExpandCollapse(nodes, expand) {
