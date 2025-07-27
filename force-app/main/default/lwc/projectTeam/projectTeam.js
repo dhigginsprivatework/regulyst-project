@@ -2,6 +2,7 @@ import { LightningElement, api, wire, track } from 'lwc';
 import getTeamMembers from '@salesforce/apex/ProjectTeamController.getTeamMembers';
 import addTeamMember from '@salesforce/apex/ProjectTeamController.addTeamMember';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { refreshApex } from '@salesforce/apex';
 
 export default class ProjectTeam extends LightningElement {
    @api recordId;
@@ -10,8 +11,12 @@ export default class ProjectTeam extends LightningElement {
    @track role = '';
    @track isLoading = false;
 
+   wiredTeamMembersResult;
+
    @wire(getTeamMembers, { projectId: '$recordId' })
-   wiredMembers({ data, error }) {
+   wiredMembers(result) {
+      this.wiredTeamMembersResult = result;
+      const { data, error } = result;
       if (data) {
          this.teamMembers = data;
       } else if (error) {
@@ -41,11 +46,13 @@ export default class ProjectTeam extends LightningElement {
          });
 
          this.showToast('Success', 'Team member added', 'success');
-         this.userId = '';
+
+         // Clear fields
+         userField.value = null;
          this.role = '';
 
-         const result = await getTeamMembers({ projectId: this.recordId });
-         this.teamMembers = result;
+         // Refresh the wired data
+         await refreshApex(this.wiredTeamMembersResult);
       } catch (err) {
          this.showToast('Error', err.body.message, 'error');
       } finally {
