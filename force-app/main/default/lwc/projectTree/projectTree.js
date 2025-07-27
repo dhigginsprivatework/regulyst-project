@@ -1,13 +1,15 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire, api, track } from 'lwc';
 import getProjectTree from '@salesforce/apex/ProjectTreeController.getFrameworkTree';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class ProjectTree extends NavigationMixin(LightningElement) {
     @api recordId;
-    treeData = [];
+    @track treeData = [];
+    isLoading = true;
 
     @wire(getProjectTree, { projectId: '$recordId' })
     wiredTree({ error, data }) {
+        this.isLoading = false;
         if (data) {
             console.log('data returned for Project Tree is', JSON.stringify(data));
             this.treeData = this.formatTree(data);
@@ -44,7 +46,8 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
                     name: `${node.name}-heading`,
                     sObjectType: 'Heading',
                     expanded: true,
-                    items: formattedChildren
+                    items: formattedChildren,
+                    iconName: 'utility:chevronright'
                 }];
             }
 
@@ -52,9 +55,26 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
                 label: node.label,
                 name: node.id,
                 sObjectType: node.sObjectType,
+                expanded: false,
+                iconName: this.getIconForType(node.sObjectType),
                 items: formattedChildren
             };
         });
+    }
+
+    getIconForType(type) {
+        switch (type) {
+            case 'Project_Framework__c':
+                return 'standard:product';
+            case 'Project_Clause_Control_Domain__c':
+                return 'standard:topic';
+            case 'Project_Control__c':
+                return 'standard:task';
+            case 'Project_Control_Requirement__c':
+                return 'standard:check';
+            default:
+                return 'utility:record';
+        }
     }
 
     handleSelect(event) {
@@ -77,5 +97,26 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
             if (found) return found;
         }
         return null;
+    }
+
+    expandAll() {
+        this.treeData = this.toggleExpandCollapse(this.treeData, true);
+    }
+
+    collapseAll() {
+        this.treeData = this.toggleExpandCollapse(this.treeData, false);
+    }
+
+    toggleExpandCollapse(nodes, expand) {
+        return nodes.map(node => {
+            const updatedNode = {
+                ...node,
+                expanded: expand
+            };
+            if (node.items && node.items.length > 0) {
+                updatedNode.items = this.toggleExpandCollapse(node.items, expand);
+            }
+            return updatedNode;
+        });
     }
 }
