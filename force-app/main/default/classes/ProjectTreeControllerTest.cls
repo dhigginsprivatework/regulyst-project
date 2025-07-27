@@ -2,11 +2,23 @@
 private class ProjectTreeControllerTest {
     @isTest static void testGetFrameworkTree() {
 
+        String uniqueSuffix = TestDataFactory.returnUniqueSuffixForExternalId();
+
+        Framework__c fw = new Framework__c(
+            Name = 'Test Framework ' + uniqueSuffix,
+            Description__c = 'Desc',
+            URL__c = 'http://example.com',
+            Version__c = '1.0',
+            External_Id__c = 'FW-' + uniqueSuffix
+        );
+        insert fw;
+
         Project__c project = new Project__c(Name='Test Project Record',
                                             Standards_Alignment_Body__c='ISO ',
                                             Standards_Alignment_Framework__c = 'ISO 27001',
                                             Project_Focus__c = 'Compliance',
-                                            Description__c = 'Test Project Description'); 
+                                            Description__c = 'Test Project Description',
+                                            Framework__c = fw.Id); 
         insert project; 
 
         Project_Framework__c framework = new Project_Framework__c(Name='Framework A', Project__c = project.Id);
