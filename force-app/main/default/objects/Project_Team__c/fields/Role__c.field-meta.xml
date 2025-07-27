@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role__c</fullName>
+    <description>Various Roles available to define the role of each project member</description>
+    <label>Role</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Compliance Lead</fullName>
+                <default>false</default>
+                <label>Compliance Lead</label>
+            </value>
+            <value>
+                <fullName>Document Owner</fullName>
+                <default>false</default>
+                <label>Document Owner</label>
+            </value>
+            <value>
+                <fullName>Technical Lead</fullName>
+                <default>false</default>
+                <label>Technical Lead</label>
+            </value>
+            <value>
+                <fullName>Auditor</fullName>
+                <default>false</default>
+                <label>Auditor</label>
+            </value>
+            <value>
+                <fullName>Contributor</fullName>
+                <default>false</default>
+                <label>Contributor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
