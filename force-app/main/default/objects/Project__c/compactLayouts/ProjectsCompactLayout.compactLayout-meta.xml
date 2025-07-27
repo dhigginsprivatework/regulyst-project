@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProjectsCompactLayout</fullName>
+    <fields>Name</fields>
+    <fields>Project_Focus__c</fields>
+    <fields>Framework__c</fields>
+    <fields>Standards_Alignment_Body__c</fields>
+    <fields>Standards_Alignment_Framework__c</fields>
+    <label>ProjectsCompactLayout</label>
+</CompactLayout>
