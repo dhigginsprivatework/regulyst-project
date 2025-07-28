@@ -4,26 +4,19 @@ public class CreateProjectJob implements Queueable {
     String focus;
     String description;
     Id frameworkId;
+    Id projectId;
 
-    public CreateProjectJob(String body, String framework, String focus, String description, Id frameworkId) {
+    public CreateProjectJob(String body, String framework, String focus, String description, Id frameworkId, Id projectId) {
         this.body = body;
         this.framework = framework;
         this.focus = focus;
         this.description = description;
         this.frameworkId = frameworkId;
+        this.projectId = projectId;
     }
 
     public void execute(QueueableContext context) {
         Framework__c fw = [SELECT Id, Name, Description__c, URL__c, Version__c FROM Framework__c WHERE Id = :frameworkId LIMIT 1];
-        Project__c project = new Project__c(
-            Name = fw.Name,
-            Standards_Alignment_Body__c = body,
-            Standards_Alignment_Framework__c = framework,
-            Project_Focus__c = focus,
-            Description__c = description,
-            Framework__c = fw.Id
-        );
-        insert project;
 
         Project_Framework__c pf = new Project_Framework__c(
             Name = fw.Name,
@@ -31,7 +24,7 @@ public class CreateProjectJob implements Queueable {
             URL__c = fw.URL__c,
             Version__c = fw.Version__c,
             Framework__c = fw.Id,
-            Project__c = project.Id
+            Project__c = projectId
         );
         insert pf;
 

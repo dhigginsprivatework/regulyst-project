@@ -28,13 +28,23 @@ public with sharing class ProjectController {
     }
 
     @AuraEnabled
-    public static void createProjectWithFramework(
+    public static Id createProjectWithFramework(
         String body,
         String framework,
         String focus,
         String description,
         Id frameworkId
     ) {
-        System.enqueueJob(new CreateProjectJob(body, framework, focus, description, frameworkId));
+        Project__c project = new Project__c(
+            Standards_Alignment_Body__c = body,
+            Standards_Alignment_Framework__c = framework,
+            Project_Focus__c = focus,
+            Description__c = description,
+            Framework__c = frameworkId
+        );
+        insert project;
+
+        System.enqueueJob(new CreateProjectJob(body, framework, focus, description, frameworkId, project.Id));
+        return project.Id;
     }
 }

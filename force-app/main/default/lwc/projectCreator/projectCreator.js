@@ -1,21 +1,23 @@
 import { LightningElement, track, wire } from 'lwc';
-import { getObjectInfo } from 'lightning/uiObjectInfoApi';
-import { getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
+import { getObjectInfo, getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
 import PROJECT_OBJECT from '@salesforce/schema/Project__c';
 import createProjectWithFramework from '@salesforce/apex/ProjectController.createProjectWithFramework';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ProjectCreator extends LightningElement {
     @track selectedBody;
     @track selectedFramework;
-    @track projectFocus;
+    @track selectedProjectFocus;
     @track description;
     @track frameworkId;
 
     @track bodyOptions = [];
     @track frameworkOptions = [];
-    @track focusOptions = []; 
+    @track focusOptions = [];
     @track controllerValues = {};
     @track filteredFrameworkOptions = [];
+
+    @track isLoading = false;
 
     @wire(getObjectInfo, { objectApiName: PROJECT_OBJECT })
     objectInfo;
@@ -29,7 +31,6 @@ export default class ProjectCreator extends LightningElement {
             this.bodyOptions = data.picklistFieldValues.Standards_Alignment_Body__c.values;
             this.frameworkOptions = data.picklistFieldValues.Standards_Alignment_Framework__c.values;
             this.focusOptions = data.picklistFieldValues.Project_Focus__c.values;
-            console.log('this.focusOptions',JSON.stringify(this.focusOptions)); 
             this.controllerValues = data.picklistFieldValues.Standards_Alignment_Framework__c.controllerValues;
         } else if (error) {
             console.error('Error loading picklist values', error);
@@ -43,6 +44,7 @@ export default class ProjectCreator extends LightningElement {
             option.validFor.includes(controllingKey)
         );
         this.selectedFramework = null;
+        this.selectedProjectFocus = null; 
     }
 
     handleFrameworkChange(event) {
@@ -50,7 +52,7 @@ export default class ProjectCreator extends LightningElement {
     }
 
     handleFocusChange(event) {
-        this.projectFocus = event.detail.value;
+        this.selectedProjectFocus = event.detail.value;
     }
 
     handleDescriptionChange(event) {
@@ -61,17 +63,48 @@ export default class ProjectCreator extends LightningElement {
         this.frameworkId = event.detail.frameworkId;
     }
 
-    createProject() {
-        createProjectWithFramework({
-            body: this.selectedBody,
-            framework: this.selectedFramework,
-            focus: this.projectFocus,
-            description: this.description,
-            frameworkId: this.frameworkId
-        }).then(() => {
-            // Show success toast or reset form
-        }).catch(error => {
+    async createProject() {
+        this.isLoading = true;
+        try {
+            const projectId = await createProjectWithFramework({
+                body: this.selectedBody,
+                framework: this.selectedFramework,
+                focus: this.selectedProjectFocus,
+                description: this.description,
+                frameworkId: this.frameworkId
+            });
+
+            this.showToastWithLink('Success', 'Project created successfully.', 'success', projectId);
+        } catch (error) {
             console.error('Error creating project', error);
-        });
+            this.showToast('Error', 'Failed to create project.', 'error');
+        } finally {
+            this.isLoading = false;
+        }
+    }
+
+    showToast(title, message, variant) {
+        this.dispatchEvent(new ShowToastEvent({
+            title,
+            message,
+            variant
+        }));
+    }
+
+    showToastWithLink(title, message, variant, recordId) {
+        const url = `/lightning/r/Project__c/${recordId}/view`;
+        this.dispatchEvent(new ShowToastEvent({
+            title,
+            message,
+            variant,
+            messageData: [
+                'Click ',
+                {
+                    url,
+                    label: 'here'
+                },
+                ' to view the project.'
+            ]
+        }));
     }
 }
