@@ -1,0 +1,23 @@
+.slds-text-title_caps {
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+
+a.slds-text-link:hover {
+  text-decoration: underline;
+  color: #005fb2;
+}
+
+.field-label {
+  font-weight: 700;
+  margin-right: 0.25rem; /* Small gap between label and value */
+  display: inline-block;
+  color: #1a1a1a;
+}
+
+.field-value {
+  display: inline-block;
+}
+

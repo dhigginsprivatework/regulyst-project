@@ -1,6 +1,6 @@
 <template>
   <template if:true={project}>
-    <c-record-card title="Project Details" fields={projectFields}></c-record-card>
+    <!--<c-record-card title="Project Details" fields={projectFields}></c-record-card>-->
     <template if:true={frameworkCards}>
       <template for:each={frameworkCards} for:item="card">
         <c-record-card key={card.id} title={card.title} fields={card.fields}></c-record-card>

@@ -1,17 +1,21 @@
 <template>
   <lightning-card title={title} icon-name="standard:record">
-    <div class="slds-p-around_medium slds-text-align_center">
-      <template for:each={fields} for:item="field">
-        <div key={field.label} class="slds-m-vertical_x-small">
-          <strong>{field.label}:</strong>
-          <template if:true={field.isLookup}>
-            <a href={field.link} target="_blank" class="slds-text-link">{field.value}</a>
-          </template>
-          <template if:false={field.isLookup}>
-            <span>{field.value}</span>
-          </template>
-        </div>
-      </template>
+    <div class="slds-p-around_medium">
+      <div class="slds-grid slds-wrap slds-gutters">
+        <template for:each={fields} for:item="field">
+          <div key={field.label} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+            <div class="slds-m-vertical_x-small">
+              <span class="field-label">{field.label}:</span>
+              <template if:true={field.isLookup}>
+                <a href={field.link} target="_blank" class="slds-text-link field-value">{field.value}</a>
+              </template>
+              <template if:false={field.isLookup}>
+                <span class="field-value">{field.value}</span>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
     </div>
   </lightning-card>
 </template>
