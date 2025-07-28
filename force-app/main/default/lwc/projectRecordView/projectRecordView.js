@@ -48,7 +48,7 @@ export default class ProjectRecordView extends LightningElement {
   prepareFrameworkCards(frameworks) {
     this.frameworkCards = frameworks.map(framework => ({
       id: framework.Id,
-      title: 'Project Framework',
+      title: 'Project Details',
       fields: fieldConfig.Project_Framework__c.map(cfg => ({
         label: cfg.label,
         value: framework[cfg.fieldName],
