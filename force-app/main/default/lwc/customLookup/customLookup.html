@@ -7,7 +7,7 @@
             onchange={handleSearch}>
         </lightning-input>
 
-        <template if:true={results}>
+        <template if:true={hasResults}>
             <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid"
                 role="listbox">
                 <template for:each={results} for:item="record">

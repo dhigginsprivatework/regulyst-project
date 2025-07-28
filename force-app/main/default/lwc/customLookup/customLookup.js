@@ -5,18 +5,22 @@ export default class CustomLookup extends LightningElement {
     @api label = 'Search Framework';
     @track searchKey = '';
     @track results = [];
+    @track resultsSize = 0; 
 
     handleSearch(event) {
         this.searchKey = event.target.value;
         if (this.searchKey.length > 2) {
             searchFrameworks({ searchKey: this.searchKey })
                 .then(data => this.results = data)
-                .catch(() => this.results = []);
+                .catch(() => this.results = []);  
         }
     }
 
+    get hasResults() {
+    return Array.isArray(this.results) && this.results.length > 0;
+    }
+
     handleSelect(event) {
-    // Traverse up the DOM to find the element with data attributes
     let target = event.target;
     while (target && !target.dataset.id) {
         target = target.parentElement;
