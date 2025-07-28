@@ -4,7 +4,6 @@
     <description>Parent Project Framework above the clause</description>
     <label>Framework</label>
     <referenceTo>Project_Framework__c</referenceTo>
-    <relationshipLabel>Clause/Control Domain</relationshipLabel>
     <relationshipName>Clause_Control_Domain</relationshipName>
     <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>

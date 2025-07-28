@@ -143,6 +143,7 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object used to store proof of evidence against all types of project requirements</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -152,15 +153,15 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Clause/Control Domain project</label>
+    <externalSharingModel>Private</externalSharingModel>
+    <label>Evidence</label>
     <nameField>
-        <label>Clause/Control Domain Name</label>
+        <label>Evidence Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Clause/Control Domain</pluralLabel>
+    <pluralLabel>Evidences</pluralLabel>
     <searchLayouts></searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
