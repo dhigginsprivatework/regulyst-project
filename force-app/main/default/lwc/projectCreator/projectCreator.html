@@ -17,11 +17,13 @@
                 onchange={handleFrameworkChange}>
             </lightning-combobox>
 
-            <lightning-input
+            <lightning-combobox
+                name="prjectFocus"
                 label="Project Focus"
                 value={projectFocus}
+                options={focusOptions}
                 onchange={handleFocusChange}>
-            </lightning-input>
+            </lightning-combobox>
 
             <lightning-textarea
                 label="Description"

@@ -13,6 +13,7 @@ export default class ProjectCreator extends LightningElement {
 
     @track bodyOptions = [];
     @track frameworkOptions = [];
+    @track focusOptions = []; 
     @track controllerValues = {};
     @track filteredFrameworkOptions = [];
 
@@ -27,6 +28,8 @@ export default class ProjectCreator extends LightningElement {
         if (data) {
             this.bodyOptions = data.picklistFieldValues.Standards_Alignment_Body__c.values;
             this.frameworkOptions = data.picklistFieldValues.Standards_Alignment_Framework__c.values;
+            this.focusOptions = data.picklistFieldValues.Project_Focus__c.values;
+            console.log('this.focusOptions',JSON.stringify(this.focusOptions)); 
             this.controllerValues = data.picklistFieldValues.Standards_Alignment_Framework__c.controllerValues;
         } else if (error) {
             console.error('Error loading picklist values', error);

@@ -13,7 +13,7 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
     wiredTree({ error, data }) {
         this.isLoading = false;
         if (data) {
-            console.log('data returned for Project Tree is', JSON.stringify(data));
+            //console.log('data returned for Project Tree is', JSON.stringify(data));
             this.treeData = this.formatTree(data);
             this.filteredTreeData = this.treeData;
         } else if (error) {
