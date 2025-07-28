@@ -38,7 +38,8 @@ private class ProjectControllerTest {
             'ISO 27001',   // Standards_Alignment_Framework__c ✅ fixed
             'Compliance',
             'Description A',
-            fw.Id
+            fw.Id,
+            'Test Name'
         );
         Test.stopTest();
 

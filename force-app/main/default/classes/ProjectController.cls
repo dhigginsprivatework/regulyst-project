@@ -46,7 +46,7 @@ public with sharing class ProjectController {
         );
         insert project;
 
-        System.enqueueJob(new CreateProjectJob(body, framework, focus, description, frameworkId, project.Id));
+        System.enqueueJob(new CreateProjectJob(body, framework, focus, description, frameworkId, project.Id, project.name));
         return project.Id;
     }
 }
