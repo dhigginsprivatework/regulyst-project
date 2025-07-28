@@ -5,6 +5,7 @@ public class CreateProjectJob implements Queueable {
     String description; 
     Id frameworkId;
     Id projectId;
+    String name; 
 
     public CreateProjectJob(String body, String framework, String focus, String description, Id frameworkId, Id projectId) {
         this.body = body;
@@ -13,6 +14,7 @@ public class CreateProjectJob implements Queueable {
         this.description = description;
         this.frameworkId = frameworkId;
         this.projectId = projectId;
+        this.name = 'Test name'; 
     }
 
     public void execute(QueueableContext context) {

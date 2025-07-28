@@ -33,14 +33,16 @@ public with sharing class ProjectController {
         String framework,
         String focus,
         String description,
-        Id frameworkId
+        Id frameworkId,
+        String name
     ) {
         Project__c project = new Project__c(
             Standards_Alignment_Body__c = body,
             Standards_Alignment_Framework__c = framework,
             Project_Focus__c = focus,
             Description__c = description,
-            Framework__c = frameworkId
+            Framework__c = frameworkId,
+            name = name
         );
         insert project;
 
