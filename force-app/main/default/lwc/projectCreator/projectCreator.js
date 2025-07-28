@@ -92,19 +92,19 @@ export default class ProjectCreator extends LightningElement {
     }
 
     showToastWithLink(title, message, variant, recordId) {
-        const url = `/lightning/r/Project__c/${recordId}/view`;
-        this.dispatchEvent(new ShowToastEvent({
-            title,
-            message,
-            variant,
-            messageData: [
-                'Click ',
-                {
-                    url,
-                    label: 'here'
-                },
-                ' to view the project.'
-            ]
-        }));
-    }
+    const url = `/lightning/r/Project__c/${recordId}/view`;
+    this.dispatchEvent(new ShowToastEvent({
+        title,
+        message: 'Click {0} to view the project.',
+        variant,
+        mode: 'dismissable',
+        messageData: [
+            {
+                url,
+                label: 'here'
+            }
+        ]
+    }));
+}
+
 }

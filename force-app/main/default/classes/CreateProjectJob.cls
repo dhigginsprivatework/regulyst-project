@@ -2,7 +2,7 @@ public class CreateProjectJob implements Queueable {
     String body;
     String framework;
     String focus;
-    String description;
+    String description; 
     Id frameworkId;
     Id projectId;
 

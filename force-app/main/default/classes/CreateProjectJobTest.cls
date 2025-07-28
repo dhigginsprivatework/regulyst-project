@@ -3,6 +3,15 @@ private class CreateProjectJobTest {
     @isTest
     static void testExecuteCreatesAllRecords() {
         Framework__c fw = TestDataFactory.createFrameworkWithChildren();
+        Project__c project = new Project__c(
+            Name = 'Test Project Record',
+            Standards_Alignment_Body__c = 'ISO ',
+            Standards_Alignment_Framework__c = 'ISO 27001',
+            Project_Focus__c = 'Compliance',
+            Description__c = 'Test Project Description',
+            Framework__c = fw.Id
+        );
+        insert project;
 
         Test.startTest();
         CreateProjectJob job = new CreateProjectJob(
@@ -10,7 +19,8 @@ private class CreateProjectJobTest {
             'ISO 27001',
             'Compliance',
             'Description A',
-            fw.Id
+            fw.Id,
+            project.Id
         );
         System.enqueueJob(job);
         Test.stopTest();
