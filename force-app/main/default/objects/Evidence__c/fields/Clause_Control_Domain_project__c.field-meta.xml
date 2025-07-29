@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Clause_Control_Domain_project__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Enables users to link evidence to higher level clauses/control domains</description>
+    <label>Clause/Control Domain project</label>
+    <referenceTo>Project_Clause_Control_Domain__c</referenceTo>
+    <relationshipLabel>Evidences</relationshipLabel>
+    <relationshipName>Evidences</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
