@@ -1,6 +1,9 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import getProjectTree from '@salesforce/apex/ProjectTreeController.getFrameworkTree';
 import { NavigationMixin } from 'lightning/navigation';
+import { publish, MessageContext } from 'lightning/messageService';
+import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__c';
+
 
 export default class ProjectTree extends NavigationMixin(LightningElement) {
     @api recordId;
@@ -8,6 +11,10 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
     @track filteredTreeData = [];
     @track searchTerm = '';
     isLoading = true;
+    @wire(MessageContext)
+    messageContext;
+
+    
 
     @wire(getProjectTree, { projectId: '$recordId' })
     wiredTree({ error, data }) {
@@ -108,7 +115,7 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
         }
     }
 
-    handleSelect(event) {
+    /*handleSelect(event) {
         const nodeId = event.detail.name;
         const node = this.findNodeById(this.treeData, nodeId);
         if (node) {
@@ -118,6 +125,18 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
                 console.error('NavigationMixin failed, falling back to URL:', e);
                 window.open(`/lightning/r/${node.sObjectType}/${node.name}/view`, '_blank');
             }
+        }
+    }*/ 
+
+        
+    handleSelect(event) {
+        const nodeId = event.detail.name;
+        const node = this.findNodeById(this.treeData, nodeId);
+        if (node && node.sObjectType !== 'Heading') {
+            publish(this.messageContext, SELECTED_RECORD_CHANNEL, {
+                recordId: node.name,
+                sObjectType: node.sObjectType
+            });
         }
     }
 
