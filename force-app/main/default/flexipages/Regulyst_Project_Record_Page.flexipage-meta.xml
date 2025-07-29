@@ -61,6 +61,12 @@
                 <identifier>c_projectTeam</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>recordDetailAndEvidence</componentName>
+                <identifier>c_recordDetailAndEvidence</identifier>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>
