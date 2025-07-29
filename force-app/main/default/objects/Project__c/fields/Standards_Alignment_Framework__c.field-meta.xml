@@ -17,10 +17,19 @@
                 <default>false</default>
                 <label>ISO 27001</label>
             </value>
+            <value>
+                <fullName>DORA</fullName>
+                <default>false</default>
+                <label>DORA</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>ISO</controllingFieldValue>
             <valueName>ISO 27001</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>DORA</controllingFieldValue>
+            <valueName>DORA</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
