@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Project Analytics" icon-name="custom:custom63">
+        <template if:true={analytics}>
+            <div class="slds-p-around_medium">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="6">
+                        <p><strong>Total Clauses:</strong> {analytics.Total_Clauses__c}</p>
+                        <p><strong>Total Controls:</strong> {analytics.Total_Controls__c}</p>
+                        <p><strong>Total Control Requirements:</strong> {analytics.Total_Control_Requirements__c}</p>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <p><strong>With Evidence:</strong> {analytics.Control_Requirements_With_Evidence__c}</p>
+                        <p><strong>Approved Requirements:</strong> {analytics.Approved_Control_Requirements__c}</p>
+                        <p><strong>Last Updated:</strong> {analytics.Last_Updated__c}</p>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>
+        <template if:false={analytics}>
+            <div class="slds-p-around_medium">
+                <p>No analytics available for this project.</p>
+            </div>
+        </template>
+    </lightning-card>
+</template>
