@@ -79,7 +79,8 @@ public class CreateProjectJob implements Queueable {
                 Name = req.Name,
                 Description__c = req.Description__c,
                 Source__c = req.Source__c,
-                Project_Control__c = controlMap.get(req.Control__c)
+                Project_Control__c = controlMap.get(req.Control__c),
+                Framework__c = pf.Id
             ));
         }
         insert requirements;
