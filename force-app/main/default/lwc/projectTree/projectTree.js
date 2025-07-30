@@ -4,39 +4,32 @@ import { NavigationMixin } from 'lightning/navigation';
 import { publish, MessageContext } from 'lightning/messageService';
 import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__c';
 
-
 export default class ProjectTree extends NavigationMixin(LightningElement) {
     @api recordId;
     @track treeData = [];
     @track filteredTreeData = [];
     @track searchTerm = '';
     isLoading = true;
+
     @wire(MessageContext)
     messageContext;
-
-    
 
     @wire(getProjectTree, { projectId: '$recordId' })
     wiredTree({ error, data }) {
         this.isLoading = false;
         if (data) {
-            //console.log('data returned for Project Tree is', JSON.stringify(data));
             this.treeData = this.formatTree(data);
             this.filteredTreeData = this.treeData;
         } else if (error) {
             console.error('Error loading tree:', error);
-        } else {
-            console.warn('No data and no error returned from wire');
         }
     }
 
     handleSearch(event) {
         this.searchTerm = event.target.value.toLowerCase();
-        if (!this.searchTerm) {
-            this.filteredTreeData = this.treeData;
-        } else {
-            this.filteredTreeData = this.filterTree(this.treeData, this.searchTerm);
-        }
+        this.filteredTreeData = this.searchTerm
+            ? this.filterTree(this.treeData, this.searchTerm)
+            : this.treeData;
     }
 
     filterTree(nodes, term) {
@@ -66,7 +59,7 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
             let headingLabel;
             switch (node.sObjectType) {
                 case 'Project_Framework__c':
-                    headingLabel = 'Clause Domains';
+                    headingLabel = 'Annexes/Clauses/Control Domains';
                     break;
                 case 'Project_Clause_Control_Domain__c':
                     headingLabel = 'Controls';
@@ -84,51 +77,35 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
                     name: `${node.name}-heading`,
                     sObjectType: 'Heading',
                     expanded: true,
-                    items: formattedChildren,
-                    iconName: 'utility:chevronright'
+                    items: formattedChildren
                 }];
             }
 
             return {
-                label: node.label,
+                label: `${this.getEmojiForType(node.sObjectType)} ${node.label}`,
                 name: node.id,
                 sObjectType: node.sObjectType,
-                expanded: false,
-                iconName: this.getIconForType(node.sObjectType),
+                expanded: node.sObjectType === 'Project_Framework__c' || node.sObjectType === 'Project_Clause_Control_Domain__c',
                 items: formattedChildren
             };
         });
     }
 
-    getIconForType(type) {
+    getEmojiForType(type) {
         switch (type) {
             case 'Project_Framework__c':
-                return 'standard:product';
+                return '📦'; // Framework
             case 'Project_Clause_Control_Domain__c':
-                return 'standard:topic';
+                return '📂'; // Clause Domain
             case 'Project_Control__c':
-                return 'standard:task';
+                return '🛠️'; // Control
             case 'Project_Control_Requirement__c':
-                return 'standard:check';
+                return '✅'; // Requirement
             default:
-                return 'utility:record';
+                return '📄'; // Default
         }
     }
 
-    /*handleSelect(event) {
-        const nodeId = event.detail.name;
-        const node = this.findNodeById(this.treeData, nodeId);
-        if (node) {
-            try {
-                thisNavigationMixin.Navigate;
-            } catch (e) {
-                console.error('NavigationMixin failed, falling back to URL:', e);
-                window.open(`/lightning/r/${node.sObjectType}/${node.name}/view`, '_blank');
-            }
-        }
-    }*/ 
-
-        
     handleSelect(event) {
         const nodeId = event.detail.name;
         const node = this.findNodeById(this.treeData, nodeId);
