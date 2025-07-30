@@ -20,8 +20,7 @@ private class CreateProjectJobTest {
             'Compliance',
             'Description A',
             fw.Id,
-            project.Id,
-            'Test Name'
+            project.Id
         );
         System.enqueueJob(job);
         Test.stopTest();

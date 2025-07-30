@@ -57,7 +57,8 @@ public with sharing class ProjectAnalyticsController {
             Control_Requirements_With_Evidence__c = withEvidence,
             Approved_Control_Requirements__c = approved,
             Project__c = projectId,
-            Last_Updated__c = System.now()
+            Last_Updated__c = System.now(),
+            Total_Evidence_Collected__c = withEvidence/totalRequirements
         );
 
         return analytics;

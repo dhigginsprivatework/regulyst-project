@@ -9,7 +9,6 @@ export default class ProjectCreator extends LightningElement {
     @track selectedFramework;
     @track selectedProjectFocus;
     @track description;
-    @track name; 
     @track frameworkId;
 
     @track bodyOptions = [];
@@ -60,10 +59,6 @@ export default class ProjectCreator extends LightningElement {
         this.description = event.detail.value;
     }
 
-    handleNameChange(event) {
-        this.name = event.detail.value;
-    }
-
     handleFrameworkSelected(event) {
         this.frameworkId = event.detail.frameworkId;
     }
@@ -76,8 +71,7 @@ export default class ProjectCreator extends LightningElement {
                 framework: this.selectedFramework,
                 focus: this.selectedProjectFocus,
                 description: this.description,
-                frameworkId: this.frameworkId,
-                name: this.name
+                frameworkId: this.frameworkId
             });
 
             this.showToastWithLink('Success', 'Project created successfully.', 'success', projectId);

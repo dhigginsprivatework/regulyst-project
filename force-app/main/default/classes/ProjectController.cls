@@ -33,20 +33,18 @@ public with sharing class ProjectController {
         String framework,
         String focus,
         String description,
-        Id frameworkId,
-        String name
+        Id frameworkId
     ) {
         Project__c project = new Project__c(
             Standards_Alignment_Body__c = body,
             Standards_Alignment_Framework__c = framework,
             Project_Focus__c = focus,
             Description__c = description,
-            Framework__c = frameworkId,
-            name = name
+            Framework__c = frameworkId
         );
         insert project;
 
-        System.enqueueJob(new CreateProjectJob(body, framework, focus, description, frameworkId, project.Id, project.name));
+        System.enqueueJob(new CreateProjectJob(body, framework, focus, description, frameworkId, project.Id));
         return project.Id;
     }
 }
