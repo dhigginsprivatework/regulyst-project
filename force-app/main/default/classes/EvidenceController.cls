@@ -15,6 +15,7 @@ public with sharing class EvidenceController {
         Evidence__c evidence = new Evidence__c();
         evidence.Description__c = description;
 
+        // ✅ Support both Project_Control__c and Project_Control_Requirement__c
         if (parentType == 'Project_Clause_Control_Domain__c') {
             evidence.Clause_Control_Domain_project__c = parentId;
         } else if (parentType == 'Project_Control__c') {
