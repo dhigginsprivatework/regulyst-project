@@ -1,20 +1,25 @@
 .floating-panel {
     position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    max-width: 400px;
-    z-index: 999;
-    border-radius: 0.5rem;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 400px;
+    max-width: 90vw;
     background-color: white;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-panel.open {
+    transform: translateX(0);
 }
 
 .floating-panel.minimized {
-    transform: translateY(80%);
-    opacity: 0.2;
-    pointer-events: none;
+    transform: translateX(100%);
 }
 
 .panel-header {
@@ -24,17 +29,11 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ddd;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-}
-
-.panel-header.minimized {
-    border-radius: 0.5rem;
 }
 
 .panel-content {
-    max-height: 90vh;
     overflow-y: auto;
+    flex-grow: 1;
     padding-bottom: 1rem;
     animation: fadeIn 0.3s ease;
 }

@@ -38,7 +38,15 @@ export default class RecordDetailAndEvidence extends LightningElement {
     }
 
     get panelClass() {
-        return this.isMinimized ? 'floating-panel minimized' : 'floating-panel';
+        return this.isMinimized ? 'floating-panel minimized' : 'floating-panel open';
+    }
+
+    get toggleIcon() {
+        return this.isMinimized ? 'utility:chevronleft' : 'utility:chevronright';
+    }
+
+    get toggleLabel() {
+        return this.isMinimized ? 'Show Details' : 'Hide Details';
     }
 
     handleEvidenceChange(event) {

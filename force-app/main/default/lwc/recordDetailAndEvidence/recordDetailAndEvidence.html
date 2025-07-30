@@ -1,19 +1,12 @@
 <template>
     <div class={panelClass}>
-        <template if:true={isMinimized}>
-            <div class="panel-header minimized" onclick={togglePanel}>
-                <lightning-icon icon-name="utility:chevronup" size="x-small"></lightning-icon>
-                <span class="slds-m-left_x-small">Show Record Details</span>
-            </div>
-        </template>
+        <div class="panel-header" onclick={togglePanel}>
+            <lightning-icon icon-name={toggleIcon} size="x-small"></lightning-icon>
+            <span class="slds-m-left_x-small">{toggleLabel}</span>
+        </div>
 
         <template if:false={isMinimized}>
             <section class="panel-content">
-                <div class="panel-header" onclick={togglePanel}>
-                    <lightning-icon icon-name="utility:chevrondown" size="x-small"></lightning-icon>
-                    <span class="slds-m-left_x-small">Hide Record Details</span>
-                </div>
-
                 <lightning-card title="📋 Selected Record Details" icon-name="standard:record">
                     <template if:true={recordId}>
                         <lightning-record-view-form record-id={recordId} object-api-name={objectApiName}>
@@ -68,7 +61,7 @@
 
                     <template if:false={recordId}>
                         <p class="slds-p-around_medium slds-text-color_weak">
-                            Select a Annex/Clause/Control Domain, Control, or Requirement to view details.
+                            Select a Clause, Control, or Requirement to view details.
                         </p>
                     </template>
                 </lightning-card>
