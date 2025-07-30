@@ -34,12 +34,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>projectRecordView</componentName>
-                <identifier>c_projectRecordView</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>projectTree</componentName>
                 <identifier>c_projectTree</identifier>
             </componentInstance>
