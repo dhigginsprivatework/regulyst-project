@@ -85,7 +85,7 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
                 label: `${this.getEmojiForType(node.sObjectType)} ${node.label}`,
                 name: node.id,
                 sObjectType: node.sObjectType,
-                expanded: node.sObjectType === 'Project_Framework__c' || node.sObjectType === 'Project_Clause_Control_Domain__c',
+                expanded: node.sObjectType === 'Project_Framework__c',
                 items: formattedChildren
             };
         });

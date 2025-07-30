@@ -1,8 +1,13 @@
 <template>
+    <template if:false={isMinimized}>
+        <div class="backdrop" onclick={closePanel}></div>
+    </template>
+
     <div class={panelClass}>
-        <div class="panel-header" onclick={togglePanel}>
-            <lightning-icon icon-name={toggleIcon} size="x-small"></lightning-icon>
+        <div class="panel-header">
+            <lightning-icon icon-name={toggleIcon} size="x-small" onclick={togglePanel}></lightning-icon>
             <span class="slds-m-left_x-small">{toggleLabel}</span>
+            <lightning-button-icon icon-name="utility:close" variant="bare" onclick={closePanel} class="slds-m-left_auto"></lightning-button-icon>
         </div>
 
         <template if:false={isMinimized}>

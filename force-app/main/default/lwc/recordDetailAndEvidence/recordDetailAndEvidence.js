@@ -25,7 +25,8 @@ export default class RecordDetailAndEvidence extends LightningElement {
             this.recordId = message.recordId;
             this.objectApiName = message.sObjectType;
             this.files = [];
-            this.isMinimized = false; // Auto-expand on new selection
+            this.isMinimized = false;
+            document.documentElement.style.setProperty('--show-backdrop', 'block');
         });
     }
 
@@ -35,6 +36,12 @@ export default class RecordDetailAndEvidence extends LightningElement {
 
     togglePanel() {
         this.isMinimized = !this.isMinimized;
+        document.documentElement.style.setProperty('--show-backdrop', this.isMinimized ? 'none' : 'block');
+    }
+
+    closePanel() {
+        this.isMinimized = true;
+        document.documentElement.style.setProperty('--show-backdrop', 'none');
     }
 
     get panelClass() {
