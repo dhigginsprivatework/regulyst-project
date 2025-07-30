@@ -1,5 +1,4 @@
 import { LightningElement, track, wire } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__c';
@@ -10,6 +9,7 @@ export default class RecordDetailAndEvidence extends LightningElement {
     @track objectApiName;
     @track evidenceDescription = '';
     @track files = [];
+    @track isMinimized = true;
 
     fieldMap = {
         'Project_Clause_Control_Domain__c': ['Name', 'Clause_Number__c', 'Description__c'],
@@ -25,11 +25,20 @@ export default class RecordDetailAndEvidence extends LightningElement {
             this.recordId = message.recordId;
             this.objectApiName = message.sObjectType;
             this.files = [];
+            this.isMinimized = false; // Auto-expand on new selection
         });
     }
 
     get fieldsToDisplay() {
         return this.fieldMap[this.objectApiName] || [];
+    }
+
+    togglePanel() {
+        this.isMinimized = !this.isMinimized;
+    }
+
+    get panelClass() {
+        return this.isMinimized ? 'floating-panel minimized' : 'floating-panel';
     }
 
     handleEvidenceChange(event) {
