@@ -4,6 +4,18 @@ public with sharing class EvidenceController {
         @AuraEnabled public String base64Data { get; set; }
     }
 
+    public class EvidenceWrapper {
+        @AuraEnabled public Id Id;
+        @AuraEnabled public String evidenceDescription;
+        @AuraEnabled public Id ContentDocumentId;
+
+        public EvidenceWrapper(Id id, String evidenceDescription, Id contentDocId) {
+            this.Id = id;
+            this.evidenceDescription = evidenceDescription;
+            this.ContentDocumentId = contentDocId;
+        }
+    }
+
     @AuraEnabled
     public static void createEvidenceWithFiles(Id parentId, String parentType, String description, List<FileUpload> files) {
         System.debug('📦 Incoming files: ' + JSON.serialize(files));
@@ -15,7 +27,6 @@ public with sharing class EvidenceController {
         Evidence__c evidence = new Evidence__c();
         evidence.Description__c = description;
 
-        // ✅ Support both Project_Control__c and Project_Control_Requirement__c
         if (parentType == 'Project_Clause_Control_Domain__c') {
             evidence.Clause_Control_Domain_project__c = parentId;
         } else if (parentType == 'Project_Control__c') {
@@ -82,5 +93,24 @@ public with sharing class EvidenceController {
         } else {
             System.debug('❌ No ContentVersions created.');
         }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<EvidenceWrapper> getEvidenceForRecord(Id parentId) {
+        List<Evidence__c> evidenceRecords = [
+            SELECT Id, Description__c,
+                (SELECT ContentDocumentId FROM ContentDocumentLinks LIMIT 1)
+            FROM Evidence__c
+            WHERE Clause_Control_Domain_project__c = :parentId
+               OR Project_Control__c = :parentId
+               OR Project_Control_Requirement__c = :parentId
+        ];
+
+        List<EvidenceWrapper> wrappers = new List<EvidenceWrapper>();
+        for (Evidence__c ev : evidenceRecords) {
+            Id docId = (ev.ContentDocumentLinks.size() > 0) ? ev.ContentDocumentLinks[0].ContentDocumentId : null;
+            wrappers.add(new EvidenceWrapper(ev.Id, ev.Description__c, docId));
+        }
+        return wrappers;
     }
 }

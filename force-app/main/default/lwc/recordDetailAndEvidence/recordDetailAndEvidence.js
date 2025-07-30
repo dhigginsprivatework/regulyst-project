@@ -3,6 +3,7 @@ import { subscribe, MessageContext } from 'lightning/messageService';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__c';
 import createEvidenceWithFiles from '@salesforce/apex/EvidenceController.createEvidenceWithFiles';
+import getEvidenceForRecord from '@salesforce/apex/EvidenceController.getEvidenceForRecord';
 
 export default class RecordDetailAndEvidence extends LightningElement {
     @track recordId;
@@ -10,6 +11,7 @@ export default class RecordDetailAndEvidence extends LightningElement {
     @track evidenceDescription = '';
     @track files = [];
     @track isMinimized = true;
+    @track evidenceList = [];
 
     fieldMap = {
         'Project_Clause_Control_Domain__c': ['Name', 'Clause_Number__c', 'Description__c'],
@@ -27,6 +29,7 @@ export default class RecordDetailAndEvidence extends LightningElement {
             this.files = [];
             this.isMinimized = false;
             document.documentElement.style.setProperty('--show-backdrop', 'block');
+            this.fetchEvidence();
         });
     }
 
@@ -82,7 +85,6 @@ export default class RecordDetailAndEvidence extends LightningElement {
                         reject(new Error('Invalid file object'));
                         return;
                     }
-
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         const result = reader.result;
@@ -102,12 +104,6 @@ export default class RecordDetailAndEvidence extends LightningElement {
             });
 
             const fileData = await Promise.all(filePromises);
-
-            console.log('🧪 fileData:', fileData);
-            fileData.forEach((f, i) => {
-                console.log(`📄 File ${i + 1}:`, f.fileName, f.base64Data?.substring(0, 100));
-            });
-
             const payload = {
                 parentId: this.recordId,
                 parentType: this.objectApiName,
@@ -115,20 +111,29 @@ export default class RecordDetailAndEvidence extends LightningElement {
                 files: fileData
             };
 
-            console.log('📤 Sending to Apex:', payload);
-
             await createEvidenceWithFiles(JSON.parse(JSON.stringify(payload)));
-
             this.showToast('Success', 'Evidence and files uploaded successfully.', 'success');
             this.evidenceDescription = '';
             this.files = [];
-
             const fileInput = this.template.querySelector('input[type="file"]');
             if (fileInput) fileInput.value = null;
-
+            this.fetchEvidence(); // Refresh evidence list
         } catch (error) {
             console.error('❌ Apex call failed:', error);
             this.showToast('Upload Failed', error.body?.message || error.message || 'Unknown error', 'error');
+        }
+    }
+
+    async fetchEvidence() {
+        if (!this.recordId) return;
+        try {
+            const result = await getEvidenceForRecord({ parentId: this.recordId });
+            this.evidenceList = result.map(e => ({
+                ...e,
+                fileUrl: e.ContentDocumentId ? `/sfc/servlet.shepherd/document/download/${e.ContentDocumentId}` : null
+            }));
+        } catch (error) {
+            console.error('Failed to fetch evidence:', error);
         }
     }
 
