@@ -113,11 +113,11 @@ export default class RecordDetailAndEvidence extends LightningElement {
 
             await createEvidenceWithFiles(JSON.parse(JSON.stringify(payload)));
             this.showToast('Success', 'Evidence and files uploaded successfully.', 'success');
+            this.fetchEvidence(); // ✅ Refresh evidence list after save
             this.evidenceDescription = '';
             this.files = [];
             const fileInput = this.template.querySelector('input[type="file"]');
             if (fileInput) fileInput.value = null;
-            this.fetchEvidence(); // Refresh evidence list
         } catch (error) {
             console.error('❌ Apex call failed:', error);
             this.showToast('Upload Failed', error.body?.message || error.message || 'Unknown error', 'error');
