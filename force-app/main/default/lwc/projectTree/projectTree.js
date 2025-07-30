@@ -100,7 +100,7 @@ export default class ProjectTree extends NavigationMixin(LightningElement) {
             case 'Project_Control__c':
                 return '🛠️'; // Control
             case 'Project_Control_Requirement__c':
-                return '✅'; // Requirement
+                return '📄'; // Requirement
             default:
                 return '📄'; // Default
         }
