@@ -1,6 +1,7 @@
 import { LightningElement, track, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { subscribe, MessageContext } from 'lightning/messageService';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__c';
 import createEvidenceWithFiles from '@salesforce/apex/EvidenceController.createEvidenceWithFiles';
 
@@ -41,7 +42,7 @@ export default class RecordDetailAndEvidence extends LightningElement {
 
     async handleSaveEvidenceAndUpload() {
         if (!this.recordId || !this.objectApiName || !this.evidenceDescription || this.files.length === 0) {
-            alert('Please provide all required inputs and select at least one file.');
+            this.showToast('Missing Information', 'Please provide all required inputs and select at least one file.', 'error');
             return;
         }
 
@@ -68,12 +69,20 @@ export default class RecordDetailAndEvidence extends LightningElement {
                 description: this.evidenceDescription,
                 files: fileData
             });
-            alert('Evidence and files uploaded successfully.');
+            this.showToast('Success', 'Evidence and files uploaded successfully.', 'success');
             this.evidenceDescription = '';
             this.files = [];
         } catch (error) {
             console.error(error);
-            alert('Error uploading evidence and files.');
+            this.showToast('Upload Failed', 'Error uploading evidence and files.', 'error');
         }
+    }
+
+    showToast(title, message, variant) {
+        this.dispatchEvent(new ShowToastEvent({
+            title,
+            message,
+            variant
+        }));
     }
 }

@@ -1,0 +1,13 @@
+.sticky-panel {
+    position: sticky;
+    top: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+}
