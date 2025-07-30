@@ -1,11 +1,13 @@
 public with sharing class EvidenceController {
     public class FileUpload {
-        @AuraEnabled public String fileName;
-        @AuraEnabled public String base64Data;
+        @AuraEnabled public String fileName { get; set; }
+        @AuraEnabled public String base64Data { get; set; }
     }
 
     @AuraEnabled
     public static void createEvidenceWithFiles(Id parentId, String parentType, String description, List<FileUpload> files) {
+        System.debug('📦 Incoming files: ' + JSON.serialize(files));
+
         if (parentId == null || String.isBlank(parentType) || String.isBlank(description) || files == null || files.isEmpty()) {
             throw new AuraHandledException('Missing required input for evidence creation.');
         }
@@ -26,7 +28,6 @@ public with sharing class EvidenceController {
         insert evidence;
 
         List<ContentVersion> contentVersions = new List<ContentVersion>();
-        Map<Id, String> versionIdToFileName = new Map<Id, String>();
 
         for (FileUpload f : files) {
             if (String.isNotBlank(f.base64Data) && String.isNotBlank(f.fileName)) {
