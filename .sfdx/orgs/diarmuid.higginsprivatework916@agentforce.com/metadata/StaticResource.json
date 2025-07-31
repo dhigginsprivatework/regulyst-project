@@ -4,19 +4,6 @@
     {
       "createdById": "005gL000004PrYHQA0",
       "createdByName": "Diarmuid Higgins",
-      "createdDate": "2025-07-31T10:13:12.000Z",
-      "fileName": "staticresources/ISO_27001_Logo.resource",
-      "fullName": "ISO_27001_Logo",
-      "id": "081gL000000HfTNQA0",
-      "lastModifiedById": "005gL000004PrYHQA0",
-      "lastModifiedByName": "Diarmuid Higgins",
-      "lastModifiedDate": "2025-07-31T10:13:12.000Z",
-      "manageableState": "unmanaged",
-      "type": "StaticResource"
-    },
-    {
-      "createdById": "005gL000004PrYHQA0",
-      "createdByName": "Diarmuid Higgins",
       "createdDate": "2025-07-31T10:50:21.000Z",
       "fileName": "staticresources/NISTISO27001Logo.resource",
       "fullName": "NISTISO27001Logo",
@@ -36,7 +23,20 @@
       "id": "081gL000000Hg65QAC",
       "lastModifiedById": "005gL000004PrYHQA0",
       "lastModifiedByName": "Diarmuid Higgins",
-      "lastModifiedDate": "2025-07-31T11:18:47.000Z",
+      "lastModifiedDate": "2025-07-31T11:23:30.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    },
+    {
+      "createdById": "005gL000004PrYHQA0",
+      "createdByName": "Diarmuid Higgins",
+      "createdDate": "2025-07-31T10:13:12.000Z",
+      "fileName": "staticresources/ISO_27001_Logo.resource",
+      "fullName": "ISO_27001_Logo",
+      "id": "081gL000000HfTNQA0",
+      "lastModifiedById": "005gL000004PrYHQA0",
+      "lastModifiedByName": "Diarmuid Higgins",
+      "lastModifiedDate": "2025-07-31T10:13:12.000Z",
       "manageableState": "unmanaged",
       "type": "StaticResource"
     }
