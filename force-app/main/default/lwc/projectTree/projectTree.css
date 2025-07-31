@@ -1,33 +1,49 @@
-.tree-container {
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 0.5rem;
+:host {
+    display: block;
+    background-color: #F5F5F5;
+    min-height: 100vh;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
 }
 
+/* Custom header inside the card */
+.custom-header {
+    background-color: #003366;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #00BFFF;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+/* Tree container */
+.tree-container {
+    padding: 1rem;
+}
+
+/* Search bar spacing */
 .search-input {
     margin-bottom: 1rem;
 }
 
-.button-bar {
+/* Button bar alignment */
+.button-bar.right-align {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
-.custom-tree .slds-tree__item {
-    padding: 0.4rem 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-}
-
+/* Tree hover effect */
 .custom-tree .slds-tree__item:hover {
-    background-color: #eef1f6;
+    background-color: #e6f7ff;
     cursor: pointer;
 }
 
+/* No data message */
 .no-data {
     text-align: center;
     color: #999;
     font-style: italic;
-    padding: 1rem;
+    margin-top: 1rem;
 }
