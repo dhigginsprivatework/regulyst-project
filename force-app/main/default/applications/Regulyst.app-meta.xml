@@ -108,6 +108,60 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Project_Framework__c</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Clause_Control_Domain_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Clause_Control_Domain__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Clause_Control_Domain_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Clause_Control_Domain__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Control_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Control__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Control_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Control__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Control_Requirement_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Control_Requirement__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Control_Requirement_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Project_Control_Requirement__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <logo>Basic_Logo</logo>
@@ -123,34 +177,18 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Regulyst</label>
     <navType>Console</navType>
-    <tabs>Framework__c</tabs>
-    <tabs>Clause__c</tabs>
-    <tabs>Control__c</tabs>
-    <tabs>Control_Requirement__c</tabs>
-    <tabs>ControlMapping__c</tabs>
+    <tabs>Framework_Admin</tabs>
     <tabs>Project__c</tabs>
+    <tabs>Framework__c</tabs>
     <tabs>Project_Framework__c</tabs>
-    <tabs>Project_Clause_Control_Domain__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Regulyst_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
-            <tab>Clause__c</tab>
-        </mappings>
-        <mappings>
-            <tab>ControlMapping__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Control_Requirement__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Control__c</tab>
+            <tab>Framework_Admin</tab>
         </mappings>
         <mappings>
             <tab>Framework__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Project_Clause_Control_Domain__c</tab>
         </mappings>
         <mappings>
             <tab>Project_Framework__c</tab>
