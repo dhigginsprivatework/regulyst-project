@@ -7,7 +7,7 @@
 
 /* Page wrapper */
 .regulyst-page {
-    background-color: #F5F5F5; /* Light Gray */
+    background-color: #F5F5F5;
     min-height: 100vh;
     padding: 1rem;
 }
@@ -52,6 +52,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 1rem;
+    margin-bottom: 3rem; /* Added space below tiles */
 }
 
 /* Project section layout */
