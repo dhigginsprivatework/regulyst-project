@@ -1,8 +1,12 @@
 <template>
     <section class="side-panel slds-slide-in-from-right">
         <header class="panel-header">
-            <h2>Create Project</h2>
-            <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={handleClose}></lightning-button-icon>
+            <h2 class="panel-title">Create Project</h2>
+            <lightning-button-icon
+                icon-name="utility:close"
+                alternative-text="Close"
+                onclick={handleClose}>
+            </lightning-button-icon>
         </header>
         <div class="panel-body">
             <c-project-creator
