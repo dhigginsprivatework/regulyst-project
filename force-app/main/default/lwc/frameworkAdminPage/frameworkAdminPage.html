@@ -8,7 +8,8 @@
         <div class="regulyst-body slds-p-around_medium">
             <lightning-input
                 type="search"
-                label="Search Frameworks"
+                label=""
+                placeholder="Search Frameworks"
                 class="regulyst-search"
                 onchange={handleSearch}>
             </lightning-input>
@@ -27,7 +28,7 @@
             <template if:true={selectedFrameworkId}>
                 <c-project-list
                     framework-id={selectedFrameworkId}
-                    onlaunchcreator={handleLaunchCreator}>
+                    onlaunchcreator={handleLaunchCreator}> 
                 </c-project-list>
             </template>
 

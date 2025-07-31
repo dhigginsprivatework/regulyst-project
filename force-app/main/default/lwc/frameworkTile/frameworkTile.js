@@ -16,6 +16,10 @@ export default class FrameworkTile extends LightningElement {
         return this.framework.Name && this.framework.Name.includes('EU DORA and ISO 27001:2022');
     }
 
+    get isSoc2Framework() {
+        return this.framework.Name && this.framework.Name.includes('SOC2');
+    }
+
     get isoImageUrl() {
         return '/resource/ISO_27001_Logo';
     }
@@ -26,6 +30,10 @@ export default class FrameworkTile extends LightningElement {
 
     get doraIsoImageUrl() {
         return '/resource/EUDORAISO27001Logo';
+    }
+
+    get soc2ImageUrl() {
+        return '/resource/SOC2Logo';
     }
 
     get tileClass() {
