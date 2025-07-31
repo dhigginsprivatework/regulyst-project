@@ -27,15 +27,26 @@
 .tile-content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.75rem;
     overflow: hidden;
     flex-grow: 1;
+    text-align: center;
+    height: 200px; /* Ensures all inner boxes are the same height */
+    padding: 0.5rem;
 }
 
 .tile-title {
     font-size: 1.1rem;
     font-weight: 600;
     color: #16325c;
+    margin: 0;
+    line-height: 1.2;
+    max-height: 2.4em; /* Two lines max */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .tile-description {
@@ -46,11 +57,14 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    margin: 0;
+    line-height: 1.2;
+    max-height: 3.6em; /* Three lines max */
 }
 
 .tile-image {
     width: 100%;
     max-height: 80px;
     object-fit: contain;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
