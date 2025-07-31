@@ -1,38 +1,52 @@
-.regulyst-page {
-    background-color: #f4f6f9;
+:host {
+    display: block;
+    background-color: #F5F5F5; /* Light Gray for full-page background */
     min-height: 100vh;
     font-family: 'Salesforce Sans', Arial, sans-serif;
 }
 
+/* Page wrapper */
+.regulyst-page {
+    background-color: #F5F5F5; /* Light Gray */
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Header bar */
 .regulyst-header {
-    background-color: #000000;
+    background-color: #003366; /* Deep Blue */
     color: white;
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
-    border-bottom: 4px solid #0070d2;
+    border-bottom: 2px solid #00BFFF; /* Bright Cyan accent */
 }
 
+/* Logo in header */
 .regulyst-logo {
     height: 40px;
     margin-right: 1rem;
 }
 
+/* Title in header */
 .regulyst-title {
     font-size: 1.8rem;
     font-weight: 600;
     margin: 0;
 }
 
+/* Body container */
 .regulyst-body {
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Search bar spacing */
 .regulyst-search {
     margin-bottom: 1.5rem;
 }
 
+/* Tile layout */
 .tile-container {
     display: flex;
     flex-wrap: wrap;
@@ -40,9 +54,16 @@
     gap: 1rem;
 }
 
+/* Project section layout */
 .project-section {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     margin-top: 2rem;
+}
+
+/* Optional: Tree view hover effect */
+.custom-tree .slds-tree__item:hover {
+    background-color: #e6f7ff; /* Light cyan hover */
+    cursor: pointer;
 }

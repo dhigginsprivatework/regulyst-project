@@ -1,3 +1,22 @@
+:host {
+    display: block;
+    background-color: #edeff0;
+    min-height: 100vh;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+.regulyst-page {
+    padding: 1rem;
+}
+
+/* Tree wrapper to enforce background */
+.tree-wrapper {
+    background-color: #edeff0;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Optional: style tree items */
 .custom-tree .slds-tree__item {
     padding: 0.25rem 0;
 }

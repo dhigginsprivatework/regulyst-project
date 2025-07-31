@@ -4,6 +4,32 @@
     {
       "createdById": "005gL000004PrYHQA0",
       "createdByName": "Diarmuid Higgins",
+      "createdDate": "2025-07-31T11:18:47.000Z",
+      "fileName": "staticresources/Regulyst_Logo.resource",
+      "fullName": "Regulyst_Logo",
+      "id": "081gL000000Hg65QAC",
+      "lastModifiedById": "005gL000004PrYHQA0",
+      "lastModifiedByName": "Diarmuid Higgins",
+      "lastModifiedDate": "2025-07-31T14:11:07.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    },
+    {
+      "createdById": "005gL000004PrYHQA0",
+      "createdByName": "Diarmuid Higgins",
+      "createdDate": "2025-07-31T15:45:09.000Z",
+      "fileName": "staticresources/EUDORAISO27001Logo.resource",
+      "fullName": "EUDORAISO27001Logo",
+      "id": "081gL000000Hhi5QAC",
+      "lastModifiedById": "005gL000004PrYHQA0",
+      "lastModifiedByName": "Diarmuid Higgins",
+      "lastModifiedDate": "2025-07-31T15:47:07.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    },
+    {
+      "createdById": "005gL000004PrYHQA0",
+      "createdByName": "Diarmuid Higgins",
       "createdDate": "2025-07-31T10:50:21.000Z",
       "fileName": "staticresources/NISTISO27001Logo.resource",
       "fullName": "NISTISO27001Logo",
@@ -11,19 +37,6 @@
       "lastModifiedById": "005gL000004PrYHQA0",
       "lastModifiedByName": "Diarmuid Higgins",
       "lastModifiedDate": "2025-07-31T10:50:21.000Z",
-      "manageableState": "unmanaged",
-      "type": "StaticResource"
-    },
-    {
-      "createdById": "005gL000004PrYHQA0",
-      "createdByName": "Diarmuid Higgins",
-      "createdDate": "2025-07-31T11:18:47.000Z",
-      "fileName": "staticresources/Regulyst_Logo.resource",
-      "fullName": "Regulyst_Logo",
-      "id": "081gL000000Hg65QAC",
-      "lastModifiedById": "005gL000004PrYHQA0",
-      "lastModifiedByName": "Diarmuid Higgins",
-      "lastModifiedDate": "2025-07-31T11:23:30.000Z",
       "manageableState": "unmanaged",
       "type": "StaticResource"
     },

@@ -6,4 +6,9 @@ export default class ProjectPanel extends LightningElement {
     handleClose() {
         this.dispatchEvent(new CustomEvent('close'));
     }
+
+    handleProjectCreated() {
+        this.dispatchEvent(new CustomEvent('projectcreated'));
+        this.handleClose();
+    }
 }

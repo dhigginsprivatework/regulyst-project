@@ -5,6 +5,7 @@ export default class FrameworkAdminPage extends LightningElement {
     @track frameworks = [];
     @track selectedFrameworkId;
     @track showProjectPanel = false;
+    @track projectListKey = 0;
 
     connectedCallback() {
         this.loadFrameworks('');
@@ -34,5 +35,9 @@ export default class FrameworkAdminPage extends LightningElement {
 
     handleClosePanel() {
         this.showProjectPanel = false;
+    }
+
+    handleProjectCreated() {
+        this.projectListKey++; // triggers re-render of projectList
     }
 }

@@ -5,7 +5,10 @@
             <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={handleClose}></lightning-button-icon>
         </header>
         <div class="panel-body">
-            <c-project-creator framework-id={frameworkId}></c-project-creator>
+            <c-project-creator
+                framework-id={frameworkId}
+                onprojectcreated={handleProjectCreated}>
+            </c-project-creator>
         </div>
     </section>
 </template>

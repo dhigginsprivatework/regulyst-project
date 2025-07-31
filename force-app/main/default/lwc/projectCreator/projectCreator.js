@@ -86,6 +86,9 @@ export default class ProjectCreator extends LightningElement {
             });
 
             this.showToastWithLink('Success', 'Project created successfully.', 'success', projectId);
+
+            // Notify parent to refresh project list
+            this.dispatchEvent(new CustomEvent('projectcreated'));
         } catch (error) {
             console.error('Error creating project', error);
             this.showToast('Error', 'Failed to create project.', 'error');
