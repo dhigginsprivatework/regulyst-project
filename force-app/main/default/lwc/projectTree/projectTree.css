@@ -1,27 +1,33 @@
-:host {
-    display: block;
-    background-color: #edeff0;
-    min-height: 100vh;
-    font-family: 'Salesforce Sans', Arial, sans-serif;
-}
-
-.regulyst-page {
+.tree-container {
     padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 0.5rem;
 }
 
-/* Tree wrapper to enforce background */
-.tree-wrapper {
-    background-color: #edeff0;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
+.search-input {
+    margin-bottom: 1rem;
 }
 
-/* Optional: style tree items */
+.button-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
 .custom-tree .slds-tree__item {
-    padding: 0.25rem 0;
+    padding: 0.4rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
 }
 
 .custom-tree .slds-tree__item:hover {
-    background-color: #f3f2f2;
+    background-color: #eef1f6;
     cursor: pointer;
+}
+
+.no-data {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 1rem;
 }

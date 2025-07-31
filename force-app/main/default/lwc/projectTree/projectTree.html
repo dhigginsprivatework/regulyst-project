@@ -1,12 +1,11 @@
 <template>
     <lightning-card title="📊 Project Requirements Overview" icon-name="custom:custom63">
-        <div class="slds-p-horizontal_medium slds-p-vertical_small">
+        <div class="tree-container">
             <lightning-input
                 type="search"
-                label=""
                 value={searchTerm}
                 onchange={handleSearch}
-                class="slds-m-bottom_small"
+                class="search-input"
                 placeholder="Search Clauses/Control Domains, Controls, Requirements..."
             ></lightning-input>
 
@@ -15,7 +14,7 @@
             </template>
 
             <template if:true={filteredTreeData}>
-                <div class="slds-m-bottom_small slds-align_absolute-center">
+                <div class="button-bar right-align">
                     <lightning-button-group>
                         <lightning-button label="Expand All" onclick={expandAll}></lightning-button>
                         <lightning-button label="Collapse All" onclick={collapseAll}></lightning-button>
@@ -25,15 +24,12 @@
                 <lightning-tree
                     items={filteredTreeData}
                     onselect={handleSelect}
-                    header=""
                     class="custom-tree"
                 ></lightning-tree>
             </template>
 
             <template if:false={filteredTreeData}>
-                <div class="slds-text-body_regular slds-text-color_weak">
-                    No project data available.
-                </div>
+                <div class="no-data">No project data available.</div>
             </template>
         </div>
     </lightning-card>
