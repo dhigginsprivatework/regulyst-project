@@ -25,11 +25,17 @@
             </div>
 
             <template if:true={selectedFrameworkId}>
-                <div class="project-section">
-                    <c-project-creator framework-id={selectedFrameworkId}></c-project-creator>
-                    <c-project-list framework-id={selectedFrameworkId}></c-project-list>
-                </div>
+                <c-project-list
+                    framework-id={selectedFrameworkId}
+                    onlaunchcreator={handleLaunchCreator}>
+                </c-project-list>
             </template>
+
+            <c-project-panel
+                if:true={showProjectPanel}
+                framework-id={selectedFrameworkId}
+                onclose={handleClosePanel}>
+            </c-project-panel>
         </div>
     </div>
 </template>

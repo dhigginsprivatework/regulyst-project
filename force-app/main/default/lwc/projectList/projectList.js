@@ -16,4 +16,8 @@ export default class ProjectList extends LightningElement {
             console.error('Error loading projects', error);
         }
     }
+
+    handleCreateClick() {
+        this.dispatchEvent(new CustomEvent('launchcreator'));
+    }
 }

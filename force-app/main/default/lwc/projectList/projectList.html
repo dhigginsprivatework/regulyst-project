@@ -23,6 +23,12 @@
             </template>
             <template if:false={projects.length}>
                 <p>No projects found for this framework.</p>
+                <lightning-button
+                    label="Create Project"
+                    variant="brand"
+                    onclick={handleCreateClick}
+                    class="slds-m-top_medium">
+                </lightning-button>
             </template>
         </div>
     </lightning-card>

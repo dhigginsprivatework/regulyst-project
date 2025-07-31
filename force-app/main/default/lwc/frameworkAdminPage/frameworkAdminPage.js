@@ -4,6 +4,7 @@ import searchFrameworks from '@salesforce/apex/ProjectController.searchFramework
 export default class FrameworkAdminPage extends LightningElement {
     @track frameworks = [];
     @track selectedFrameworkId;
+    @track showProjectPanel = false;
 
     connectedCallback() {
         this.loadFrameworks('');
@@ -24,5 +25,14 @@ export default class FrameworkAdminPage extends LightningElement {
 
     handleFrameworkSelect(event) {
         this.selectedFrameworkId = event.detail.frameworkId;
+        this.showProjectPanel = false;
+    }
+
+    handleLaunchCreator() {
+        this.showProjectPanel = true;
+    }
+
+    handleClosePanel() {
+        this.showProjectPanel = false;
     }
 }
