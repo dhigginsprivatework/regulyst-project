@@ -1,0 +1,18 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "005gL000004PrYHQA0",
+      "createdByName": "Diarmuid Higgins",
+      "createdDate": "2025-07-31T08:22:30.000Z",
+      "fileName": "staticresources/regulystStyles.resource",
+      "fullName": "regulystStyles",
+      "id": "081gL000000HeibQAC",
+      "lastModifiedById": "005gL000004PrYHQA0",
+      "lastModifiedByName": "Diarmuid Higgins",
+      "lastModifiedDate": "2025-07-31T08:22:30.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    }
+  ]
+}
