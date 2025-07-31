@@ -1,0 +1,42 @@
+.highlights-container {
+    background-color: #16325c; /* Dark blue */
+    color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Salesforce Sans', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem 2rem;
+}
+
+.highlight-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #dce6f1;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.link {
+    color: #ffffff;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.link:hover {
+    color: #cce0ff;
+}
