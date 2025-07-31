@@ -1,15 +1,16 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
 import { getObjectInfo, getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
 import PROJECT_OBJECT from '@salesforce/schema/Project__c';
 import createProjectWithFramework from '@salesforce/apex/ProjectController.createProjectWithFramework';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ProjectCreator extends LightningElement {
+    @api frameworkId; // <-- Now public so it can be passed from parent
+
     @track selectedBody;
     @track selectedFramework;
     @track selectedProjectFocus;
     @track description;
-    @track frameworkId;
 
     @track bodyOptions = [];
     @track frameworkOptions = [];
@@ -44,7 +45,7 @@ export default class ProjectCreator extends LightningElement {
             option.validFor.includes(controllingKey)
         );
         this.selectedFramework = null;
-        this.selectedProjectFocus = null; 
+        this.selectedProjectFocus = null;
     }
 
     handleFrameworkChange(event) {
@@ -57,10 +58,6 @@ export default class ProjectCreator extends LightningElement {
 
     handleDescriptionChange(event) {
         this.description = event.detail.value;
-    }
-
-    handleFrameworkSelected(event) {
-        this.frameworkId = event.detail.frameworkId;
     }
 
     async createProject() {
@@ -92,19 +89,18 @@ export default class ProjectCreator extends LightningElement {
     }
 
     showToastWithLink(title, message, variant, recordId) {
-    const url = `/lightning/r/Project__c/${recordId}/view`;
-    this.dispatchEvent(new ShowToastEvent({
-        title,
-        message: 'Click {0} to view the project.',
-        variant,
-        mode: 'dismissable',
-        messageData: [
-            {
-                url,
-                label: 'here'
-            }
-        ]
-    }));
-}
-
+        const url = `/lightning/r/Project__c/${recordId}/view`;
+        this.dispatchEvent(new ShowToastEvent({
+            title,
+            message: 'Click {0} to view the project.',
+            variant,
+            mode: 'dismissable',
+            messageData: [
+                {
+                    url,
+                    label: 'here'
+                }
+            ]
+        }));
+    }
 }

@@ -1,0 +1,11 @@
+<template>
+    <div class="tile" onclick={handleClick}>
+        <lightning-card title={framework.Name}>
+            <div class="slds-p-around_medium">
+                <p>{framework.Description__c}</p>
+                <p><strong>Version:</strong> {framework.Version__c}</p>
+                <p><strong>URL:</strong> <a href={framework.URL__c} target="_blank">{framework.URL__c}</a></p>
+            </div>
+        </lightning-card>
+    </div>
+</template>

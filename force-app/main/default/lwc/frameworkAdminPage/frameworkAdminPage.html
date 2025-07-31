@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Regulyst Frameworks">
+        <div class="slds-p-around_medium">
+            <lightning-input type="search" label="Search Frameworks" onchange={handleSearch}></lightning-input>
+            <div class="tile-container">
+                <template for:each={frameworks} for:item="fw">
+                    <c-framework-tile key={fw.Id} framework={fw} onselect={handleFrameworkSelect}></c-framework-tile>
+                </template>
+            </div>
+            <template if:true={selectedFrameworkId}>
+                <c-project-creator framework-id={selectedFrameworkId}></c-project-creator>
+            </template>
+        </div>
+    </lightning-card>
+</template>
