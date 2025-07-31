@@ -10,7 +10,7 @@ export default class FrameworkAdminPage extends LightningElement {
     connectedCallback() {
         this.loadFrameworks('');
     }
-
+    
     async loadFrameworks(searchKey) {
         try {
             this.frameworks = await searchFrameworks({ searchKey });
