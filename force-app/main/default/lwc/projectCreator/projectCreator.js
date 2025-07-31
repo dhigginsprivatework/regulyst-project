@@ -5,7 +5,7 @@ import createProjectWithFramework from '@salesforce/apex/ProjectController.creat
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ProjectCreator extends LightningElement {
-    @api frameworkId; // <-- Now public so it can be passed from parent
+    @api frameworkId;
 
     @track selectedBody;
     @track selectedFramework;
@@ -19,6 +19,7 @@ export default class ProjectCreator extends LightningElement {
     @track filteredFrameworkOptions = [];
 
     @track isLoading = false;
+    @track showConfirm = false;
 
     @wire(getObjectInfo, { objectApiName: PROJECT_OBJECT })
     objectInfo;
@@ -60,7 +61,20 @@ export default class ProjectCreator extends LightningElement {
         this.description = event.detail.value;
     }
 
+    get isCreateDisabled() {
+        return !(this.selectedBody && this.selectedFramework && this.selectedProjectFocus && this.description);
+    }
+
+    handleCreateClick() {
+        this.showConfirm = true;
+    }
+
+    cancelCreate() {
+        this.showConfirm = false;
+    }
+
     async createProject() {
+        this.showConfirm = false;
         this.isLoading = true;
         try {
             const projectId = await createProjectWithFramework({

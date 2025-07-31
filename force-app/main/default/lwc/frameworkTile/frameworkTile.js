@@ -2,6 +2,7 @@ import { LightningElement, api } from 'lwc';
 
 export default class FrameworkTile extends LightningElement {
     @api framework;
+    @api selectedId;
 
     get isIsoFramework() {
         return this.framework.Name && this.framework.Name.includes('ISO 27001:2022 Controls Mapping to Information Security Control Domains');
@@ -12,11 +13,15 @@ export default class FrameworkTile extends LightningElement {
     }
 
     get isoImageUrl() {
-        return '/resource/ISO_27001_Logo'; // Replace with your actual static resource name
+        return '/resource/ISO_27001_Logo';
     }
 
     get nistIsoImageUrl() {
-        return '/resource/NISTISO27001Logo'; // Replace with your actual static resource name
+        return '/resource/NISTISO27001Logo';
+    }
+
+    get tileClass() {
+        return this.framework.Id === this.selectedId ? 'tile selected' : 'tile';
     }
 
     handleClick() {

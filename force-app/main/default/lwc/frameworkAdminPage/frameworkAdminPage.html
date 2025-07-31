@@ -15,12 +15,20 @@
 
             <div class="tile-container">
                 <template for:each={frameworks} for:item="fw">
-                    <c-framework-tile key={fw.Id} framework={fw} onselect={handleFrameworkSelect}></c-framework-tile>
+                    <c-framework-tile
+                        key={fw.Id}
+                        framework={fw}
+                        selected-id={selectedFrameworkId}
+                        onselect={handleFrameworkSelect}>
+                    </c-framework-tile>
                 </template>
             </div>
 
             <template if:true={selectedFrameworkId}>
-                <c-project-creator framework-id={selectedFrameworkId}></c-project-creator>
+                <div class="project-section">
+                    <c-project-creator framework-id={selectedFrameworkId}></c-project-creator>
+                    <c-project-list framework-id={selectedFrameworkId}></c-project-list>
+                </div>
             </template>
         </div>
     </div>

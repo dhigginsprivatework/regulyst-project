@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Existing Projects">
+        <div class="slds-p-around_medium">
+            <template if:true={projects.length}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Project Name</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={projects} for:item="proj">
+                            <tr key={proj.Id}>
+                                <td>
+                                    <a href={proj.url} target="_blank">{proj.Name}</a>
+                                </td>
+                                <td>{proj.Description__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+            <template if:false={projects.length}>
+                <p>No projects found for this framework.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
