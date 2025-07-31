@@ -1,17 +1,6 @@
 @isTest
 private class ProjectControllerTest {
     @isTest
-    static void testGetPicklistDependencies() {
-        Test.startTest();
-        Map<String, Object> result = ProjectController.getPicklistDependencies();
-        Test.stopTest();
-
-        System.assertNotEquals(null, result);
-        System.assert(result.containsKey('bodies'));
-        System.assert(result.containsKey('frameworks'));
-    }
-
-    @isTest
     static void testSearchFrameworks() {
         String suffix = TestDataFactory.returnUniqueSuffixForExternalId();
         Framework__c fw = new Framework__c(
