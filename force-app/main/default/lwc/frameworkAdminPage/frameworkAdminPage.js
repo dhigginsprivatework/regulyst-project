@@ -5,11 +5,21 @@ export default class FrameworkAdminPage extends LightningElement {
     @track frameworks = [];
     @track selectedFrameworkId;
 
-    async handleSearch(event) {
-        const searchKey = event.target.value;
-        if (searchKey.length > 1) {
+    connectedCallback() {
+        this.loadFrameworks('');
+    }
+
+    async loadFrameworks(searchKey) {
+        try {
             this.frameworks = await searchFrameworks({ searchKey });
+        } catch (error) {
+            console.error('Error loading frameworks', error);
         }
+    }
+
+    handleSearch(event) {
+        const searchKey = event.target.value;
+        this.loadFrameworks(searchKey);
     }
 
     handleFrameworkSelect(event) {
