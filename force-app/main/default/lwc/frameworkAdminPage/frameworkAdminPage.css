@@ -1,3 +1,38 @@
+.regulyst-page {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+.regulyst-header {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 4px solid #0070d2;
+}
+
+.regulyst-logo {
+    height: 40px;
+    margin-right: 1rem;
+}
+
+.regulyst-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.regulyst-body {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.regulyst-search {
+    margin-bottom: 1.5rem;
+}
+
 .tile-container {
     display: flex;
     flex-wrap: wrap;
