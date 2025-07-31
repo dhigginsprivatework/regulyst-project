@@ -3,17 +3,11 @@
         <lightning-card>
             <div class="tile-content">
                 <img if:true={isIsoFramework} src={isoImageUrl} alt="ISO Logo" class="tile-image" />
+                <img if:true={isNistIsoFramework} src={nistIsoImageUrl} alt="NIST ISO Logo" class="tile-image" />
+                
                 <h2 class="tile-title">{framework.Name}</h2>
                 <p class="tile-description">{framework.Description__c}</p>
-                <p class="tile-meta"><strong>URL:</strong> <a href={framework.URL__c} target="_blank">{framework.URL__c}</a></p>
-            </div>
-        </lightning-card>
-        <lightning-card>
-            <div class="tile-content">
-                <img if:true={isIsoFramework} src={isoImageUrl} alt="ISO Logo" class="tile-image" />
-                <h2 class="tile-title">{framework.Name}</h2>
-                <p class="tile-description">{framework.Description__c}</p>
-                <p class="tile-meta"><strong>URL:</strong> <a href={framework.URL__c} target="_blank">{framework.URL__c}</a></p>
+                <!--<p class="tile-meta"><strong>URL:</strong> <a href={framework.URL__c} target="_blank">{framework.URL__c}</a></p>-->
             </div>
         </lightning-card>
     </div>

@@ -13,6 +13,19 @@
       "lastModifiedDate": "2025-07-31T10:13:12.000Z",
       "manageableState": "unmanaged",
       "type": "StaticResource"
+    },
+    {
+      "createdById": "005gL000004PrYHQA0",
+      "createdByName": "Diarmuid Higgins",
+      "createdDate": "2025-07-31T10:50:21.000Z",
+      "fileName": "staticresources/NISTISO27001Logo.resource",
+      "fullName": "NISTISO27001Logo",
+      "id": "081gL000000HftBQAS",
+      "lastModifiedById": "005gL000004PrYHQA0",
+      "lastModifiedByName": "Diarmuid Higgins",
+      "lastModifiedDate": "2025-07-31T10:50:21.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
     }
   ]
 }
