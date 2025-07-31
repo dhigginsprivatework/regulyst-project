@@ -1,58 +1,63 @@
 <template>
-   <lightning-card title="Project Team">
-      <lightning-layout multiple-rows>
-         <lightning-layout-item size="12" padding="around-small">
-            <lightning-record-edit-form object-api-name="Project_Team__c">
-               <lightning-input-field field-name="User__c" label="User" class="userLookup"></lightning-input-field>
-               <lightning-combobox
-                  name="role"
-                  label="Role"
-                  placeholder="Select a role"
-                  options={roleOptions}
-                  value={role}
-                  onchange={handleRoleChange}>
-               </lightning-combobox>
-               <lightning-button
-                  variant="brand-outline"
-                  label="Add Member"
-                  onclick={handleAddMember}
-                  class="add-member-button slds-m-top_medium slds-align_absolute-center">
-               </lightning-button>
-            </lightning-record-edit-form>
-         </lightning-layout-item>
-         <lightning-layout-item size="12" padding="around-small">
-            <template if:true={teamMembers}>
-               <template for:each={teamMembers} for:item="member">
-                  <div key={member.Id} class="slds-box slds-m-bottom_small slds-grid slds-grid_align-spread">
-                     <div>
-                        <p><strong>{member.User__r.Name}</strong> – {member.Role__c}</p>
-                     </div>
-                     <div>
-                        <lightning-button-icon
-                          icon-name="utility:edit"
-                          alternative-text="Edit"
-                          title="Edit"
-                          onclick={handleEdit}
-                          data-id={member.Id}
-                          data-user-id={member.User__c}
-                          data-role={member.Role__c}
-                          class="slds-m-right_x-small">
-                        </lightning-button-icon>
+    <lightning-card title="Project Team">
+        <div class="team-container">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" padding="around-small">
+                    <lightning-record-edit-form object-api-name="Project_Team__c">
+                        <lightning-input-field field-name="User__c" label="User" class="userLookup"></lightning-input-field>
+                        <lightning-combobox
+                            name="role"
+                            label="Role"
+                            placeholder="Select a role"
+                            options={roleOptions}
+                            value={role}
+                            onchange={handleRoleChange}>
+                        </lightning-combobox>
+                        <lightning-button
+                            variant="brand"
+                            label="Add Member"
+                            onclick={handleAddMember}
+                            class="add-member-button">
+                        </lightning-button>
+                    </lightning-record-edit-form>
+                </lightning-layout-item>
 
-                        <lightning-button-icon
-                           icon-name="utility:delete"
-                           alternative-text="Delete"
-                           title="Delete"
-                           onclick={handleDelete}
-                           data-id={member.Id}></lightning-button-icon>
-                     </div>
-                  </div>
-               </template>
-            </template>
-            <template if:false={teamMembers.length}>
-               <p>No team members yet.</p>
-            </template>
-         </lightning-layout-item>
-      </lightning-layout>
-   </lightning-card>
+                <lightning-layout-item size="12" padding="around-small">
+                    <template if:true={teamMembers}>
+                        <template for:each={teamMembers} for:item="member">
+                            <div key={member.Id} class="member-card">
+                                <div class="member-info">
+                                    <p><strong>{member.User__r.Name}</strong> – {member.Role__c}</p>
+                                </div>
+                                <div class="member-actions">
+                                    <lightning-button-icon
+                                        icon-name="utility:edit"
+                                        alternative-text="Edit"
+                                        title="Edit"
+                                        onclick={handleEdit}
+                                        data-id={member.Id}
+                                        data-user-id={member.User__c}
+                                        data-role={member.Role__c}
+                                        class="action-icon">
+                                    </lightning-button-icon>
+
+                                    <lightning-button-icon
+                                        icon-name="utility:delete"
+                                        alternative-text="Delete"
+                                        title="Delete"
+                                        onclick={handleDelete}
+                                        data-id={member.Id}
+                                        class="action-icon">
+                                    </lightning-button-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                    <template if:false={teamMembers.length}>
+                        <p class="no-members">No team members yet.</p>
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
 </template>

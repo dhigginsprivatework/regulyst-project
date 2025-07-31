@@ -1,0 +1,48 @@
+.team-container {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.add-member-button {
+    margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.member-card {
+    background-color: #16325c;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.member-info p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.member-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-icon {
+    background-color: white;
+    border-radius: 50%;
+    padding: 0.25rem;
+}
+
+.no-members {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    margin-top: 1rem;
+}
