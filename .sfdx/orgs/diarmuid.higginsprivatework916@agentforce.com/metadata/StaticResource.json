@@ -4,13 +4,13 @@
     {
       "createdById": "005gL000004PrYHQA0",
       "createdByName": "Diarmuid Higgins",
-      "createdDate": "2025-07-31T08:22:30.000Z",
-      "fileName": "staticresources/regulystStyles.resource",
-      "fullName": "regulystStyles",
-      "id": "081gL000000HeibQAC",
+      "createdDate": "2025-07-31T10:13:12.000Z",
+      "fileName": "staticresources/ISO_27001_Logo.resource",
+      "fullName": "ISO_27001_Logo",
+      "id": "081gL000000HfTNQA0",
       "lastModifiedById": "005gL000004PrYHQA0",
       "lastModifiedByName": "Diarmuid Higgins",
-      "lastModifiedDate": "2025-07-31T08:22:30.000Z",
+      "lastModifiedDate": "2025-07-31T10:13:12.000Z",
       "manageableState": "unmanaged",
       "type": "StaticResource"
     }
