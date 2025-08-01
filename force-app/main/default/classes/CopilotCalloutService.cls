@@ -11,7 +11,7 @@ public with sharing class CopilotCalloutService {
             SELECT ContentDocumentId, ContentDocument.LatestPublishedVersionId
             FROM ContentDocumentLink
             WHERE LinkedEntityId = :evidenceId
-            ORDER BY ContentDocument.CreatedDate DESC
+            ORDER BY ContentDocument.CreatedDate DESC 
             LIMIT 1
         ];
 
