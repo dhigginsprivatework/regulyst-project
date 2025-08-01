@@ -81,7 +81,6 @@ export default class RecordDetailAndEvidence extends LightningElement {
             const filePromises = this.files.map(fileWrapper => {
                 return new Promise((resolve, reject) => {
                     if (!(fileWrapper.rawFile instanceof File)) {
-                        console.warn('⚠️ rawFile is not a File object:', fileWrapper.rawFile);
                         reject(new Error('Invalid file object'));
                         return;
                     }
@@ -113,13 +112,12 @@ export default class RecordDetailAndEvidence extends LightningElement {
 
             await createEvidenceWithFiles(JSON.parse(JSON.stringify(payload)));
             this.showToast('Success', 'Evidence and files uploaded successfully.', 'success');
-            this.fetchEvidence(); // ✅ Refresh evidence list after save
+            this.fetchEvidence();
             this.evidenceDescription = '';
             this.files = [];
             const fileInput = this.template.querySelector('input[type="file"]');
             if (fileInput) fileInput.value = null;
         } catch (error) {
-            console.error('❌ Apex call failed:', error);
             this.showToast('Upload Failed', error.body?.message || error.message || 'Unknown error', 'error');
         }
     }
@@ -130,7 +128,8 @@ export default class RecordDetailAndEvidence extends LightningElement {
             const result = await getEvidenceForRecord({ parentId: this.recordId });
             this.evidenceList = result.map(e => ({
                 ...e,
-                fileUrl: e.ContentDocumentId ? `/sfc/servlet.shepherd/document/download/${e.ContentDocumentId}` : null
+                fileUrl: e.ContentDocumentId ? `/sfc/servlet.shepherd/document/download/${e.ContentDocumentId}` : null,
+                recordUrl: '/' + e.Id
             }));
         } catch (error) {
             console.error('Failed to fetch evidence:', error);

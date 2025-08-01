@@ -4,6 +4,9 @@
             <lightning-icon icon-name={toggleIcon} size="small"></lightning-icon>
             <span class="slds-m-left_small">{toggleLabel}</span>
         </div>
+
+        <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={closePanel} class="close-button" variant="bare"></lightning-button-icon>
+
         <div class="panel-content slds-p-around_medium">
             <template if:true={recordId}>
                 <lightning-record-view-form record-id={recordId} object-api-name={objectApiName}>
@@ -40,11 +43,16 @@
                                         <p class="evidence-description">{evidence.evidenceDescription}</p>
                                     </div>
                                     <div class="slds-col">
-                                        <template if:true={evidence.fileUrl}>
-                                            <a href={evidence.fileUrl} target="_blank">
-                                                <lightning-icon icon-name="utility:preview" alternative-text="Preview" size="small"></lightning-icon>
+                                        <div class="slds-button-group" role="group">
+                                            <template if:true={evidence.fileUrl}>
+                                                <a href={evidence.fileUrl} target="_blank" title="Preview File">
+                                                    <lightning-icon icon-name="utility:preview" alternative-text="Preview File" size="small" class="slds-m-right_x-small"></lightning-icon>
+                                                </a>
+                                            </template>
+                                            <a href={evidence.recordUrl} target="_blank" title="View Record">
+                                                <lightning-icon icon-name="utility:record" alternative-text="View Record" size="small"></lightning-icon>
                                             </a>
-                                        </template>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

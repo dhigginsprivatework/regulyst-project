@@ -2,6 +2,7 @@
     position: fixed;
     top: 10rem;
     right: 0;
+    height: auto;
     max-height: calc(100vh - 6rem);
     width: 400px;
     max-width: 90vw;
@@ -25,19 +26,22 @@
 }
 
 .panel-header {
-    background-color: #f3f2f2;
+    background-color: #003366;
+    color: white;
     padding: 0.5rem 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #002244;
 }
 
 .panel-content {
-    overflow-y: auto;
     flex-grow: 1;
-    padding-bottom: 1rem;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #fdfdfd;
     animation: fadeIn 0.3s ease;
+    max-height: calc(100vh - 12rem); /* Prevents cutoff */
 }
 
 @keyframes fadeIn {
@@ -71,7 +75,6 @@
     z-index: 1000;
 }
 
-/* Responsive full-screen on mobile */
 @media (max-width: 768px) {
     .floating-panel {
         top: 0;
@@ -84,14 +87,35 @@
 
 .evidence-card {
     background-color: #f9f9f9;
-    border-left: 4px solid #0070d2;
+    border-left: 4px solid #003366;
     padding: 0.75rem;
     border-radius: 0.25rem;
+    transition: box-shadow 0.2s ease;
+    min-height: 3rem;
+}
+
+.evidence-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .evidence-description {
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #003366;
 }
 
+.close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+}
+
+lightning-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+lightning-icon:hover {
+    transform: scale(1.1);
+}
