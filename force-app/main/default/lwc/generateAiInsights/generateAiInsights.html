@@ -4,18 +4,23 @@
       <lightning-button
         label="Generate AI Insights"
         onclick={handleGenerate}
-        variant="brand">
+        variant="brand"
+        disabled={isLoading}>
       </lightning-button>
 
       <template if:true={isLoading}>
-        <lightning-spinner
-          alternative-text="Loading..."
-          size="medium">
-        </lightning-spinner>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
       </template>
 
       <template if:true={error}>
         <p class="slds-text-color_error">{error}</p>
+      </template>
+
+      <template if:true={aiSummary}>
+        <div class="slds-m-top_medium">
+          <h3 class="slds-text-heading_small">AI Summary</h3>
+          <p>{aiSummary}</p>
+        </div>
       </template>
     </div>
   </lightning-card>

@@ -1,32 +1,37 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 import getPromptDetails from '@salesforce/apex/GenerateAiInsightsController.getPromptDetails';
+import getCopilotResponse from '@salesforce/apex/CopilotCalloutService.getCopilotResponse';
 import updateAISummary from '@salesforce/apex/GenerateAiInsightsController.updateAISummary';
 
 export default class GenerateAiInsights extends LightningElement {
   @api recordId;
+  @track aiSummary;
   isLoading = false;
   error;
 
   async handleGenerate() {
     this.isLoading = true;
     this.error = null;
+    this.aiSummary = null;
 
     try {
       const prompt = await getPromptDetails({ evidenceId: this.recordId });
 
-      // Replace this with actual Copilot API call
-      const aiResponse = await this.callCopilot(prompt);
+      const aiResponse = await getCopilotResponse({
+        prompt,
+        evidenceId: this.recordId
+      });
 
-      await updateAISummary({ evidenceId: this.recordId, summaryText: aiResponse });
+      await updateAISummary({
+        evidenceId: this.recordId,
+        summaryText: aiResponse
+      });
+
+      this.aiSummary = aiResponse;
     } catch (err) {
       this.error = err.body?.message || err.message;
     } finally {
       this.isLoading = false;
     }
-  }
-
-  async callCopilot(prompt) {
-    // Simulated response for now
-    return 'This document sufficiently addresses the control requirement by detailing secure transfer methods, encryption protocols, and access controls aligned with the ISO 27001 framework.';
   }
 }
