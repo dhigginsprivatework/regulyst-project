@@ -5,11 +5,11 @@ export default class FrameworkTile extends LightningElement {
     @api selectedId;
 
     get isIsoFramework() {
-        return this.framework.Name && this.framework.Name.includes('ISO 27001:2022 Controls Mapping to Information Security Control Domains');
+        return this.framework.Name && this.framework.Name.includes('ISO 27001:2022 Infosec');
     }
 
     get isNistIsoFramework() {
-        return this.framework.Name && this.framework.Name.includes('NIST CSF 2.0 and ISO 27001:2022');
+        return this.framework.Name && this.framework.Name.includes('NISTCSF 2.0 & ISO 27001:2022');
     }
 
     get isDoraIsoFramework() {
