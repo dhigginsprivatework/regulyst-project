@@ -10,7 +10,7 @@ export default class ProjectList extends LightningElement {
         if (data) {
             this.projects = data.map(proj => ({
                 ...proj,
-                url: `/lightning/r/Project__c/${proj.Id}/view`
+                url: `/lightning/r/Project__c/${proj.Id}/view` 
             }));
         } else if (error) {
             console.error('Error loading projects', error);
