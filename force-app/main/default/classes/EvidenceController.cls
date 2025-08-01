@@ -26,6 +26,8 @@ public with sharing class EvidenceController {
 
         Evidence__c evidence = new Evidence__c();
         evidence.Description__c = description;
+        evidence.Status__c = 'Evidence Submitted'; 
+        
 
         if (parentType == 'Project_Clause_Control_Domain__c') {
             evidence.Clause_Control_Domain_project__c = parentId;
