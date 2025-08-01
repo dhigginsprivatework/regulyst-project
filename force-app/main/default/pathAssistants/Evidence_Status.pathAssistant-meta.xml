@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Evidence__c</entityName>
+    <fieldName>Status__c</fieldName>
+    <masterLabel>Evidence Status</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Please check the comments for changes requested on the evidence&lt;/p&gt;</info>
+        <picklistValueName>Changes Requested</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Evidence has been approved and the related requirement sufficiently meets the documentation standards&lt;/p&gt;</info>
+        <picklistValueName>Evidence Approved</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Awaiting approval for evidence&lt;/p&gt;</info>
+        <picklistValueName>Evidence Awaiting Approval</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Evidence has been submitted for approval&lt;/p&gt;</info>
+        <picklistValueName>Evidence Submitted</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>
