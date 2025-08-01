@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Added Evidence</fullName>
+                <default>false</default>
+                <label>Added Evidence</label>
+            </value>
+            <value>
+                <fullName>Approved Evidence</fullName>
+                <default>false</default>
+                <label>Approved Evidence</label>
+            </value>
+            <value>
+                <fullName>Generated Report</fullName>
+                <default>false</default>
+                <label>Generated Report</label>
+            </value>
+            <value>
+                <fullName>Assigned Requirement</fullName>
+                <default>false</default>
+                <label>Assigned Requirement</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
