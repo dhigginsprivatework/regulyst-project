@@ -10,8 +10,8 @@ private class RecordDataControllerTest {
             Name = 'Test Project',
             Description__c = 'Test Description',
             Framework__c = fw.Id,
-            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE,
-            Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME, 
+            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO,
+            Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO, 
             Standards_Alignment_Body__c = 'ISO'
         );
         insert project;
@@ -46,9 +46,9 @@ private class RecordDataControllerTest {
             Name = 'Test Project',
             Description__c = 'Test Description',
             Framework__c = fw.Id,
-            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE,
+            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO,
             Standards_Alignment_Body__c = 'ISO',
-            Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME
+            Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO
         );
         insert project;
 

@@ -1,18 +1,46 @@
 @IsTest
 private class GenerateAiInsightsControllerTest {
-    
+
     @IsTest
     static void testGetPromptDetails() {
-        // Create related records
-        Framework__c framework = new Framework__c(Name = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME);
+        // Create Framework
+        String uniqueExternalId = TestDataFactory.returnUniqueSuffixForExternalId(); 
+        Framework__c framework = new Framework__c(Name = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO, External_Id__c =uniqueExternalId);
         insert framework;
 
-        Project_Control_Requirement__c requirement = new Project_Control_Requirement__c(
+        // Create Project
+        Project__c project = new Project__c(Name = 'Test Project', 
+                                            Standards_Alignment_Body__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_BODY_TEST_NAME_ISO,
+                                           	Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO,
+                                            Framework__c = framework.Id,
+                                            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO);
+        insert project;
+
+        // Create Project_Framework
+        Project_Framework__c projectFramework = new Project_Framework__c(
+            Name = 'ISO 27001 Mapping',
+            Framework__c = framework.Id,
+            Project__c = project.Id
+        );
+        
+        insert projectFramework;
+
+        // Create Project_Control
+        Project_Control__c control = new Project_Control__c(
             Name = 'Access Control',
-            Framework__c = framework.Id
+            Project_Framework__c = projectFramework.Id
+        );
+        insert control;
+
+        // Create Project_Control_Requirement
+        Project_Control_Requirement__c requirement = new Project_Control_Requirement__c(
+            Name = 'User Authentication',
+            Project_Control__c = control.Id,
+            Framework__c = projectFramework.Id
         );
         insert requirement;
 
+        // Create Evidence
         Evidence__c evidence = new Evidence__c(
             Project_Control_Requirement__c = requirement.Id
         );
@@ -23,13 +51,12 @@ private class GenerateAiInsightsControllerTest {
         Test.stopTest();
 
         System.assertNotEquals(null, prompt);
-        System.assert(prompt.contains('Access Control'));
+        System.assert(prompt.contains('User Authentication'));
         System.assert(prompt.contains('ISO 27001'));
     }
 
     @IsTest
     static void testUpdateAISummary() {
-        // Create an Evidence record
         Evidence__c evidence = new Evidence__c();
         insert evidence;
 
