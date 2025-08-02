@@ -30,6 +30,12 @@
                 <default>false</default>
                 <label>Assigned Requirement</label>
             </value>
+            <value>
+                <fullName>Evidence Contribution</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Evidence Contribution</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
