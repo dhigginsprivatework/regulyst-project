@@ -12,7 +12,7 @@ public with sharing class GenerateAiInsightsController {
         String framework = evidence.Project_Control_Requirement__r.Framework__r.Name;
 
         return 'Based on the attached document, does it provide sufficient evidence to fulfill the control requirement "' +
-               requirement + '" under the "' + framework + '" framework? Please summarize your reasoning.';
+               requirement + '" under the "' + framework + '" framework? Please summarize your reasoning in a short paragraph and tell me anything I need to do to improve in a short 8/9 line paragraph.';
     }
 
     @AuraEnabled
