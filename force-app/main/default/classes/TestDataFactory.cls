@@ -1,5 +1,9 @@
-@isTest
 public class TestDataFactory {
+
+    // Constants
+    public static final String TEST_EVIDENCE_DESCRIPTION = 'Test Evidence Description';
+    public static final String TEST_FILE_NAME = 'TestFile.txt';
+    public static final String TEST_FILE_CONTENT = 'Test file content';
 
     // Generates a unique suffix using a cryptographically random integer and a time-based component
     public static String returnUniqueSuffixForExternalId() {
@@ -74,5 +78,50 @@ public class TestDataFactory {
         );
         insert project;
         return project; 
+    }
+
+    public static Project_Framework__c createTestProjectFrameworkRecord(Project__c project, Framework__c fw){
+        Project_Framework__c pf = new Project_Framework__c(
+            Name = 'Test PF',
+            Framework__c = fw.Id,
+            Project__c = project.Id,
+            Description__c = 'PF Desc',
+            URL__c = 'https://example.com',
+            Version__c = '1.0'
+        );
+        insert pf; 
+        return pf; 
+    }
+
+    public static Project_Clause_Control_Domain__c createTestProjectClauseControlDomain(Project_Framework__c pf){
+        Project_Clause_Control_Domain__c clause = new Project_Clause_Control_Domain__c(
+            Name = 'Clause 1',
+            Clause_Number__c = '5.1',
+            Description__c = 'Clause Description',
+            Project_Framework__c = pf.Id,
+            Sequence__c = 1
+        );
+        insert clause;
+        return clause; 
+    }
+
+    public static Evidence__c createEvidence(Project_Clause_Control_Domain__c clause, String description) {
+        Evidence__c evidence = new Evidence__c(
+            Clause_Control_Domain_project__c = clause.Id,
+            Description__c = description
+        );
+        insert evidence;
+        return evidence;
+    }
+
+    public static ContentVersion createTestContentVersion(String title, String content) {
+        Blob fileBody = Blob.valueOf(content);
+        ContentVersion cv = new ContentVersion(
+            Title = title,
+            PathOnClient = '/' + title,
+            VersionData = fileBody
+        );
+        insert cv;
+        return [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id];
     }
 }
