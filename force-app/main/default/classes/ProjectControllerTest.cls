@@ -23,9 +23,9 @@ private class ProjectControllerTest {
 
         Test.startTest();
         ProjectController.createProjectWithFramework(
-            'ISO',         // Standards_Alignment_Body__c
-            'ISO 27001',   // Standards_Alignment_Framework__c ✅ fixed
-            'Compliance',
+            ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_BODY_TEST_NAME_ISO,     
+            ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO,  
+            ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO,
             'Description A',
             fw.Id
         );

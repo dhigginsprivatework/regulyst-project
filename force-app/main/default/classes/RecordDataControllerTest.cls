@@ -1,30 +1,12 @@
-@isTest
+@IsTest
 private class RecordDataControllerTest {
 
-    @isTest
+    @IsTest
     static void testGetProjectWithFrameworks() {
         // Arrange
         Framework__c fw = TestDataFactory.createFrameworkWithChildren();
-
-        Project__c project = new Project__c(
-            Name = 'Test Project',
-            Description__c = 'Test Description',
-            Framework__c = fw.Id,
-            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO,
-            Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO, 
-            Standards_Alignment_Body__c = 'ISO'
-        );
-        insert project;
-
-        Project_Framework__c pf = new Project_Framework__c(
-            Name = 'PF 1',
-            Description__c = 'PF Desc',
-            URL__c = 'http://pf.com',
-            Version__c = '1.0',
-            Framework__c = fw.Id,
-            Project__c = project.Id
-        );
-        insert pf;
+        Project__c project = TestDataFactory.createTestProjectRecord(fw);
+        Project_Framework__c pf = TestDataFactory.createTestProjectFrameworkRecord(project, fw);
 
         Test.startTest();
         Project__c result = RecordDataController.getProjectWithFrameworks(project.Id);
@@ -37,30 +19,12 @@ private class RecordDataControllerTest {
         System.assertEquals(1, result.Project_Frameworks__r.size(), 'Should return one related Project_Framework__c');
     }
 
-    @isTest
+    @IsTest
     static void testGetProjectFramework() {
         // Arrange
         Framework__c fw = TestDataFactory.createFrameworkWithChildren();
-
-        Project__c project = new Project__c(
-            Name = 'Test Project',
-            Description__c = 'Test Description',
-            Framework__c = fw.Id,
-            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO,
-            Standards_Alignment_Body__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_BODY_TEST_NAME_ISO,
-            Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO
-        );
-        insert project;
-
-        Project_Framework__c pf = new Project_Framework__c(
-            Name = 'PF 1',
-            Description__c = 'PF Desc',
-            URL__c = 'http://pf.com',
-            Version__c = '1.0',
-            Framework__c = fw.Id,
-            Project__c = project.Id
-        );
-        insert pf;
+        Project__c project = TestDataFactory.createTestProjectRecord(fw);
+        Project_Framework__c pf = TestDataFactory.createTestProjectFrameworkRecord(project, fw);
 
         Test.startTest();
         Project_Framework__c result = RecordDataController.getProjectFramework(pf.Id);
@@ -69,6 +33,6 @@ private class RecordDataControllerTest {
         // Assert
         System.assertNotEquals(null, result, 'Project_Framework__c should not be null');
         System.assertEquals(pf.Id, result.Id, 'Returned Project_Framework__c ID should match');
-        System.assertEquals('PF 1', result.Name, 'Name should match');
+        System.assertEquals(pf.Name, result.Name, 'Name should match');
     }
 }
