@@ -1,7 +1,8 @@
 public with sharing class CopilotCalloutService {
-    private static final String DEPLOYMENT_NAME = 'gpt-4.1';
-    private static final String API_VERSION = '2023-05-15';
+    private static final String DEPLOYMENT_NAME = AzureOpenAIConfig__c.getInstance().API_Deployment_Name__c;
+    private static final String API_VERSION = AzureOpenAIConfig__c.getInstance().API_Version__c;
     private static final String API_KEY = AzureOpenAIConfig__c.getInstance().API_Key__c;
+    private static final String API_ENDPOINT = AzureOpenAIConfig__c.getInstance().API_Endpoint__c;
 
     @AuraEnabled
     public static String getCopilotResponse(String prompt, Id evidenceId) {
@@ -23,7 +24,7 @@ public with sharing class CopilotCalloutService {
         String fullPrompt = prompt + '\n\nHere is the base64-encoded content of the attached file: \n' + base64Content;
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        String endpoint = 'https://myopenaisalesforce.openai.azure.com/openai/deployments/' + DEPLOYMENT_NAME + '/chat/completions?api-version=' + API_VERSION;
+        String endpoint =API_ENDPOINT + DEPLOYMENT_NAME + '/chat/completions?api-version=' + API_VERSION;
         request.setEndpoint(endpoint);
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json');
