@@ -47,7 +47,7 @@ private class RecordDataControllerTest {
             Description__c = 'Test Description',
             Framework__c = fw.Id,
             Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO,
-            Standards_Alignment_Body__c = 'ISO',
+            Standards_Alignment_Body__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_BODY_TEST_NAME_ISO,
             Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO
         );
         insert project;

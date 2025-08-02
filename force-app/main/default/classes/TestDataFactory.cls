@@ -62,4 +62,17 @@ public class TestDataFactory {
 
         return fw;
     }
+
+    public static Project__c createTestProjectRecord(Framework__c fw){
+        Project__c project = new Project__c(
+            Name = 'Test Project Record',
+            Standards_Alignment_Body__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_BODY_TEST_NAME_ISO,
+            Standards_Alignment_Framework__c = ProjectConstants.PROJECT_STANDARDS_ALIGNMENT_FRAMEWORK_TEST_NAME_ISO,
+            Project_Focus__c = ProjectConstants.PROJECT_FOCUS_TEST_VALUE_ISO,
+            Description__c = 'Test Project Description',
+            Framework__c = fw.Id
+        );
+        insert project;
+        return project; 
+    }
 }
