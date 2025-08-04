@@ -32,13 +32,24 @@
                     <div class="user-filter">
                         <label class="filter-label">Filter by User(s)</label>
                         <lightning-input type="search" label="Search User" onchange={handleUserSearch}></lightning-input>
-                        <div class="user-list">
-                            <template for:each={filteredUsers} for:item="user">
-                                <div key={user.Id} class="user-pill">
-                                    <lightning-input type="checkbox" label={user.Name} data-id={user.Id} onchange={handleUserSelect}></lightning-input>
-                                </div>
+
+                        <!-- Selected Users as Pills -->
+                        <div class="selected-users">
+                            <template for:each={selectedUsers} for:item="user">
+                                <lightning-pill key={user.Id} label={user.Name} name={user.Id} onremove={handleUserRemove}></lightning-pill>
                             </template>
                         </div>
+
+                        <!-- Search Results -->
+                        <template if:true={showUserResults}>
+                            <div class="user-search-results">
+                                <template for:each={filteredUsers} for:item="user">
+                                    <div key={user.Id} class="user-pill">
+                                        <lightning-button label={user.Name} data-id={user.Id} onclick={handleUserAdd}></lightning-button>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
                     </div>
                 </div>
 

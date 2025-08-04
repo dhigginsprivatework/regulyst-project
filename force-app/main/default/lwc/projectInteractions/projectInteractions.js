@@ -12,6 +12,8 @@ export default class ProjectInteractions extends LightningElement {
     @track users = [];
     @track filteredUsers = [];
     @track selectedUserIds = new Set();
+    @track selectedUsers = [];
+    @track showUserResults = false;
     @track interactions = [];
     @track filteredInteractions = [];
 
@@ -69,16 +71,29 @@ export default class ProjectInteractions extends LightningElement {
 
     handleUserSearch(event) {
         const searchTerm = event.target.value.toLowerCase();
-        this.filteredUsers = this.users.filter(user => user.Name.toLowerCase().includes(searchTerm));
+        if (searchTerm.length > 1) {
+            this.filteredUsers = this.users.filter(user => user.Name.toLowerCase().includes(searchTerm));
+            this.showUserResults = this.filteredUsers.length > 0;
+        } else {
+            this.showUserResults = false;
+        }
     }
 
-    handleUserSelect(event) {
+    handleUserAdd(event) {
         const userId = event.target.dataset.id;
-        if (event.target.checked) {
+        const user = this.users.find(u => u.Id === userId);
+        if (user && !this.selectedUserIds.has(userId)) {
             this.selectedUserIds.add(userId);
-        } else {
-            this.selectedUserIds.delete(userId);
+            this.selectedUsers.push(user);
+            this.filterInteractions();
         }
+        this.showUserResults = false;
+    }
+
+    handleUserRemove(event) {
+        const userId = event.detail.name;
+        this.selectedUserIds.delete(userId);
+        this.selectedUsers = this.selectedUsers.filter(u => u.Id !== userId);
         this.filterInteractions();
     }
 
@@ -86,7 +101,6 @@ export default class ProjectInteractions extends LightningElement {
         try {
             const result = await getUsers();
             this.users = result;
-            this.filteredUsers = result;
         } catch (error) {
             console.error('Error loading users:', error);
         }

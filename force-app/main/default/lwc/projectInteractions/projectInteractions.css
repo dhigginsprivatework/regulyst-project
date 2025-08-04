@@ -56,7 +56,14 @@
     gap: 12px;
 }
 
-.user-list {
+.selected-users {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.user-search-results {
     margin-top: 12px;
     max-height: 200px;
     overflow-y: auto;
