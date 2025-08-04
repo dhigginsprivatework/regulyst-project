@@ -1,24 +1,25 @@
 <template>
-    <lightning-button label="View Interactions" onclick={openModal}></lightning-button>
+    <lightning-button label="View Interactions" onclick={openModal} class="open-button"></lightning-button>
 
     <template if:true={isModalOpen}>
-        <section class="modal">
+        <section class="modal-container">
             <div class="modal-header">
-                <h2>Project Interactions</h2>
+                <h2 class="modal-title">Project Interactions</h2>
                 <lightning-button-icon icon-name="utility:close" onclick={closeModal} alternative-text="Close" class="close-button"></lightning-button-icon>
             </div>
 
             <div class="modal-body">
-                <!-- Date Range Filter -->
-                <div class="filter-section">
-                    <div class="date-filters">
-                        <lightning-button-group>
+                <!-- Filters -->
+                <div class="filters">
+                    <!-- Date Range -->
+                    <div class="date-filter">
+                        <label class="filter-label">Date Range</label>
+                        <div class="button-group">
                             <lightning-button label="Today" onclick={handleDateFilter} data-value="today" class={todayButtonClass}></lightning-button>
                             <lightning-button label="This Week" onclick={handleDateFilter} data-value="week" class={weekButtonClass}></lightning-button>
                             <lightning-button label="This Month" onclick={handleDateFilter} data-value="month" class={monthButtonClass}></lightning-button>
                             <lightning-button label="Custom" onclick={handleDateFilter} data-value="custom" class={customButtonClass}></lightning-button>
-                        </lightning-button-group>
-
+                        </div>
                         <template if:true={showCustomDate}>
                             <div class="custom-date-range">
                                 <lightning-input type="date" label="Start Date" value={customStartDate} onchange={handleStartDateChange}></lightning-input>
@@ -29,26 +30,32 @@
 
                     <!-- User Filter -->
                     <div class="user-filter">
+                        <label class="filter-label">Filter by User(s)</label>
                         <lightning-input type="search" label="Search User" onchange={handleUserSearch}></lightning-input>
-                        <template for:each={filteredUsers} for:item="user">
-                            <div key={user.Id} class="user-pill">
-                                <lightning-input type="checkbox" label={user.Name} data-id={user.Id} onchange={handleUserSelect}></lightning-input>
-                            </div>
-                        </template>
+                        <div class="user-list">
+                            <template for:each={filteredUsers} for:item="user">
+                                <div key={user.Id} class="user-pill">
+                                    <lightning-input type="checkbox" label={user.Name} data-id={user.Id} onchange={handleUserSelect}></lightning-input>
+                                </div>
+                            </template>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Data Table -->
-                <lightning-datatable
-                    key-field="Id"
-                    data={filteredInteractions}
-                    columns={columns}
-                    hide-checkbox-column="true">
-                </lightning-datatable>
+                <div class="table-section">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={filteredInteractions}
+                        columns={columns}
+                        hide-checkbox-column="true"
+                        class="interaction-table">
+                    </lightning-datatable>
+                </div>
             </div>
 
             <div class="modal-footer">
-                <lightning-button label="Close" onclick={closeModal}></lightning-button>
+                <lightning-button label="Close" onclick={closeModal} class="footer-button"></lightning-button>
             </div>
         </section>
     </template>

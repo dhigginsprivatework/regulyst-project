@@ -1,0 +1,95 @@
+.modal-container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 12px;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.close-button {
+    cursor: pointer;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.date-filter,
+.user-filter {
+    flex: 1;
+    min-width: 300px;
+}
+
+.button-group lightning-button {
+    margin-right: 8px;
+}
+
+.custom-date-range {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.user-list {
+    margin-top: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.user-pill {
+    margin-bottom: 6px;
+}
+
+.table-section {
+    margin-top: 24px;
+}
+
+.interaction-table {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.modal-footer {
+    margin-top: 24px;
+    text-align: right;
+}
+
+.footer-button {
+    background-color: #0070d2;
+    color: white;
+    font-weight: 600;
+}
+
+.open-button {
+    margin-bottom: 16px;
+}
