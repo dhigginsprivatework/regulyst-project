@@ -1,25 +1,29 @@
 <template>
-    <div class="navigator-container">
-        <div class="nav-buttons">
-            <lightning-button label="Team" onclick={showTeamPanel}></lightning-button>
-            <lightning-button label="Interactions" onclick={showInteractionsPanel}></lightning-button>
+    <div class="sidebar">
+        <div class="nav-item" onclick={showTeamPanel} title="Project Team">
+            <lightning-icon icon-name="standard:groups" size="small" class="nav-icon"></lightning-icon>
+            <span class="nav-label">Team</span>
         </div>
-
-        <template if:true={showPanel}>
-            <div class="slide-panel">
-                <div class="panel-header">
-                    <h2>{activePanelLabel}</h2>
-                    <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={closePanel}></lightning-button-icon>
-                </div>
-                <div class="panel-body">
-                    <template if:true={isTeamPanel}>
-                        <c-project-team record-id={recordId}></c-project-team>
-                    </template>
-                    <template if:true={isInteractionsPanel}>
-                        <c-project-interactions record-id={recordId}></c-project-interactions>
-                    </template>
-                </div>
-            </div>
-        </template>
+        <div class="nav-item" onclick={showInteractionsPanel} title="Project Interactions">
+            <lightning-icon icon-name="utility:comments" size="small" class="nav-icon"></lightning-icon>
+            <span class="nav-label">Interactions</span>
+        </div>
     </div>
+
+    <template if:true={showPanel}>
+        <div class="slide-panel">
+            <div class="panel-header">
+                <h2>{activePanelLabel}</h2>
+                <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={closePanel}></lightning-button-icon>
+            </div>
+            <div class="panel-body">
+                <template if:true={isTeamPanel}>
+                    <c-project-team record-id={recordId}></c-project-team>
+                </template>
+                <template if:true={isInteractionsPanel}>
+                    <c-project-interactions record-id={recordId}></c-project-interactions>
+                </template>
+            </div>
+        </div>
+    </template>
 </template>
