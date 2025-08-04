@@ -29,14 +29,6 @@ export default class ProjectInteractions extends LightningElement {
         this.loadInteractions();
     }
 
-    openModal() {
-        this.isModalOpen = true;
-    }
-
-    closeModal() {
-        this.isModalOpen = false;
-    }
-
     get todayButtonClass() {
         return this.selectedDateFilter === 'today' ? 'selected' : '';
     }

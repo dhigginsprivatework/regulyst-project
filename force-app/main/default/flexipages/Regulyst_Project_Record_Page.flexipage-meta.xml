@@ -25,14 +25,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>projectAnalytics</componentName>
-                <identifier>c_projectAnalytics</identifier>
+                <componentName>projectSideNavigator</componentName>
+                <identifier>c_projectSideNavigator</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>projectTeam</componentName>
-                <identifier>c_projectTeam</identifier>
+                <componentName>projectAnalytics</componentName>
+                <identifier>c_projectAnalytics</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

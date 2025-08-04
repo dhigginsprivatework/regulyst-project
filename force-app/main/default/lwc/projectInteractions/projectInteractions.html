@@ -1,11 +1,7 @@
 <template>
-    <lightning-button label="View Interactions" onclick={openModal} class="open-button"></lightning-button>
-
-    <template if:true={isModalOpen}>
         <section class="modal-container">
             <div class="modal-header">
                 <h2 class="modal-title">Project Interactions</h2>
-                <lightning-button-icon icon-name="utility:close" onclick={closeModal} alternative-text="Close" class="close-button"></lightning-button-icon>
             </div>
 
             <div class="modal-body">
@@ -66,8 +62,6 @@
             </div>
 
             <div class="modal-footer">
-                <lightning-button label="Close" onclick={closeModal} class="footer-button"></lightning-button>
             </div>
         </section>
-    </template>
 </template>
