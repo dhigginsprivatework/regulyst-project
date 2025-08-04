@@ -1,0 +1,55 @@
+<template>
+    <lightning-button label="View Interactions" onclick={openModal}></lightning-button>
+
+    <template if:true={isModalOpen}>
+        <section class="modal">
+            <div class="modal-header">
+                <h2>Project Interactions</h2>
+                <lightning-button-icon icon-name="utility:close" onclick={closeModal} alternative-text="Close" class="close-button"></lightning-button-icon>
+            </div>
+
+            <div class="modal-body">
+                <!-- Date Range Filter -->
+                <div class="filter-section">
+                    <div class="date-filters">
+                        <lightning-button-group>
+                            <lightning-button label="Today" onclick={handleDateFilter} data-value="today" class={todayButtonClass}></lightning-button>
+                            <lightning-button label="This Week" onclick={handleDateFilter} data-value="week" class={weekButtonClass}></lightning-button>
+                            <lightning-button label="This Month" onclick={handleDateFilter} data-value="month" class={monthButtonClass}></lightning-button>
+                            <lightning-button label="Custom" onclick={handleDateFilter} data-value="custom" class={customButtonClass}></lightning-button>
+                        </lightning-button-group>
+
+                        <template if:true={showCustomDate}>
+                            <div class="custom-date-range">
+                                <lightning-input type="date" label="Start Date" value={customStartDate} onchange={handleStartDateChange}></lightning-input>
+                                <lightning-input type="date" label="End Date" value={customEndDate} onchange={handleEndDateChange}></lightning-input>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- User Filter -->
+                    <div class="user-filter">
+                        <lightning-input type="search" label="Search User" onchange={handleUserSearch}></lightning-input>
+                        <template for:each={filteredUsers} for:item="user">
+                            <div key={user.Id} class="user-pill">
+                                <lightning-input type="checkbox" label={user.Name} data-id={user.Id} onchange={handleUserSelect}></lightning-input>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Data Table -->
+                <lightning-datatable
+                    key-field="Id"
+                    data={filteredInteractions}
+                    columns={columns}
+                    hide-checkbox-column="true">
+                </lightning-datatable>
+            </div>
+
+            <div class="modal-footer">
+                <lightning-button label="Close" onclick={closeModal}></lightning-button>
+            </div>
+        </section>
+    </template>
+</template>
