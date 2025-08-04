@@ -25,12 +25,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>projectSideNavigator</componentName>
-                <identifier>c_projectSideNavigator</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>projectAnalytics</componentName>
                 <identifier>c_projectAnalytics</identifier>
             </componentInstance>
@@ -39,6 +33,12 @@
             <componentInstance>
                 <componentName>recordDetailAndEvidence</componentName>
                 <identifier>c_recordDetailAndEvidence</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>projectPanelLauncher</componentName>
+                <identifier>c_projectPanelLauncher</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

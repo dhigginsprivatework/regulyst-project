@@ -1,0 +1,54 @@
+<template>
+    <div class={sidebarClass}>
+        <div class="toggle-button" onclick={toggleSidebar}>
+            <lightning-icon icon-name={toggleIcon} size="small" alternative-text="Toggle Sidebar"></lightning-icon>
+        </div>
+
+        <!-- Functional Buttons -->
+        <div class="nav-item" onclick={showTeamPanel} title="Project Team">
+            <lightning-icon icon-name="standard:groups" size="small" class="nav-icon"></lightning-icon>
+            <template if:true={isExpanded}>
+                <span class="nav-label">Team</span>
+            </template>
+        </div>
+
+        <div class="nav-item" onclick={showInteractionsPanel} title="Project Interactions">
+            <lightning-icon icon-name="standard:log_event" size="small" class="nav-icon"></lightning-icon>
+            <template if:true={isExpanded}>
+                <span class="nav-label">Interactions</span>
+            </template>
+        </div>
+
+        <!-- Placeholder Buttons -->
+        <div class="nav-item" title="Placeholder 1">
+            <lightning-icon icon-name="utility:apps" size="small" class="nav-icon"></lightning-icon>
+            <template if:true={isExpanded}>
+                <span class="nav-label">Placeholder 1</span>
+            </template>
+        </div>
+
+        <div class="nav-item" title="Placeholder 2">
+            <lightning-icon icon-name="utility:apps" size="small" class="nav-icon"></lightning-icon>
+            <template if:true={isExpanded}>
+                <span class="nav-label">Placeholder 2</span>
+            </template>
+        </div>
+    </div>
+
+    <template if:true={showPanel}>
+        <div class="slide-panel">
+            <div class="panel-header">
+                <h2>{activePanelLabel}</h2>
+                <lightning-button-icon icon-name="utility:close" alternative-text="Close" onclick={closePanel}></lightning-button-icon>
+            </div>
+            <div class="panel-body">
+                <template if:true={isTeamPanel}>
+                    <c-project-team record-id={recordId}></c-project-team>
+                </template>
+                <template if:true={isInteractionsPanel}>
+                    <c-project-interactions record-id={recordId}></c-project-interactions>
+                </template>
+            </div>
+        </div>
+    </template>
+</template>

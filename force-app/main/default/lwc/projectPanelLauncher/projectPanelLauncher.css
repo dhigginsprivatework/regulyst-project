@@ -1,6 +1,6 @@
 .sidebar {
     position: fixed;
-    top: 100px;
+    top: 220px;
     right: 0;
     background-color: #001f3f;
     border-left: 1px solid #0070d2;
@@ -68,9 +68,9 @@
 
 .slide-panel {
     position: fixed;
-    top: 100px;
+    top: 220px;
     right: 160px;
-    width: 1000px; /* Tripled from 400px */
+    width: 1200px;
     max-height: 90vh;
     background: #ffffff;
     border-left: 2px solid #0070d2;
