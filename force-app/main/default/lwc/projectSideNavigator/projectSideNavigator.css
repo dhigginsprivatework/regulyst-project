@@ -2,7 +2,6 @@
     position: fixed;
     top: 100px;
     right: 0;
-    width: 70px;
     background-color: #001f3f;
     border-left: 1px solid #0070d2;
     display: flex;
@@ -11,17 +10,46 @@
     padding: 12px 0;
     z-index: 1000;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.expanded {
+    width: 160px;
+}
+
+.toggle-button {
+    margin-bottom: 16px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.toggle-button:hover {
+    background-color: #0070d2;
 }
 
 .nav-item {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 16px 0;
+    gap: 8px;
+    margin: 12px 0;
     cursor: pointer;
-    transition: background-color 0.2s ease;
     padding: 8px;
     border-radius: 6px;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.sidebar.expanded .nav-item {
+    justify-content: flex-start;
+    padding-left: 16px;
 }
 
 .nav-item:hover {
@@ -29,7 +57,6 @@
 }
 
 .nav-icon {
-    margin-bottom: 4px;
     fill: white;
 }
 
@@ -37,14 +64,13 @@
     color: white;
     font-size: 0.75rem;
     font-weight: 600;
-    text-align: center;
 }
 
 .slide-panel {
     position: fixed;
     top: 100px;
-    right: 60px;
-    width: 400px;
+    right: 160px;
+    width: 1000px; /* Tripled from 400px */
     max-height: 90vh;
     background: #ffffff;
     border-left: 2px solid #0070d2;

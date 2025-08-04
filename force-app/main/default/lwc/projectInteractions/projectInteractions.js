@@ -20,7 +20,7 @@ export default class ProjectInteractions extends LightningElement {
     columns = [
         { label: 'Contributor', fieldName: 'ContributorName' },
         { label: 'Item Interacted With', fieldName: 'Item_Interacted_With__c' },
-        { label: 'Item Withdrawn', fieldName: 'Item_Interacted_With_Name__c' },
+        { label: 'Intem Interacted With Name', fieldName: 'Item_Interacted_With_Name__c' },
         { label: 'Type', fieldName: 'Type__c' }
     ];
 
