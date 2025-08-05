@@ -50,16 +50,34 @@
             </div>
         </div>
 
+        <!-- Pagination Controls -->
+        <div class="slds-size_1-of-1 slds-m-top_medium">
+            <lightning-combobox
+                label="Records per page"
+                value={pageSize}
+                options={pageSizeOptions}
+                onchange={handlePageSizeChange}>
+            </lightning-combobox>
+        </div>
+
         <!-- Data Table Section -->
         <div class="slds-size_1-of-1 slds-m-top_large table-wrapper">
             <lightning-datatable
                 key-field="Id"
-             data={filteredInteractions}
-             columns={columns}
-             hide-checkbox-column="true"
+                data={pagedInteractions}
+                columns={columns}
+                hide-checkbox-column="true"
                 onrowaction={handleSelect}
-                class="interaction-table">
+                class="interaction-table"
+                max-row-selection="1">
             </lightning-datatable>
+        </div>
+
+        <!-- Pagination Navigation -->
+        <div class="slds-size_1-of-1 slds-m-top_medium slds-align_absolute-center">
+            <lightning-button label="Previous" onclick={handlePreviousPage} disabled={isFirstPage}></lightning-button>
+            <span class="slds-p-horizontal_medium">Page {currentPage} of {totalPages}</span>
+            <lightning-button label="Next" onclick={handleNextPage} disabled={isLastPage}></lightning-button>
         </div>
     </div>
 </template>

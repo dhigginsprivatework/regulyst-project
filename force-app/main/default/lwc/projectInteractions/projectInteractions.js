@@ -6,7 +6,6 @@ import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__
 
 export default class ProjectInteractions extends LightningElement {
     @api recordId;
-    @track isModalOpen = false;
     @track selectedDateFilter = 'today';
     @track showCustomDate = false;
     @track customStartDate;
@@ -19,46 +18,95 @@ export default class ProjectInteractions extends LightningElement {
     @track interactions = [];
     @track filteredInteractions = [];
 
+    @track pageSize = 10;
+    @track currentPage = 1;
+
     @wire(MessageContext)
-        messageContext;
+    messageContext;
 
     columns = [
-    { label: 'Contributor', fieldName: 'ContributorName' },
-    { label: 'Item Interacted With', fieldName: 'Item_Interacted_With__c' },
-    { label: 'Item Interacted With Name', fieldName: 'Item_Interacted_With_Name__c' },
-    { label: 'Type', fieldName: 'Type__c' },
-    {
-        label: 'View',
-        type: 'button-icon',
-        typeAttributes: {
-            iconName: 'utility:preview',
-            alternativeText: 'View',
-            title: 'View',
-            variant: 'bare',
-            name: 'view'
+        { label: 'Contributor', fieldName: 'ContributorName' },
+        { label: 'Item Interacted With', fieldName: 'Item_Interacted_With__c' },
+        { label: 'Item Interacted With Name', fieldName: 'Item_Interacted_With_Name__c' },
+        { label: 'Type', fieldName: 'Type__c' },
+        {
+            label: 'View',
+            type: 'button-icon',
+            typeAttributes: {
+                iconName: 'utility:preview',
+                alternativeText: 'View',
+                title: 'View',
+                variant: 'bare',
+                name: 'view'
+            }
         }
-    }
     ];
+
+    get todayButtonClass() {
+        return this.selectedDateFilter === 'today' ? 'selected' : '';
+    }
+    get weekButtonClass() {
+        return this.selectedDateFilter === 'week' ? 'selected' : '';
+    }
+    get monthButtonClass() {
+        return this.selectedDateFilter === 'month' ? 'selected' : '';
+    }
+    get customButtonClass() {
+        return this.selectedDateFilter === 'custom' ? 'selected' : '';
+    }
+
+    get pageSizeOptions() {
+        return [
+            { label: '10', value: 10 },
+            { label: '20', value: 20 },
+            { label: '50', value: 50 },
+            { label: '100', value: 100 }
+        ];
+    }
+
+    get totalPages() {
+        return Math.ceil(this.filteredInteractions.length / this.pageSize);
+    }
+
+    get isFirstPage() {
+        return this.currentPage === 1;
+    }
+
+    get isLastPage() {
+        return this.currentPage === this.totalPages;
+    }
+
+    get pagedInteractions() {
+        const start = (this.currentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        return this.filteredInteractions.slice(start, end);
+    }
 
     connectedCallback() {
         this.loadUsers();
         this.loadInteractions();
     }
 
-    get todayButtonClass() {
-        return this.selectedDateFilter === 'today' ? 'selected' : '';
+    async loadUsers() {
+        try {
+            const result = await getUsers();
+            this.users = result;
+        } catch (error) {
+            console.error('Error loading users:', error);
+        }
     }
 
-    get weekButtonClass() {
-        return this.selectedDateFilter === 'week' ? 'selected' : '';
-    }
-
-    get monthButtonClass() {
-        return this.selectedDateFilter === 'month' ? 'selected' : '';
-    }
-
-    get customButtonClass() {
-        return this.selectedDateFilter === 'custom' ? 'selected' : '';
+    async loadInteractions() {
+        try {
+            const result = await getInteractions({ projectId: this.recordId });
+            this.interactions = result.map(i => ({
+                ...i,
+                ContributorName: i.Contributor__r?.Name
+            }));
+            this.filterInteractions();
+        } catch (error) {
+            console.error('Error loading interactions:', error);
+        }
     }
 
     handleDateFilter(event) {
@@ -105,35 +153,28 @@ export default class ProjectInteractions extends LightningElement {
         this.filterInteractions();
     }
 
-    async loadUsers() {
-        try {
-            const result = await getUsers();
-            this.users = result;
-        } catch (error) {
-            console.error('Error loading users:', error);
+    handlePageSizeChange(event) {
+        this.pageSize = parseInt(event.detail.value, 10);
+        this.currentPage = 1;
+    }
+
+    handlePreviousPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
         }
     }
 
-    async loadInteractions() {
-        try {
-            const result = await getInteractions({ projectId: this.recordId });
-            this.interactions = result.map(i => ({
-                ...i,
-                ContributorName: i.Contributor__r?.Name
-            }));
-            console.log('this.interactions', JSON.stringify(this.interactions)); 
-            this.filterInteractions();
-        } catch (error) {
-            console.error('Error loading interactions:', error);
+    handleNextPage() {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage++;
         }
     }
 
     filterInteractions() {
         let filtered = [...this.interactions];
-
-        // Date filter
         const now = new Date();
         let startDate;
+
         if (this.selectedDateFilter === 'today') {
             startDate = new Date();
             startDate.setHours(0, 0, 0, 0);
@@ -156,26 +197,23 @@ export default class ProjectInteractions extends LightningElement {
             filtered = filtered.filter(i => new Date(i.CreatedDate) >= startDate);
         }
 
-        // User filter
         if (this.selectedUserIds.size > 0) {
             filtered = filtered.filter(i => this.selectedUserIds.has(i.Contributor__c));
         }
 
         this.filteredInteractions = filtered;
+        this.currentPage = 1;
     }
 
     handleSelect(event) {
-    const actionName = event.detail.action.name;
-    const row = event.detail.row;
+        const actionName = event.detail.action.name;
+        const row = event.detail.row;
 
-    if (actionName === 'view') {
-        console.log('View clicked for row:', JSON.stringify(row));
-        publish(this.messageContext, SELECTED_RECORD_CHANNEL, {
-            recordId: row.Item_Interacted_With_Record_Id__c,
-            sObjectType: row.Item_Interacted_With_API_Name__c
-        });
+        if (actionName === 'view') {
+            publish(this.messageContext, SELECTED_RECORD_CHANNEL, {
+                recordId: row.Item_Interacted_With_Record_Id__c,
+                sObjectType: row.Item_Interacted_With_API_Name__c
+            });
+        }
     }
-}
-
-
 }
