@@ -105,6 +105,7 @@ export default class ProjectInteractions extends LightningElement {
                 ...i,
                 ContributorName: i.Contributor__r?.Name
             }));
+            console.log('this.interactions', JSON.stringify(this.interactions)); 
             this.filterInteractions();
         } catch (error) {
             console.error('Error loading interactions:', error);
