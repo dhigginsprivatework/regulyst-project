@@ -1,6 +1,8 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
 import getInteractions from '@salesforce/apex/ProjectInteractionsController.getInteractions';
 import getUsers from '@salesforce/apex/ProjectInteractionsController.getUsers';
+import { publish, MessageContext } from 'lightning/messageService';
+import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__c';
 
 export default class ProjectInteractions extends LightningElement {
     @api recordId;
@@ -17,11 +19,25 @@ export default class ProjectInteractions extends LightningElement {
     @track interactions = [];
     @track filteredInteractions = [];
 
+    @wire(MessageContext)
+        messageContext;
+
     columns = [
-        { label: 'Contributor', fieldName: 'ContributorName' },
-        { label: 'Item Interacted With', fieldName: 'Item_Interacted_With__c' },
-        { label: 'Intem Interacted With Name', fieldName: 'Item_Interacted_With_Name__c' },
-        { label: 'Type', fieldName: 'Type__c' }
+    { label: 'Contributor', fieldName: 'ContributorName' },
+    { label: 'Item Interacted With', fieldName: 'Item_Interacted_With__c' },
+    { label: 'Item Interacted With Name', fieldName: 'Item_Interacted_With_Name__c' },
+    { label: 'Type', fieldName: 'Type__c' },
+    {
+        label: 'View',
+        type: 'button-icon',
+        typeAttributes: {
+            iconName: 'utility:preview',
+            alternativeText: 'View',
+            title: 'View',
+            variant: 'bare',
+            name: 'view'
+        }
+    }
     ];
 
     connectedCallback() {
@@ -147,4 +163,19 @@ export default class ProjectInteractions extends LightningElement {
 
         this.filteredInteractions = filtered;
     }
+
+    handleSelect(event) {
+    const actionName = event.detail.action.name;
+    const row = event.detail.row;
+
+    if (actionName === 'view') {
+        //console.log('View clicked for row:', JSON.stringify(row));
+        publish(this.messageContext, SELECTED_RECORD_CHANNEL, {
+            recordId: row.Id,
+            sObjectType: 'Project_Interaction__c' // Adjust if needed
+        });
+    }
+}
+
+
 }
