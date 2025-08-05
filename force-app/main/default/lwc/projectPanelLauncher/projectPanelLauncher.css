@@ -70,13 +70,15 @@
     position: fixed;
     top: 220px;
     right: 160px;
-    width: 1200px;
+    width: calc(100vw - 160px); /* dynamically adjusts based on screen size */
+    max-width: 100%;
     max-height: 90vh;
     background: #ffffff;
     border-left: 2px solid #0070d2;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
     padding: 16px;
     overflow-y: auto;
+    overflow-x: hidden;
     animation: slideIn 0.3s ease-out;
     z-index: 999;
 }

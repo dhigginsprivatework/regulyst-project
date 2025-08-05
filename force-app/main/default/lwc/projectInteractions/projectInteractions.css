@@ -1,21 +1,14 @@
-.interaction-wrapper {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+.outer-wrapper {
+    max-width: 100vw;
     overflow-x: hidden;
 }
 
-.table-wrapper {
-    width: 100%;
+.datatable-wrapper {
     max-width: 100%;
     overflow-x: auto;
-}
-
-.interaction-table {
-    width: 100%;
-    max-width: 100%;
+    overflow-y: auto;
+    max-height: 500px;
     box-sizing: border-box;
-    word-break: break-word;
 }
 
 lightning-datatable .slds-cell-wrap {
