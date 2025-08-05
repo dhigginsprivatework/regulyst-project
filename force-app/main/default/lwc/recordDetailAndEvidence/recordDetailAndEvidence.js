@@ -14,9 +14,9 @@ export default class RecordDetailAndEvidence extends LightningElement {
     @track evidenceList = [];
 
     fieldMap = {
-        'Project_Clause_Control_Domain__c': ['Name', 'Clause_Number__c', 'Description__c'],
-        'Project_Control__c': ['Name', 'Control_Number__c', 'Title__c', 'Description__c'],
-        'Project_Control_Requirement__c': ['Name', 'Description__c', 'Source__c', 'Framework__c']
+        'Project_Clause_Control_Domain__c': ['Name', 'Description__c'],
+        'Project_Control__c': ['Name', 'Title__c', 'Description__c'],
+        'Project_Control_Requirement__c': ['Name', 'Description__c']
     };
 
     @wire(MessageContext)
