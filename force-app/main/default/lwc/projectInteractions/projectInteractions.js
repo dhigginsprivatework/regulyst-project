@@ -169,10 +169,10 @@ export default class ProjectInteractions extends LightningElement {
     const row = event.detail.row;
 
     if (actionName === 'view') {
-        //console.log('View clicked for row:', JSON.stringify(row));
+        console.log('View clicked for row:', JSON.stringify(row));
         publish(this.messageContext, SELECTED_RECORD_CHANNEL, {
-            recordId: row.Id,
-            sObjectType: 'Project_Interaction__c' // Adjust if needed
+            recordId: row.Item_Interacted_With_Record_Id__c,
+            sObjectType: row.Item_Interacted_With_API_Name__c
         });
     }
 }

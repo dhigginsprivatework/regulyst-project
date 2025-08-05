@@ -39,6 +39,7 @@ public class ProjectInteractionService {
             String itemType;
             String itemName;
             String itemRelatedObjectApiName; 
+            String itemRelatedObjectRecordId; 
 
             if (ev.Project_Control_Requirement__c != null && requirementMap.containsKey(ev.Project_Control_Requirement__c)) {
                 Project_Control_Requirement__c req = requirementMap.get(ev.Project_Control_Requirement__c);
@@ -46,18 +47,21 @@ public class ProjectInteractionService {
                 itemType = 'Control Requirement';
                 itemName = req.Name;
                 itemRelatedObjectApiName = 'Project_Control_Requirement__c'; 
+                itemRelatedObjectRecordId = req.Id; 
             } else if (ev.Project_Control__c != null && controlMap.containsKey(ev.Project_Control__c)) {
                 Project_Control__c ctrl = controlMap.get(ev.Project_Control__c);
                 projectId = ctrl.Project_Framework__r.Project__c;
                 itemType = 'Control';
                 itemName = ctrl.Name;
                 itemRelatedObjectApiName = 'Project_Control__c';
+                itemRelatedObjectRecordId = ctrl.Id; 
             } else if (ev.Clause_Control_Domain_project__c != null && clauseDomainMap.containsKey(ev.Clause_Control_Domain_project__c)) {
                 Project_Clause_Control_Domain__c domain = clauseDomainMap.get(ev.Clause_Control_Domain_project__c);
                 projectId = domain.Project_Framework__r.Project__c;
                 itemType = 'Clause/Control Domain';
                 itemName = domain.Name;
                 itemRelatedObjectApiName = 'Project_Clause_Control_Domain__c';
+                itemRelatedObjectRecordId = domain.Id; 
             }
 
             if (projectId != null) {
@@ -67,7 +71,8 @@ public class ProjectInteractionService {
                     Project__c = projectId,
                     Item_Interacted_With__c = itemType,
                     Item_Interacted_With_Name__c = itemName,
-                    Item_Interacted_With_API_Name__c = itemRelatedObjectApiName
+                    Item_Interacted_With_API_Name__c = itemRelatedObjectApiName,
+                    Item_Interacted_With_Record_Id__c	 = itemRelatedObjectRecordId
                 ));
             }
         }
