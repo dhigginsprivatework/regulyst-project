@@ -8,7 +8,11 @@
 .header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
 }
 
 .logo {
@@ -18,44 +22,54 @@
 }
 
 .title h1 {
-    font-size: 2rem;
-    margin: 0;
-    color: #e9eceb;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
 }
 
 .title p {
-    font-size: 1rem;
-    color: #e9eceb;
+    font-size: 1.2rem;
+    color: #cfd8dc;
+    letter-spacing: 1px;
     margin: 0.2rem 0 0 0;
 }
 
 .tiles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
 }
 
 .tile {
-    background-color: white;
-    border-radius: 8px;
-    padding: 1rem;
+    background: linear-gradient(to bottom right, #ffffff, #f4f6f9);
+    border-radius: 12px;
+    padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
 .tile:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .tile-icon {
     margin-bottom: 0.5rem;
+    color: #0070d2;
 }
 
 .tile-label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: #333;
+    color: #2c3e50;
+    margin-top: 0.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
