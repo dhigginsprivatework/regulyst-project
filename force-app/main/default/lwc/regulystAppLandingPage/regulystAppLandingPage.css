@@ -1,58 +1,60 @@
-.container {
-background-color: #003366; /* Your deep blue color */
-height: 100vh;
-padding: 2rem;
-text-align: center;
-color: white;
+.landing-container {
+    padding: 2rem;
+    background: linear-gradient(to right, #f4f6f9, #e3e9f0);
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .header {
-margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .logo {
-height: 60px;
-margin-bottom: 1rem;
+    height: 80px;
+    margin-right: 1rem;
 }
 
-.title {
-font-size: 2rem;
-font-weight: bold;
-color: white;
+.title h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #1a1a1a;
 }
 
-.tiles {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 2rem;
+.title p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0.2rem 0 0 0;
+}
+
+.tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
 }
 
 .tile {
-background: transparent;
-border: 2px solid white;
-border-radius: 0.75rem;
-padding: 2rem;
-width: 160px;
-height: 160px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-transition: background 0.3s ease;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tile:hover {
-background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.icon {
-margin-bottom: 0.75rem;
---slds-c-icon-color-foreground-default: white;
+.tile-icon {
+    margin-bottom: 0.5rem;
 }
 
-.label {
-font-size: 1rem;
-color: white;
+.tile-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
 }

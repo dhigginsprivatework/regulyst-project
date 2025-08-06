@@ -1,0 +1,4 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <c:regulystAppLandingPage onnavigate="{!c.handleNavigate}"/>
+</aura:component>

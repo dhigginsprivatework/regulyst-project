@@ -3,8 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>regulystAppLandingPage</componentName>
-                <identifier>c_regulystAppLandingPage</identifier>
+                <componentName>RegulystLandingWrapper</componentName>
+                <identifier>c_RegulystLandingWrapper</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
