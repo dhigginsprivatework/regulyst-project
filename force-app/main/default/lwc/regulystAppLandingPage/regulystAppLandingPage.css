@@ -1,6 +1,6 @@
 .landing-container {
     padding: 2rem;
-    background: linear-gradient(to right, #f4f6f9, #e3e9f0);
+    background: linear-gradient(to right, #003366, #003366);
     min-height: 100vh;
     box-sizing: border-box;
 }
@@ -13,18 +13,19 @@
 
 .logo {
     height: 80px;
+    width: 160px;
     margin-right: 1rem;
 }
 
 .title h1 {
     font-size: 2rem;
     margin: 0;
-    color: #1a1a1a;
+    color: #e9eceb;
 }
 
 .title p {
     font-size: 1rem;
-    color: #666;
+    color: #e9eceb;
     margin: 0.2rem 0 0 0;
 }
 
