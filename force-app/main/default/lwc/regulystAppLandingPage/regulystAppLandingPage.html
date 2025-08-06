@@ -1,0 +1,16 @@
+<template>
+<div class="container">
+<div class="header">
+<img src={logoUrl} alt="Regulyst Logo" class="logo" />
+<h1 class="title">Regulyst</h1>
+</div>
+<div class="tiles">
+<template for:each={tiles} for:item="tile">
+<div key={tile.label} class="tile" onclick={handleNavigate} data-url={tile.url}>
+<lightning-icon icon-name={tile.icon} alternative-text={tile.label} size="large" class="icon"></lightning-icon>
+<span class="label">{tile.label}</span>
+</div>
+</template>
+</div>
+</div>
+</template>

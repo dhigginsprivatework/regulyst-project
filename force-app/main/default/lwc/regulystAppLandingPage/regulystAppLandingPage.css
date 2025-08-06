@@ -1,0 +1,58 @@
+.container {
+background-color: #003366; /* Your deep blue color */
+height: 100vh;
+padding: 2rem;
+text-align: center;
+color: white;
+}
+
+.header {
+margin-bottom: 3rem;
+}
+
+.logo {
+height: 60px;
+margin-bottom: 1rem;
+}
+
+.title {
+font-size: 2rem;
+font-weight: bold;
+color: white;
+}
+
+.tiles {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 2rem;
+}
+
+.tile {
+background: transparent;
+border: 2px solid white;
+border-radius: 0.75rem;
+padding: 2rem;
+width: 160px;
+height: 160px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: background 0.3s ease;
+}
+
+.tile:hover {
+background: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+margin-bottom: 0.75rem;
+--slds-c-icon-color-foreground-default: white;
+}
+
+.label {
+font-size: 1rem;
+color: white;
+}
