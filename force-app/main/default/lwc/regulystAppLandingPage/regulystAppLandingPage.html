@@ -1,5 +1,5 @@
 <template>
-    <div class="landing-container">
+    <div class="outer-container">
         <div class="header">
             <img src={logoUrl} alt="Regulyst Logo" class="logo" />
             <div class="title">
@@ -8,13 +8,15 @@
             </div>
         </div>
 
-        <div class="tiles-grid">
-            <template for:each={tiles} for:item="tile">
-                <div key={tile.label} class="tile" data-url={tile.url} onclick={handleNavigate}>
-                    <lightning-icon icon-name={tile.icon} size="large" class="tile-icon"></lightning-icon>
-                    <span class="tile-label">{tile.label}</span>
-                </div>
-            </template>
+        <div class="inner-container">
+            <div class="tiles-grid">
+                <template for:each={tiles} for:item="tile">
+                    <div key={tile.label} class="tile" data-url={tile.url} onclick={handleNavigate}>
+                        <lightning-icon icon-name={tile.icon} size="medium" class="tile-icon"></lightning-icon>
+                        <span class="tile-label">{tile.label}</span>
+                    </div>
+                </template>
+            </div>
         </div>
     </div>
 </template>

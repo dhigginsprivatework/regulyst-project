@@ -1,30 +1,31 @@
-.landing-container {
-    padding: 2rem;
-    background: linear-gradient(to right, #003366, #003366);
+.outer-container {
+    background-color: #002b5c;
     min-height: 100vh;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-sizing: border-box;
 }
 
 .header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 2rem;
-    padding: 1rem 2rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
 }
 
 .logo {
     height: 80px;
     width: 160px;
-    margin-right: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .title h1 {
     font-size: 2.5rem;
     font-weight: 700;
     color: #ffffff;
+    margin: 0;
 }
 
 .title p {
@@ -34,22 +35,35 @@
     margin: 0.2rem 0 0 0;
 }
 
+.inner-container {
+    background-color: #003366;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 960px;
+    width: 100%;
+}
+
 .tiles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    padding: 1rem 0;
 }
 
 .tile {
-    background: linear-gradient(to bottom right, #ffffff, #f4f6f9);
+    background-color: #f4f6f9;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 2rem;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: fadeIn 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
 }
 
 .tile:hover {
@@ -58,12 +72,12 @@
 }
 
 .tile-icon {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: #0070d2;
 }
 
 .tile-label {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: #2c3e50;
     margin-top: 0.5rem;
