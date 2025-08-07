@@ -1,5 +1,5 @@
 .outer-container {
-    background-color: #002b5c;
+    background-color: #0A2C5E;
     min-height: 100vh;
     padding: 3rem 2rem;
     display: flex;
@@ -16,9 +16,10 @@
 }
 
 .logo {
-    height: 80px;
-    width: 160px;
-    margin-bottom: 0.5rem;
+    height: 120px;
+    width: auto;
+    margin-bottom: 2rem;
+    border-radius: 12px;
 }
 
 .title h1 {
@@ -36,7 +37,7 @@
 }
 
 .inner-container {
-    background-color: #003366;
+    background-color: #004080;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -73,7 +74,16 @@
 
 .tile-icon {
     margin-bottom: 1rem;
-    color: #0070d2;
+}
+
+/* Force icon color to blue */
+.tile-icon lightning-icon svg {
+    fill: #1e90ff !important;
+}
+
+/* Optional: darker blue on hover */
+.tile:hover lightning-icon svg {
+    fill: #005fb2 !important;
 }
 
 .tile-label {
