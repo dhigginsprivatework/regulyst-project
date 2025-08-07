@@ -1,5 +1,5 @@
 .outer-container {
-    background-color: #0A2C5E;
+    background-color: #0A1F44;
     min-height: 100vh;
     padding: 3rem 2rem;
     display: flex;
@@ -10,34 +10,23 @@
 
 .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 960px;
     margin-bottom: 2rem;
 }
 
 .logo {
     height: 120px;
     width: auto;
-    margin-bottom: 2rem;
+    margin-right: 1.5rem;
     border-radius: 12px;
 }
 
-.title h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-}
-
-.title p {
-    font-size: 1.2rem;
-    color: #cfd8dc;
-    letter-spacing: 1px;
-    margin: 0.2rem 0 0 0;
-}
-
 .inner-container {
-    background-color: #004080;
+    background-color: #003366;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -52,14 +41,12 @@
 }
 
 .tile {
-    background-color: #f4f6f9;
+    background: linear-gradient(to bottom right, #ffffff, #f0f4f8);
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeIn 0.6s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,20 +55,26 @@
 }
 
 .tile:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border: 1px solid #1e90ff;
 }
 
 .tile-icon {
     margin-bottom: 1rem;
 }
 
-/* Force icon color to blue */
+.tile-icon lightning-icon {
+    --slds-c-icon-color-foreground: #1e90ff;
+    --slds-c-icon-color-background: transparent;
+    width: 36px;
+    height: 36px;
+}
+
 .tile-icon lightning-icon svg {
     fill: #1e90ff !important;
 }
 
-/* Optional: darker blue on hover */
 .tile:hover lightning-icon svg {
     fill: #005fb2 !important;
 }
@@ -91,6 +84,7 @@
     font-weight: 600;
     color: #2c3e50;
     margin-top: 0.5rem;
+    letter-spacing: 0.5px;
 }
 
 @keyframes fadeIn {
