@@ -1,88 +1,82 @@
 <template>
     <div class="team-container">
-        <lightning-card title="Project Team">
-            <div class="team-content">
-                <lightning-layout multiple-rows>
-                    <lightning-layout-item size="12" padding="around-small">
-                        <lightning-record-edit-form object-api-name="Project_Team__c">
-                            <lightning-input-field field-name="User__c" label="User" class="userLookup"></lightning-input-field>
-                            <lightning-combobox
-                                name="role"
-                                label="Role"
-                                placeholder="Select a role"
-                                options={roleOptions}
-                                value={role}
-                                onchange={handleRoleChange}>
-                            </lightning-combobox>
-                            <lightning-button
-                                variant="brand"
-                                label="Add Member"
-                                onclick={handleAddMember}
-                                class="add-member-button">
-                            </lightning-button>
-                        </lightning-record-edit-form>
-                    </lightning-layout-item>
+        <div class="team-content">
+            <lightning-card title="Project Team">
+                <div class="team-form">
+                    <lightning-record-edit-form object-api-name="Project_Team__c">
+                        <lightning-input-field field-name="User__c" label="User" class="userLookup"></lightning-input-field>
+                        <lightning-combobox
+                            name="role"
+                            label="Role"
+                            placeholder="Select a role"
+                            options={roleOptions}
+                            value={role}
+                            onchange={handleRoleChange}>
+                        </lightning-combobox>
+                        <lightning-button
+                            variant="brand"
+                            label="Add Member"
+                            onclick={handleAddMember}
+                            class="add-member-button">
+                        </lightning-button>
+                    </lightning-record-edit-form>
+                </div>
 
-                    <lightning-layout-item size="12" padding="around-small">
-                        <lightning-input type="search" label="Search Team Members" onchange={handleSearch} class="search-input"></lightning-input>
-                    </lightning-layout-item>
+                <lightning-input type="search" label="Search Team Members" onchange={handleSearch} class="search-input"></lightning-input>
 
-                    <lightning-layout-item size="12" padding="around-small">
-                        <template if:true={isLoading}>
-                            <div class="spinner-container">
-                                <lightning-spinner alternative-text="Loading team members..." size="medium"></lightning-spinner>
+                <template if:true={isLoading}>
+                    <div class="spinner-container">
+                        <lightning-spinner alternative-text="Loading team members..." size="medium"></lightning-spinner>
+                    </div>
+                </template>
+
+                <template if:true={filteredMembers.length}>
+                    <template for:each={filteredMembers} for:item="member">
+                        <div key={member.Id} class="member-card">
+                            <div class="member-info">
+                                <p><strong>{member.User__r.Name}</strong> – {member.Role__c}</p>
                             </div>
-                        </template>
+                            <div class="member-actions">
+                                <lightning-button-icon
+                                    icon-name="utility:edit"
+                                    alternative-text="Edit"
+                                    title="Edit"
+                                    onclick={handleEdit}
+                                    data-id={member.Id}
+                                    data-user-id={member.User__c}
+                                    data-role={member.Role__c}
+                                    class="action-icon">
+                                </lightning-button-icon>
 
-                        <template if:true={filteredMembers.length}>
-                            <template for:each={filteredMembers} for:item="member">
-                                <div key={member.Id} class="member-card">
-                                    <div class="member-info">
-                                        <p><strong>{member.User__r.Name}</strong> – {member.Role__c}</p>
-                                    </div>
-                                    <div class="member-actions">
-                                        <lightning-button-icon
-                                            icon-name="utility:edit"
-                                            alternative-text="Edit"
-                                            title="Edit"
-                                            onclick={handleEdit}
-                                            data-id={member.Id}
-                                            data-user-id={member.User__c}
-                                            data-role={member.Role__c}
-                                            class="action-icon">
-                                        </lightning-button-icon>
-
-                                        <lightning-button-icon
-                                            icon-name="utility:delete"
-                                            alternative-text="Delete"
-                                            title="Delete"
-                                            onclick={handleDelete}
-                                            data-id={member.Id}
-                                            class="action-icon">
-                                        </lightning-button-icon>
-                                    </div>
-                                </div>
-                            </template>
-                        </template>
-
-                        <template if:false={filteredMembers.length}>
-                            <div class="empty-state">
-                                <lightning-icon icon-name="utility:groups" size="large" alternative-text="No members"></lightning-icon>
-                                <p class="no-members">No team members yet.</p>
+                                <lightning-button-icon
+                                    icon-name="utility:delete"
+                                    alternative-text="Delete"
+                                    title="Delete"
+                                    onclick={handleDelete}
+                                    data-id={member.Id}
+                                    class="action-icon">
+                                </lightning-button-icon>
                             </div>
-                        </template>
-                    </lightning-layout-item>
-                </lightning-layout>
-            </div>
-        </lightning-card>
+                        </div>
+                    </template>
+                </template>
 
-        <c-team-member-modal
-            is-open={isModalOpen}
-            user-id={editUserId}
-            role={editRole}
-            member-id={editMemberId}
-            onclose={handleModalClose}
-            onsave={handleModalSave}>
-        </c-team-member-modal>
+                <template if:false={filteredMembers.length}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:groups" size="large" alternative-text="No members"></lightning-icon>
+                        <p class="no-members">No team members yet.</p>
+                    </div>
+                </template>
+            </lightning-card>
+
+            <c-team-member-modal
+                is-open={isModalOpen}
+                user-id={editUserId}
+                role={editRole}
+                member-id={editMemberId}
+                onclose={handleModalClose}
+                onsave={handleModalSave}>
+            </c-team-member-modal>
+        </div>
     </div>
 </template>

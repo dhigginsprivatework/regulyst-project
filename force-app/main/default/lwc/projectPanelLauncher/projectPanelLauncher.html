@@ -4,7 +4,6 @@
             <lightning-icon icon-name={toggleIcon} size="small" alternative-text="Toggle Sidebar"></lightning-icon>
         </div>
 
-        <!-- Functional Buttons -->
         <div class="nav-item" onclick={showTeamPanel} title="Project Team">
             <lightning-icon icon-name="standard:groups" size="small" class="nav-icon"></lightning-icon>
             <template if:true={isExpanded}>
@@ -18,21 +17,6 @@
                 <span class="nav-label">Interactions</span>
             </template>
         </div>
-
-        <!-- Placeholder Buttons -->
-        <!--<div class="nav-item" title="Placeholder 1">
-            <lightning-icon icon-name="utility:apps" size="small" class="nav-icon"></lightning-icon>
-            <template if:true={isExpanded}>
-                <span class="nav-label">Placeholder 1</span>
-            </template>
-        </div>
-
-        <div class="nav-item" title="Placeholder 2">
-            <lightning-icon icon-name="utility:apps" size="small" class="nav-icon"></lightning-icon>
-            <template if:true={isExpanded}>
-                <span class="nav-label">Placeholder 2</span>
-            </template>
-        </div>-->
     </div>
 
     <template if:true={showPanel}>
