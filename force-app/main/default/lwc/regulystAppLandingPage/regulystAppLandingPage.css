@@ -1,5 +1,5 @@
 .outer-container {
-    background-color: #0A1F44;
+    background: linear-gradient(to bottom, #0A1F44, #001933);
     min-height: 100vh;
     padding: 3rem 2rem;
     display: flex;
@@ -26,7 +26,7 @@
 }
 
 .inner-container {
-    background-color: #003366;
+    background: linear-gradient(to bottom right, #003366, #002244);
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -38,6 +38,18 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .tiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .tiles-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .tile {
@@ -52,12 +64,19 @@
     align-items: center;
     justify-content: center;
     min-height: 140px;
+    cursor: pointer;
+    animation: fadeIn 0.6s ease forwards;
 }
 
 .tile:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.02);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     border: 1px solid #1e90ff;
+}
+
+.tile:focus {
+    outline: 2px solid #1e90ff;
+    outline-offset: 4px;
 }
 
 .tile-icon {
@@ -82,7 +101,7 @@
 .tile-label {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: #1c2833;
     margin-top: 0.5rem;
     letter-spacing: 0.5px;
 }
