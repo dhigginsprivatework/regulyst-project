@@ -6,6 +6,9 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .header {
@@ -53,11 +56,12 @@
 }
 
 .tile {
-    background: linear-gradient(to bottom right, #ffffff, #f0f4f8);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -71,11 +75,11 @@
 .tile:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    border: 1px solid #1e90ff;
+    border: 1px solid #00aaff;
 }
 
 .tile:focus {
-    outline: 2px solid #1e90ff;
+    outline: 2px solid #00aaff;
     outline-offset: 4px;
 }
 
@@ -84,24 +88,26 @@
 }
 
 .tile-icon lightning-icon {
-    --slds-c-icon-color-foreground: #1e90ff;
+    --slds-c-icon-color-foreground: #00aaff;
     --slds-c-icon-color-background: transparent;
     width: 36px;
     height: 36px;
+    transition: transform 0.3s ease;
 }
 
 .tile-icon lightning-icon svg {
-    fill: #1e90ff !important;
+    fill: #00aaff !important;
 }
 
 .tile:hover lightning-icon svg {
-    fill: #005fb2 !important;
+    fill: #0077cc !important;
+    transform: scale(1.1);
 }
 
 .tile-label {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #1c2833;
+    color: #f0f4f8;
     margin-top: 0.5rem;
     letter-spacing: 0.5px;
 }
