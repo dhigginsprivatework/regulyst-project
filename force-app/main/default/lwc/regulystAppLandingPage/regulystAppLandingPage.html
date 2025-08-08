@@ -1,14 +1,20 @@
 <template>
     <div class="outer-container">
         <div class="header">
-            <img src={logoUrl} alt="Regulyst Logo" class="logo" />
+            <!--<img src={logoUrl} alt="Regulyst Logo" class="logo" />-->
         </div>
 
         <div class="inner-container">
             <div class="tiles-grid">
                 <template for:each={tiles} for:item="tile">
                     <div key={tile.label} class="tile" data-url={tile.url} onclick={handleNavigate}>
-                        <lightning-icon icon-name={tile.icon} size="medium" class="tile-icon"></lightning-icon>
+                        <lightning-icon 
+                            icon-name={tile.icon} 
+                            size="medium" 
+                            variant="inverse"
+                            class="tile-icon"
+                            alternative-text={tile.label}>
+                        </lightning-icon>
                         <span class="tile-label">{tile.label}</span>
                     </div>
                 </template>

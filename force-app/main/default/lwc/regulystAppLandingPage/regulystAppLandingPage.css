@@ -1,5 +1,5 @@
 .outer-container {
-    background: linear-gradient(to bottom, #0A1F44, #001933);
+    background: linear-gradient(to bottom, #0d2856, #0d2856);
     min-height: 100vh;
     padding: 3rem 2rem;
     display: flex;
@@ -85,23 +85,6 @@
 
 .tile-icon {
     margin-bottom: 1rem;
-}
-
-.tile-icon lightning-icon {
-    --slds-c-icon-color-foreground: #00aaff;
-    --slds-c-icon-color-background: transparent;
-    width: 36px;
-    height: 36px;
-    transition: transform 0.3s ease;
-}
-
-.tile-icon lightning-icon svg {
-    fill: #00aaff !important;
-}
-
-.tile:hover lightning-icon svg {
-    fill: #0077cc !important;
-    transform: scale(1.1);
 }
 
 .tile-label {
