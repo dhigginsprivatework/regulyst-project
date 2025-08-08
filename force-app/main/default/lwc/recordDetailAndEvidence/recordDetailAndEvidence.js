@@ -1,6 +1,7 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { refreshApex } from '@salesforce/apex';
 import SELECTED_RECORD_CHANNEL from '@salesforce/messageChannel/SelectedRecord__c';
 import createEvidenceWithFiles from '@salesforce/apex/EvidenceController.createEvidenceWithFiles';
 import getEvidenceForRecord from '@salesforce/apex/EvidenceController.getEvidenceForRecord';
@@ -11,7 +12,10 @@ export default class RecordDetailAndEvidence extends LightningElement {
     @track evidenceDescription = '';
     @track files = [];
     @track isMinimized = true;
-    @track evidenceList = [];
+    @track isLoading = false;
+
+    wiredEvidenceResult;
+    evidenceList = [];
 
     fieldMap = {
         'Project_Clause_Control_Domain__c': ['Name', 'Description__c'],
@@ -22,6 +26,21 @@ export default class RecordDetailAndEvidence extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
+    @wire(getEvidenceForRecord, { parentId: '$recordId' })
+    wiredEvidence(response) {
+        this.wiredEvidenceResult = response;
+        const { data, error } = response;
+        if (data) {
+            this.evidenceList = data.map(e => ({
+                ...e,
+                fileUrl: e.ContentDocumentId ? `/sfc/servlet.shepherd/document/download/${e.ContentDocumentId}` : null,
+                recordUrl: '/' + e.Id
+            }));
+        } else if (error) {
+            console.error('❌ Error loading evidence:', error);
+        }
+    }
+
     connectedCallback() {
         subscribe(this.messageContext, SELECTED_RECORD_CHANNEL, (message) => {
             this.recordId = message.recordId;
@@ -29,7 +48,6 @@ export default class RecordDetailAndEvidence extends LightningElement {
             this.files = [];
             this.isMinimized = false;
             document.documentElement.style.setProperty('--show-backdrop', 'block');
-            this.fetchEvidence();
         });
     }
 
@@ -77,13 +95,11 @@ export default class RecordDetailAndEvidence extends LightningElement {
             return;
         }
 
+        this.isLoading = true;
+
         try {
             const filePromises = this.files.map(fileWrapper => {
                 return new Promise((resolve, reject) => {
-                    if (!(fileWrapper.rawFile instanceof File)) {
-                        reject(new Error('Invalid file object'));
-                        return;
-                    }
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         const result = reader.result;
@@ -111,28 +127,19 @@ export default class RecordDetailAndEvidence extends LightningElement {
             };
 
             await createEvidenceWithFiles(JSON.parse(JSON.stringify(payload)));
+
             this.showToast('Success', 'Evidence and files uploaded successfully.', 'success');
-            this.fetchEvidence();
+
             this.evidenceDescription = '';
             this.files = [];
             const fileInput = this.template.querySelector('input[type="file"]');
             if (fileInput) fileInput.value = null;
+
+            await refreshApex(this.wiredEvidenceResult);
         } catch (error) {
             this.showToast('Upload Failed', error.body?.message || error.message || 'Unknown error', 'error');
-        }
-    }
-
-    async fetchEvidence() {
-        if (!this.recordId) return;
-        try {
-            const result = await getEvidenceForRecord({ parentId: this.recordId });
-            this.evidenceList = result.map(e => ({
-                ...e,
-                fileUrl: e.ContentDocumentId ? `/sfc/servlet.shepherd/document/download/${e.ContentDocumentId}` : null,
-                recordUrl: '/' + e.Id
-            }));
-        } catch (error) {
-            console.error('Failed to fetch evidence:', error);
+        } finally {
+            this.isLoading = false;
         }
     }
 

@@ -33,7 +33,13 @@
                     <lightning-button label="Save Evidence" onclick={handleSaveEvidenceAndUpload} variant="brand"></lightning-button>
                 </div>
 
-                <template if:true={evidenceList}>
+                <template if:true={isLoading}>
+                    <div class="slds-m-top_medium slds-align_absolute-center">
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </div>
+                </template>
+
+                <template if:true={evidenceList.length}>
                     <div class="slds-m-top_large">
                         <h3 class="slds-text-heading_small slds-m-bottom_small">Existing Evidence</h3>
                         <template for:each={evidenceList} for:item="evidence">
@@ -58,6 +64,10 @@
                             </div>
                         </template>
                     </div>
+                </template>
+
+                <template if:false={evidenceList.length}>
+                    <p class="slds-m-top_medium">No evidence records found.</p>
                 </template>
             </template>
         </div>
