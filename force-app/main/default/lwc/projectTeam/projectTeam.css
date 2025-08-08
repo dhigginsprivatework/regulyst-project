@@ -7,6 +7,7 @@
     overflow-y: auto;
     height: 100%;
     box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 .add-member-button {
@@ -14,6 +15,11 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: background-color 0.3s ease;
+}
+
+.add-member-button:hover {
+    background-color: #0070d2;
 }
 
 .member-card {
@@ -26,6 +32,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.member-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .member-info p {
@@ -45,6 +57,12 @@
     padding: 0.25rem;
 }
 
+.action-icon:hover {
+    background-color: #00BFFF;
+    color: white;
+    cursor: pointer;
+}
+
 .no-members {
     text-align: center;
     color: #999;
@@ -52,13 +70,18 @@
     margin-top: 1rem;
 }
 
-.custom-header {
-    background-color: #003366;
-    color: white;
-    font-size: 1.25rem;
-    font-weight: 600;
-    padding: 0.75rem 1rem;
-    border-bottom: 2px solid #00BFFF;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+.empty-state {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.search-input {
+    margin-bottom: 1rem;
 }

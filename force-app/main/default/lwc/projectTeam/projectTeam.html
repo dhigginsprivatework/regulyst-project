@@ -24,8 +24,18 @@
                     </lightning-layout-item>
 
                     <lightning-layout-item size="12" padding="around-small">
-                        <template if:true={teamMembers}>
-                            <template for:each={teamMembers} for:item="member">
+                        <lightning-input type="search" label="Search Team Members" onchange={handleSearch} class="search-input"></lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="12" padding="around-small">
+                        <template if:true={isLoading}>
+                            <div class="spinner-container">
+                                <lightning-spinner alternative-text="Loading team members..." size="medium"></lightning-spinner>
+                            </div>
+                        </template>
+
+                        <template if:true={filteredMembers.length}>
+                            <template for:each={filteredMembers} for:item="member">
                                 <div key={member.Id} class="member-card">
                                     <div class="member-info">
                                         <p><strong>{member.User__r.Name}</strong> – {member.Role__c}</p>
@@ -54,12 +64,25 @@
                                 </div>
                             </template>
                         </template>
-                        <template if:false={teamMembers.length}>
-                            <p class="no-members">No team members yet.</p>
+
+                        <template if:false={filteredMembers.length}>
+                            <div class="empty-state">
+                                <lightning-icon icon-name="utility:groups" size="large" alternative-text="No members"></lightning-icon>
+                                <p class="no-members">No team members yet.</p>
+                            </div>
                         </template>
                     </lightning-layout-item>
                 </lightning-layout>
             </div>
         </lightning-card>
+
+        <c-team-member-modal
+            is-open={isModalOpen}
+            user-id={editUserId}
+            role={editRole}
+            member-id={editMemberId}
+            onclose={handleModalClose}
+            onsave={handleModalSave}>
+        </c-team-member-modal>
     </div>
 </template>
